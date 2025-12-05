@@ -1,0 +1,2157 @@
+[2025-12-02 14:18:34] wp_mail called with: Array
+(
+    [to] => rafsun@wphelpzone.com
+    [subject] => Your order at Aivon was unsuccessful
+    [message] => <!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+		<title>Aivon</title>
+	<style type="text/css">@media screen and (max-width: 600px){#template_header_image,#header_wrapper{padding: 16px 10px 0 !important;}#header_wrapper h1{font-size: 24px !important;}#body_content_inner_cell{padding: 10px !important;}#body_content_inner,.email-order-item-meta{font-size: 12px !important;}#body_content .email-order-details .order-totals-total td{font-size: 14px !important;}.email-order-detail-heading{font-size: 16px !important; line-height: 130% !important;}.email-additional-content{padding-top: 16px !important;}}</style></head>
+	<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" style="background-color: #fff; padding: 0; text-align: center;" bgcolor="#fff">
+		<table width="100%" id="outer_wrapper" style="background-color: #fff;" bgcolor="#fff">
+			<tr>
+				<td><!-- Deliberately empty to support consistent sizing and layout across multiple email clients. --></td>
+				<td width="600">
+					<div id="wrapper" dir="ltr" style="margin: 0 auto; padding: 24px 0; width: 100%; max-width: 600px; -webkit-text-size-adjust: none;" width="100%">
+						<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="inner_wrapper" style="background-color: #fff; border-radius: 8px;" bgcolor="#fff">
+							<tr>
+								<td align="center" valign="top">
+																			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td id="template_header_image" style="padding: 32px 32px 0;">
+													<p class="email-logo-text" style='color: #8526ff; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 18px; margin-bottom: 0; text-align: left;' align="left">Aivon</p>												</td>
+											</tr>
+										</table>
+																		<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_container" style="box-shadow: none; background-color: #fff; border: 0; border-radius: 3px;" bgcolor="#fff">
+										<tr>
+											<td align="center" valign="top">
+												<!-- Header -->
+												<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_header" style='background-color: #fff; color: #1e1e1e; border-bottom: 0; font-weight: bold; line-height: 100%; vertical-align: middle; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; border-radius: 3px 3px 0 0;' bgcolor="#fff">
+													<tr>
+														<td id="header_wrapper" style="padding: 20px 32px 0; display: block;">
+															<h1 style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 120%; margin: 0; color: #1e1e1e; background-color: inherit; text-align: left;' bgcolor="inherit">Sorry, your order was unsuccessful</h1>
+														</td>
+													</tr>
+												</table>
+												<!-- End Header -->
+											</td>
+										</tr>
+										<tr>
+											<td align="center" valign="top">
+												<!-- Body -->
+												<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_body">
+													<tr>
+														<td valign="top" id="body_content" style="background-color: #fff;" bgcolor="#fff">
+															<!-- Content -->
+															<table border="0" cellpadding="20" cellspacing="0" width="100%">
+																<tr>
+																	<td valign="top" id="body_content_inner_cell" style="padding: 20px 32px 32px;">
+																		<div id="body_content_inner" style='color: #4b4b4b; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 16px; line-height: 150%; text-align: left;' align="left">
+
+<div class="email-introduction" style="padding-bottom: 24px;"><p style="margin: 0 0 16px;">
+Hi Rafsun,</p>
+<p style="margin: 0 0 16px;">Unfortunately, we couldn't complete your order due to an issue with your payment method.</p>
+<p style="margin: 0 0 16px;">If you'd like to continue with your purchase, please return to Aivon and try a different method of payment.</p>
+<p style="margin: 0 0 16px;">Your order details are as follows:</p>
+</div>
+
+<h2 class="email-order-detail-heading" style='color: #1e1e1e; display: block; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 20px; font-weight: bold; line-height: 160%; margin: 0 0 18px; text-align: left;'>
+	Order summary<br><span style="color: #787c82; display: block; font-size: 14px; font-weight: normal;">Order #10726 (November 22, 2025)</span></h2>
+
+<div style="margin-bottom: 24px;">
+	<table class="td font-family email-order-details" cellspacing="0" cellpadding="6" border="0" style='color: #4b4b4b; border: 0; vertical-align: middle; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; width: 100%;' width="100%">
+				<tbody>
+				<tr class="order_item">
+		<td class="td font-family text-align-left" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; padding: 8px 12px; padding-left: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle; word-wrap: break-word;' align="left">
+							<table class="order-item-data" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>
+					<tr>
+						<td style="vertical-align: middle; padding-left: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; border: 0; padding: 0;"><img width="48" height="48" src="https://test-ecommerce-woodmart.rafsun.wphelpzone.com/wp-content/uploads/2022/12/amd-ryzen-5-5600x-1-600x600.jpg" class="attachment-48x48 size-48x48 skip-lazy no-lazyload lazyload-disabled no-lazy skip-lazyload" alt="AMD Ryzen 5 5600X" data-skip-lazy="true" style="border: none; display: inline-block; font-size: 14px; font-weight: bold; height: auto; outline: none; text-decoration: none; text-transform: capitalize; vertical-align: middle; margin-right: 24px; max-width: 100%;" border="0"></td>						<td style="vertical-align: middle; padding-right: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; border: 0; padding: 0;">
+							AMD Ryzen 5 5600X<div class="email-order-item-meta" style="color: #787c82; font-size: 14px; line-height: 140%;"></div>						</td>
+					</tr>
+				</table>
+						</td>
+		<td class="td font-family text-align-right" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: right; padding: 8px 12px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle;' align="right">
+			×1		</td>
+		<td class="td font-family text-align-right" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: right; padding: 8px 12px; padding-right: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle;' align="right">
+			<span class="woocommerce-Price-amount amount">250.00<span class="woocommerce-Price-currencySymbol">৳ </span></span>		</td>
+	</tr>
+	
+		</tbody>
+		<tfoot>
+								<tr class="order-totals order-totals-subtotal">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-left: 0; padding-top: 24px; border-top-width: 4px;" align="left">
+							Subtotal: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-right: 0; padding-top: 24px; border-top-width: 4px;" align="right"><span class="woocommerce-Price-amount amount">250.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></td>
+					</tr>
+										<tr class="order-totals order-totals-discount">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-left: 0;" align="left">
+							Discount: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-right: 0;" align="right">-<span class="woocommerce-Price-amount amount">250.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></td>
+					</tr>
+										<tr class="order-totals order-totals-shipping">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-left: 0;" align="left">
+							Shipping: Flat rate BD						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-right: 0;" align="right"><span class="woocommerce-Price-amount amount">5.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></td>
+					</tr>
+										<tr class="order-totals order-totals-total order-totals-last">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; padding-top: 5px; font-weight: bold; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-left: 0;" align="left">
+							Total: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; padding-top: 5px; font-weight: bold; font-size: 20px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-right: 0;" align="right"><span style="color: #46b450; font-weight: bold;"><span class="woocommerce-Price-amount amount">0.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></span> <small style="color: #666;">(Sample Order)</small></td>
+					</tr>
+									<tr class="order-customer-note">
+					<td class="td text-align-left" colspan="3" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-top: 24px; padding-left: 0; padding-right: 0;" align="left">
+						<b>Customer note</b><br>
+						aaaa…Sample order created by rafsun-dev. Approved by: admin. Original total: 250					</td>
+				</tr>
+						</tfoot>
+	</table>
+</div>
+
+<table id="addresses" cellspacing="0" cellpadding="0" border="0" style="width: 100%; vertical-align: top; margin-bottom: 0; padding: 0;" width="100%">
+	<tr>
+		<td class="font-family text-align-left" valign="top" width="50%" style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; border: 0; padding: 0;' align="left">
+							<b class="address-title" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>Billing address</b>
+			
+			<address class="address" style="color: #1e1e1e; font-style: normal; padding: 8px 0; word-break: break-all;">
+				Rafsun Jani<br>WPHelpZone LLC<br>467, South Goran, Khilgaon<br>Dhaka<br>Dhaka<br>1219									<br><a href="tel:01577191676" style="color: #8526ff; font-weight: normal; text-decoration: underline;">01577191676</a>													<br>rafsun@wphelpzone.com											</address>
+		</td>
+					<td class="font-family text-align-left" valign="top" width="50%" style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; padding: 0; padding-left: 10px;' align="left">
+									<b class="address-title" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>Shipping address</b>
+				
+				<address class="address" style="color: #1e1e1e; font-style: normal; padding: 8px 0; word-break: break-all;">
+					Rafsun Jani<br>WPHelpZone LLC<br>467, South Goran, Khilgaon, Dhaka - 1219<br>Dhaka<br>Dhaka<br>1219											<br><a href="tel:01577191676" style="color: #8526ff; font-weight: normal; text-decoration: underline;">01577191676</a>														</address>
+			</td>
+			</tr>
+</table>
+<br><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td class="email-additional-content" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; padding: 32px 0 0;'><p style="text-align: center; margin: 0 0 16px;" align="center">If you need any help with your order, please contact us at rafsun@wphelpzone.com.</p>
+</td></tr></table>																		</div>
+																	</td>
+																</tr>
+															</table>
+															<!-- End Content -->
+														</td>
+													</tr>
+												</table>
+												<!-- End Body -->
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td align="center" valign="top">
+									<!-- Footer -->
+									<table border="0" cellpadding="10" cellspacing="0" width="100%" id="template_footer">
+										<tr>
+											<td valign="top" style="padding: 0; border-radius: 0;">
+												<table border="0" cellpadding="10" cellspacing="0" width="100%">
+													<tr>
+														<td colspan="2" valign="middle" id="credit" style='border-radius: 0; border: 0; border-top: 1px solid rgba(0,0,0,.2); font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 12px; line-height: 140%; text-align: center; padding: 32px; color: #787c82;' align="center">
+															<p style="margin: 0;">Aivon<br>Dhaka, Bangladesh</p>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+									<!-- End Footer -->
+								</td>
+							</tr>
+						</table>
+					</div>
+				</td>
+				<td><!-- Deliberately empty to support consistent sizing and layout across multiple email clients. --></td>
+			</tr>
+		</table>
+	</body>
+</html>
+
+    [headers] => Content-Type: text/html
+Reply-to: Woodmart Ecommerce <rafsun@wphelpzone.com>
+
+    [attachments] => Array
+        (
+        )
+
+)
+
+[2025-12-02 14:18:35] Attempting to send email to: 1999rafsun@gmail.com
+[2025-12-02 14:18:35] Subject: [Sample Order] Order #10726 Status Changed to Failed
+[2025-12-02 14:18:35] CC: manager@wphelpzone.com, admin@wphelpzone.com
+[2025-12-02 14:18:35] wp_mail called with: Array
+(
+    [to] => 1999rafsun@gmail.com
+    [subject] => [Sample Order] Order #10726 Status Changed to Failed
+    [message] =>         <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Aivon</title>
+        </head>
+        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+            <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+                
+                <div style="background: #e7f3ff; border: 1px solid #2271b1; padding: 15px; margin-bottom: 20px; border-radius: 4px;">
+                    <h2 style="margin: 0 0 10px 0; color: #135e96;">
+                        <img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f4e6.png" alt="📦" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Order Status Updated
+                    </h2>
+                    <p style="margin: 0; color: #135e96;">
+                        <strong>Order #10726</strong>
+                    </p>
+                </div>
+
+                <p>Hello,</p>
+                <p>Your sample order status has been updated:</p>
+
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 4px; text-align: center; margin: 20px 0;">
+                    <div style="display: inline-block;">
+                        <span style="background: #dc3545; color: white; padding: 10px 20px; border-radius: 4px; font-weight: bold;">
+                            Processing                        </span>
+                        <span style="margin: 0 10px; font-size: 24px;">→</span>
+                        <span style="background: #28a745; color: white; padding: 10px 20px; border-radius: 4px; font-weight: bold;">
+                            Failed                        </span>
+                    </div>
+                </div>
+
+                <h3 style="border-bottom: 2px solid #333; padding-bottom: 5px;">Order Details</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Order Number:</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">#10726</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Order Date:</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">November 22, 2025 10:08 AM</td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Current Status:</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Failed</strong></td>
+                    </tr>
+                </table>
+
+                        <div style="background: #2271b122; border-left: 4px solid #2271b1; padding: 15px; margin: 20px 0;">
+            <h4 style="margin: 0 0 10px 0; color: #2271b1;">
+                <img src="https://s.w.org/images/core/emoji/16.0.1/72x72/2139.png" alt="ℹ" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Status Updated            </h4>
+            <p style="margin: 0;">
+                Your order status has been updated to: Failed            </p>
+        </div>
+        
+                <h3 style="border-bottom: 2px solid #333; padding-bottom: 5px;">Shipping Address</h3>
+                <p>
+                    Rafsun Jani<br/>WPHelpZone LLC<br/>467, South Goran, Khilgaon, Dhaka - 1219<br/>Dhaka<br/>Dhaka<br/>1219<br/>Bangladesh                </p>
+
+                <hr style="border: none; border-top: 1px solid #ddd; margin: 30px 0;">
+                
+                <p style="font-size: 12px; color: #666;">
+                    If you have any questions about this order, please contact us.<br>
+                    <strong>Aivon</strong><br>
+                    Email: rafsun@wphelpzone.com                </p>
+            </div>
+        </body>
+        </html>
+        
+    [headers] => Array
+        (
+            [0] => Content-Type: text/html; charset=UTF-8
+            [1] => From: Aivon <rafsun@wphelpzone.com>
+            [2] => Cc: manager@wphelpzone.com
+            [3] => Cc: admin@wphelpzone.com
+        )
+
+    [attachments] => Array
+        (
+        )
+
+)
+
+[2025-12-02 14:18:35] ✓ Email sent successfully
+[2025-12-02 14:19:16] wp_mail called with: Array
+(
+    [to] => rafsun@wphelpzone.com
+    [subject] => Your order at Aivon was unsuccessful
+    [message] => <!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+		<title>Aivon</title>
+	<style type="text/css">@media screen and (max-width: 600px){#template_header_image,#header_wrapper{padding: 16px 10px 0 !important;}#header_wrapper h1{font-size: 24px !important;}#body_content_inner_cell{padding: 10px !important;}#body_content_inner,.email-order-item-meta{font-size: 12px !important;}#body_content .email-order-details .order-totals-total td{font-size: 14px !important;}.email-order-detail-heading{font-size: 16px !important; line-height: 130% !important;}.email-additional-content{padding-top: 16px !important;}}</style></head>
+	<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" style="background-color: #fff; padding: 0; text-align: center;" bgcolor="#fff">
+		<table width="100%" id="outer_wrapper" style="background-color: #fff;" bgcolor="#fff">
+			<tr>
+				<td><!-- Deliberately empty to support consistent sizing and layout across multiple email clients. --></td>
+				<td width="600">
+					<div id="wrapper" dir="ltr" style="margin: 0 auto; padding: 24px 0; width: 100%; max-width: 600px; -webkit-text-size-adjust: none;" width="100%">
+						<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="inner_wrapper" style="background-color: #fff; border-radius: 8px;" bgcolor="#fff">
+							<tr>
+								<td align="center" valign="top">
+																			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td id="template_header_image" style="padding: 32px 32px 0;">
+													<p class="email-logo-text" style='color: #8526ff; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 18px; margin-bottom: 0; text-align: left;' align="left">Aivon</p>												</td>
+											</tr>
+										</table>
+																		<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_container" style="box-shadow: none; background-color: #fff; border: 0; border-radius: 3px;" bgcolor="#fff">
+										<tr>
+											<td align="center" valign="top">
+												<!-- Header -->
+												<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_header" style='background-color: #fff; color: #1e1e1e; border-bottom: 0; font-weight: bold; line-height: 100%; vertical-align: middle; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; border-radius: 3px 3px 0 0;' bgcolor="#fff">
+													<tr>
+														<td id="header_wrapper" style="padding: 20px 32px 0; display: block;">
+															<h1 style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 120%; margin: 0; color: #1e1e1e; background-color: inherit; text-align: left;' bgcolor="inherit">Sorry, your order was unsuccessful</h1>
+														</td>
+													</tr>
+												</table>
+												<!-- End Header -->
+											</td>
+										</tr>
+										<tr>
+											<td align="center" valign="top">
+												<!-- Body -->
+												<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_body">
+													<tr>
+														<td valign="top" id="body_content" style="background-color: #fff;" bgcolor="#fff">
+															<!-- Content -->
+															<table border="0" cellpadding="20" cellspacing="0" width="100%">
+																<tr>
+																	<td valign="top" id="body_content_inner_cell" style="padding: 20px 32px 32px;">
+																		<div id="body_content_inner" style='color: #4b4b4b; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 16px; line-height: 150%; text-align: left;' align="left">
+
+<div class="email-introduction" style="padding-bottom: 24px;"><p style="margin: 0 0 16px;">
+Hi Rafsun,</p>
+<p style="margin: 0 0 16px;">Unfortunately, we couldn't complete your order due to an issue with your payment method.</p>
+<p style="margin: 0 0 16px;">If you'd like to continue with your purchase, please return to Aivon and try a different method of payment.</p>
+<p style="margin: 0 0 16px;">Your order details are as follows:</p>
+</div>
+
+<h2 class="email-order-detail-heading" style='color: #1e1e1e; display: block; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 20px; font-weight: bold; line-height: 160%; margin: 0 0 18px; text-align: left;'>
+	Order summary<br><span style="color: #787c82; display: block; font-size: 14px; font-weight: normal;">Order #10725 (November 22, 2025)</span></h2>
+
+<div style="margin-bottom: 24px;">
+	<table class="td font-family email-order-details" cellspacing="0" cellpadding="6" border="0" style='color: #4b4b4b; border: 0; vertical-align: middle; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; width: 100%;' width="100%">
+				<tbody>
+				<tr class="order_item">
+		<td class="td font-family text-align-left" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; padding: 8px 12px; padding-left: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle; word-wrap: break-word;' align="left">
+							<table class="order-item-data" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>
+					<tr>
+						<td style="vertical-align: middle; padding-left: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; border: 0; padding: 0;"><img width="48" height="48" src="https://test-ecommerce-woodmart.rafsun.wphelpzone.com/wp-content/uploads/2022/12/apple-ipad-mini-pink-1-600x600.jpg" class="attachment-48x48 size-48x48 skip-lazy no-lazyload lazyload-disabled no-lazy skip-lazyload" alt="Apple iPad Mini 6 Wi-Fi" data-skip-lazy="true" style="border: none; display: inline-block; font-size: 14px; font-weight: bold; height: auto; outline: none; text-decoration: none; text-transform: capitalize; vertical-align: middle; margin-right: 24px; max-width: 100%;" border="0"></td>						<td style="vertical-align: middle; padding-right: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; border: 0; padding: 0;">
+							Apple iPad Mini 6 Wi-Fi<div class="email-order-item-meta" style="color: #787c82; font-size: 14px; line-height: 140%;"></div>						</td>
+					</tr>
+				</table>
+						</td>
+		<td class="td font-family text-align-right" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: right; padding: 8px 12px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle;' align="right">
+			×1		</td>
+		<td class="td font-family text-align-right" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: right; padding: 8px 12px; padding-right: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle;' align="right">
+			<span class="woocommerce-Price-amount amount">500.00<span class="woocommerce-Price-currencySymbol">৳ </span></span>		</td>
+	</tr>
+	
+		</tbody>
+		<tfoot>
+								<tr class="order-totals order-totals-subtotal">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-left: 0; padding-top: 24px; border-top-width: 4px;" align="left">
+							Subtotal: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-right: 0; padding-top: 24px; border-top-width: 4px;" align="right"><span class="woocommerce-Price-amount amount">500.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></td>
+					</tr>
+										<tr class="order-totals order-totals-discount">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-left: 0;" align="left">
+							Discount: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-right: 0;" align="right">-<span class="woocommerce-Price-amount amount">500.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></td>
+					</tr>
+										<tr class="order-totals order-totals-shipping">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-left: 0;" align="left">
+							Shipping: Flat rate BD						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-right: 0;" align="right"><span class="woocommerce-Price-amount amount">5.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></td>
+					</tr>
+										<tr class="order-totals order-totals-total order-totals-last">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; padding-top: 5px; font-weight: bold; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-left: 0;" align="left">
+							Total: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; padding-top: 5px; font-weight: bold; font-size: 20px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-right: 0;" align="right"><span style="color: #46b450; font-weight: bold;"><span class="woocommerce-Price-amount amount">0.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></span> <small style="color: #666;">(Sample Order)</small></td>
+					</tr>
+									<tr class="order-customer-note">
+					<td class="td text-align-left" colspan="3" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-top: 24px; padding-left: 0; padding-right: 0;" align="left">
+						<b>Customer note</b><br>
+						aaa…Sample order created by rafsun-dev. Approved by: admin. Original total: 500					</td>
+				</tr>
+						</tfoot>
+	</table>
+</div>
+
+<table id="addresses" cellspacing="0" cellpadding="0" border="0" style="width: 100%; vertical-align: top; margin-bottom: 0; padding: 0;" width="100%">
+	<tr>
+		<td class="font-family text-align-left" valign="top" width="50%" style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; border: 0; padding: 0;' align="left">
+							<b class="address-title" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>Billing address</b>
+			
+			<address class="address" style="color: #1e1e1e; font-style: normal; padding: 8px 0; word-break: break-all;">
+				Rafsun Jani<br>WPHelpZone LLC<br>467, South Goran, Khilgaon<br>Dhaka<br>Dhaka<br>1219									<br><a href="tel:01577191676" style="color: #8526ff; font-weight: normal; text-decoration: underline;">01577191676</a>													<br>rafsun@wphelpzone.com											</address>
+		</td>
+					<td class="font-family text-align-left" valign="top" width="50%" style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; padding: 0; padding-left: 10px;' align="left">
+									<b class="address-title" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>Shipping address</b>
+				
+				<address class="address" style="color: #1e1e1e; font-style: normal; padding: 8px 0; word-break: break-all;">
+					Rafsun Jani<br>WPHelpZone LLC<br>467, South Goran, Khilgaon, Dhaka - 1219<br>Dhaka<br>Dhaka<br>1219											<br><a href="tel:01577191676" style="color: #8526ff; font-weight: normal; text-decoration: underline;">01577191676</a>														</address>
+			</td>
+			</tr>
+</table>
+<br><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td class="email-additional-content" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; padding: 32px 0 0;'><p style="text-align: center; margin: 0 0 16px;" align="center">If you need any help with your order, please contact us at rafsun@wphelpzone.com.</p>
+</td></tr></table>																		</div>
+																	</td>
+																</tr>
+															</table>
+															<!-- End Content -->
+														</td>
+													</tr>
+												</table>
+												<!-- End Body -->
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td align="center" valign="top">
+									<!-- Footer -->
+									<table border="0" cellpadding="10" cellspacing="0" width="100%" id="template_footer">
+										<tr>
+											<td valign="top" style="padding: 0; border-radius: 0;">
+												<table border="0" cellpadding="10" cellspacing="0" width="100%">
+													<tr>
+														<td colspan="2" valign="middle" id="credit" style='border-radius: 0; border: 0; border-top: 1px solid rgba(0,0,0,.2); font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 12px; line-height: 140%; text-align: center; padding: 32px; color: #787c82;' align="center">
+															<p style="margin: 0;">Aivon<br>Dhaka, Bangladesh</p>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+									<!-- End Footer -->
+								</td>
+							</tr>
+						</table>
+					</div>
+				</td>
+				<td><!-- Deliberately empty to support consistent sizing and layout across multiple email clients. --></td>
+			</tr>
+		</table>
+	</body>
+</html>
+
+    [headers] => Content-Type: text/html
+Reply-to: Woodmart Ecommerce <rafsun@wphelpzone.com>
+
+    [attachments] => Array
+        (
+        )
+
+)
+
+[2025-12-02 14:19:16] Attempting to send email to: 1999rafsun@gmail.com
+[2025-12-02 14:19:16] Subject: [Sample Order] Order #10725 Status Changed to Failed
+[2025-12-02 14:19:16] CC: manager@wphelpzone.com, admin@wphelpzone.com
+[2025-12-02 14:19:16] wp_mail called with: Array
+(
+    [to] => 1999rafsun@gmail.com
+    [subject] => [Sample Order] Order #10725 Status Changed to Failed
+    [message] =>         <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Aivon</title>
+        </head>
+        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+            <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+                
+                <div style="background: #e7f3ff; border: 1px solid #2271b1; padding: 15px; margin-bottom: 20px; border-radius: 4px;">
+                    <h2 style="margin: 0 0 10px 0; color: #135e96;">
+                        <img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f4e6.png" alt="📦" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Order Status Updated
+                    </h2>
+                    <p style="margin: 0; color: #135e96;">
+                        <strong>Order #10725</strong>
+                    </p>
+                </div>
+
+                <p>Hello,</p>
+                <p>Your sample order status has been updated:</p>
+
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 4px; text-align: center; margin: 20px 0;">
+                    <div style="display: inline-block;">
+                        <span style="background: #dc3545; color: white; padding: 10px 20px; border-radius: 4px; font-weight: bold;">
+                            Processing                        </span>
+                        <span style="margin: 0 10px; font-size: 24px;">→</span>
+                        <span style="background: #28a745; color: white; padding: 10px 20px; border-radius: 4px; font-weight: bold;">
+                            Failed                        </span>
+                    </div>
+                </div>
+
+                <h3 style="border-bottom: 2px solid #333; padding-bottom: 5px;">Order Details</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Order Number:</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">#10725</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Order Date:</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">November 22, 2025 10:05 AM</td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Current Status:</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Failed</strong></td>
+                    </tr>
+                </table>
+
+                        <div style="background: #2271b122; border-left: 4px solid #2271b1; padding: 15px; margin: 20px 0;">
+            <h4 style="margin: 0 0 10px 0; color: #2271b1;">
+                <img src="https://s.w.org/images/core/emoji/16.0.1/72x72/2139.png" alt="ℹ" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Status Updated            </h4>
+            <p style="margin: 0;">
+                Your order status has been updated to: Failed            </p>
+        </div>
+        
+                <h3 style="border-bottom: 2px solid #333; padding-bottom: 5px;">Shipping Address</h3>
+                <p>
+                    Rafsun Jani<br/>WPHelpZone LLC<br/>467, South Goran, Khilgaon, Dhaka - 1219<br/>Dhaka<br/>Dhaka<br/>1219<br/>Bangladesh                </p>
+
+                <hr style="border: none; border-top: 1px solid #ddd; margin: 30px 0;">
+                
+                <p style="font-size: 12px; color: #666;">
+                    If you have any questions about this order, please contact us.<br>
+                    <strong>Aivon</strong><br>
+                    Email: rafsun@wphelpzone.com                </p>
+            </div>
+        </body>
+        </html>
+        
+    [headers] => Array
+        (
+            [0] => Content-Type: text/html; charset=UTF-8
+            [1] => From: Aivon <rafsun@wphelpzone.com>
+            [2] => Cc: manager@wphelpzone.com
+            [3] => Cc: admin@wphelpzone.com
+        )
+
+    [attachments] => Array
+        (
+        )
+
+)
+
+[2025-12-02 14:19:16] ✓ Email sent successfully
+[2025-12-03 18:22:27] wp_mail called with: Array
+(
+    [to] => rafsun@wphelpzone.com
+    [subject] => [Aivon] Your site has updated to WordPress 6.9
+    [message] => Howdy! Your site at https://test-ecommerce-woodmart.rafsun.wphelpzone.com has been updated automatically to WordPress 6.9.
+
+No further action is needed on your part. For more on version 6.9, see the About WordPress screen:
+https://test-ecommerce-woodmart.rafsun.wphelpzone.com/wp-admin/about.php
+
+If you experience any issues or need support, the volunteers in the WordPress.org support forums may be able to help.
+https://wordpress.org/support/forums/
+
+You also have some plugins or themes with updates available. Update them now:
+https://test-ecommerce-woodmart.rafsun.wphelpzone.com/wp-admin/
+
+The WordPress Team
+
+    [headers] => 
+    [attachments] => Array
+        (
+        )
+
+)
+
+[2025-12-03 18:34:08] wp_mail called with: Array
+(
+    [to] => rafsun@wphelpzone.com
+    [subject] => Your order at Aivon was unsuccessful
+    [message] => <!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+		<title>Aivon</title>
+	<style type="text/css">@media screen and (max-width: 600px){#template_header_image,#header_wrapper{padding: 16px 10px 0 !important;}#header_wrapper h1{font-size: 24px !important;}#body_content_inner_cell{padding: 10px !important;}#body_content_inner,.email-order-item-meta{font-size: 12px !important;}#body_content .email-order-details .order-totals-total td{font-size: 14px !important;}.email-order-detail-heading{font-size: 16px !important; line-height: 130% !important;}.email-additional-content{padding-top: 16px !important;}}</style></head>
+	<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" style="background-color: #fff; padding: 0; text-align: center;" bgcolor="#fff">
+		<table width="100%" id="outer_wrapper" style="background-color: #fff;" bgcolor="#fff">
+			<tr>
+				<td><!-- Deliberately empty to support consistent sizing and layout across multiple email clients. --></td>
+				<td width="600">
+					<div id="wrapper" dir="ltr" style="margin: 0 auto; padding: 24px 0; width: 100%; max-width: 600px; -webkit-text-size-adjust: none;" width="100%">
+						<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="inner_wrapper" style="background-color: #fff; border-radius: 8px;" bgcolor="#fff">
+							<tr>
+								<td align="center" valign="top">
+																			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td id="template_header_image" style="padding: 32px 32px 0;">
+													<p class="email-logo-text" style='color: #8526ff; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 18px; margin-bottom: 0; text-align: left;' align="left">Aivon</p>												</td>
+											</tr>
+										</table>
+																		<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_container" style="box-shadow: none; background-color: #fff; border: 0; border-radius: 3px;" bgcolor="#fff">
+										<tr>
+											<td align="center" valign="top">
+												<!-- Header -->
+												<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_header" style='background-color: #fff; color: #1e1e1e; border-bottom: 0; font-weight: bold; line-height: 100%; vertical-align: middle; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; border-radius: 3px 3px 0 0;' bgcolor="#fff">
+													<tr>
+														<td id="header_wrapper" style="padding: 20px 32px 0; display: block;">
+															<h1 style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 120%; margin: 0; color: #1e1e1e; background-color: inherit; text-align: left;' bgcolor="inherit">Sorry, your order was unsuccessful</h1>
+														</td>
+													</tr>
+												</table>
+												<!-- End Header -->
+											</td>
+										</tr>
+										<tr>
+											<td align="center" valign="top">
+												<!-- Body -->
+												<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_body">
+													<tr>
+														<td valign="top" id="body_content" style="background-color: #fff;" bgcolor="#fff">
+															<!-- Content -->
+															<table border="0" cellpadding="20" cellspacing="0" width="100%">
+																<tr>
+																	<td valign="top" id="body_content_inner_cell" style="padding: 20px 32px 32px;">
+																		<div id="body_content_inner" style='color: #4b4b4b; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 16px; line-height: 150%; text-align: left;' align="left">
+
+<div class="email-introduction" style="padding-bottom: 24px;"><p style="margin: 0 0 16px;">
+Hi Rafsun,</p>
+<p style="margin: 0 0 16px;">Unfortunately, we couldn't complete your order due to an issue with your payment method.</p>
+<p style="margin: 0 0 16px;">If you'd like to continue with your purchase, please return to Aivon and try a different method of payment.</p>
+<p style="margin: 0 0 16px;">Your order details are as follows:</p>
+</div>
+
+<h2 class="email-order-detail-heading" style='color: #1e1e1e; display: block; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 20px; font-weight: bold; line-height: 160%; margin: 0 0 18px; text-align: left;'>
+	Order summary<br><span style="color: #787c82; display: block; font-size: 14px; font-weight: normal;">Order #10724 (<time datetime="2025-11-22T10:00:54+00:00">November 22, 2025</time>)</span></h2>
+
+<div style="margin-bottom: 24px;">
+	<table class="td font-family email-order-details" cellspacing="0" cellpadding="6" border="0" style='color: #4b4b4b; border: 0; vertical-align: middle; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; width: 100%;' width="100%">
+				<tbody>
+				<tr class="order_item">
+		<td class="td font-family text-align-left" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; padding: 8px 12px; padding-left: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle; word-wrap: break-word;' align="left">
+							<table class="order-item-data" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>
+					<tr>
+						<td style="vertical-align: middle; padding-left: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; border: 0; padding: 0;"><img width="48" height="48" src="https://test-ecommerce-woodmart.rafsun.wphelpzone.com/wp-content/uploads/2022/12/apple-macbook-pro-16-silver-1-600x600.jpg" class="attachment-48x48 size-48x48 skip-lazy no-lazyload lazyload-disabled no-lazy skip-lazyload" alt="Apple MacBook Pro 16″ M1 Pro" data-skip-lazy="true" style="border: none; display: inline-block; font-size: 14px; font-weight: bold; height: auto; outline: none; text-decoration: none; text-transform: capitalize; vertical-align: middle; margin-right: 24px; max-width: 100%;" border="0"></td>						<td style="vertical-align: middle; padding-right: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; border: 0; padding: 0;">
+							Apple MacBook Pro 16″ M1 Pro<div class="email-order-item-meta" style="color: #787c82; font-size: 14px; line-height: 140%;"></div>						</td>
+					</tr>
+				</table>
+						</td>
+		<td class="td font-family text-align-right" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: right; padding: 8px 12px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle;' align="right">
+			×1		</td>
+		<td class="td font-family text-align-right" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: right; padding: 8px 12px; padding-right: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle;' align="right">
+			<span class="woocommerce-Price-amount amount">2,999.00<span class="woocommerce-Price-currencySymbol">৳ </span></span>		</td>
+	</tr>
+	
+		</tbody>
+		<tfoot>
+								<tr class="order-totals order-totals-subtotal">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-left: 0; padding-top: 24px; border-top-width: 4px;" align="left">
+							Subtotal: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-right: 0; padding-top: 24px; border-top-width: 4px;" align="right"><span class="woocommerce-Price-amount amount">2,999.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></td>
+					</tr>
+										<tr class="order-totals order-totals-discount">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-left: 0;" align="left">
+							Discount: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-right: 0;" align="right">-<span class="woocommerce-Price-amount amount">2,999.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></td>
+					</tr>
+										<tr class="order-totals order-totals-shipping">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-left: 0;" align="left">
+							Shipping: Flat rate BD						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-right: 0;" align="right"><span class="woocommerce-Price-amount amount">5.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></td>
+					</tr>
+										<tr class="order-totals order-totals-total order-totals-last">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; padding-top: 5px; font-weight: bold; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-left: 0;" align="left">
+							Total: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; padding-top: 5px; font-weight: bold; font-size: 20px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-right: 0;" align="right"><span style="color: #46b450; font-weight: bold;"><span class="woocommerce-Price-amount amount">0.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></span> <small style="color: #666;">(Sample Order)</small></td>
+					</tr>
+									<tr class="order-customer-note">
+					<td class="td text-align-left" colspan="3" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-top: 24px; padding-left: 0; padding-right: 0;" align="left">
+						<b>Customer note</b><br>
+						ab…Sample order created by rafsun-dev. Approved by: me. Original total: 2999					</td>
+				</tr>
+						</tfoot>
+	</table>
+</div>
+
+<table id="addresses" cellspacing="0" cellpadding="0" border="0" style="width: 100%; vertical-align: top; margin-bottom: 0; padding: 0;" width="100%">
+	<tr>
+		<td class="font-family text-align-left" valign="top" width="50%" style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; border: 0; padding: 0;' align="left">
+							<b class="address-title" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>Billing address</b>
+			
+			<address class="address" style="color: #1e1e1e; font-style: normal; padding: 8px 0; word-break: break-all;">
+				Rafsun Jani<br>WPHelpZone LLC<br>467, South Goran, Khilgaon<br>Dhaka<br>Dhaka<br>1219									<br><a href="tel:01577191676" style="color: #8526ff; font-weight: normal; text-decoration: underline;">01577191676</a>													<br>rafsun@wphelpzone.com											</address>
+		</td>
+					<td class="font-family text-align-left" valign="top" width="50%" style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; padding: 0; padding-left: 10px;' align="left">
+									<b class="address-title" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>Shipping address</b>
+				
+				<address class="address" style="color: #1e1e1e; font-style: normal; padding: 8px 0; word-break: break-all;">
+					Rafsun Jani<br>WPHelpZone LLC<br>467, South Goran, Khilgaon, Dhaka - 1219<br>Dhaka<br>Dhaka<br>1219											<br><a href="tel:01577191676" style="color: #8526ff; font-weight: normal; text-decoration: underline;">01577191676</a>														</address>
+			</td>
+			</tr>
+</table>
+<br><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td class="email-additional-content" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; padding: 32px 0 0;'><p style="text-align: center; margin: 0 0 16px;" align="center">If you need any help with your order, please contact us at rafsun@wphelpzone.com.</p>
+</td></tr></table>																		</div>
+																	</td>
+																</tr>
+															</table>
+															<!-- End Content -->
+														</td>
+													</tr>
+												</table>
+												<!-- End Body -->
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td align="center" valign="top">
+									<!-- Footer -->
+									<table border="0" cellpadding="10" cellspacing="0" width="100%" id="template_footer">
+										<tr>
+											<td valign="top" style="padding: 0; border-radius: 0;">
+												<table border="0" cellpadding="10" cellspacing="0" width="100%">
+													<tr>
+														<td colspan="2" valign="middle" id="credit" style='border-radius: 0; border: 0; border-top: 1px solid rgba(0,0,0,.2); font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 12px; line-height: 140%; text-align: center; padding: 32px; color: #787c82;' align="center">
+															<p style="margin: 0;">Aivon<br>Dhaka, Bangladesh</p>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+									<!-- End Footer -->
+								</td>
+							</tr>
+						</table>
+					</div>
+				</td>
+				<td><!-- Deliberately empty to support consistent sizing and layout across multiple email clients. --></td>
+			</tr>
+		</table>
+	</body>
+</html>
+
+    [headers] => Content-Type: text/html
+Reply-to: Woodmart Ecommerce <rafsun@wphelpzone.com>
+
+    [attachments] => Array
+        (
+        )
+
+)
+
+[2025-12-03 18:34:08] Attempting to send email to: 1999rafsun@gmail.com
+[2025-12-03 18:34:08] Subject: [Sample Order] Order #10724 Status Changed to Failed
+[2025-12-03 18:34:08] CC: manager@wphelpzone.com, admin@wphelpzone.com
+[2025-12-03 18:34:08] wp_mail called with: Array
+(
+    [to] => 1999rafsun@gmail.com
+    [subject] => [Sample Order] Order #10724 Status Changed to Failed
+    [message] =>         <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Aivon</title>
+        </head>
+        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+            <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+                
+                <div style="background: #e7f3ff; border: 1px solid #2271b1; padding: 15px; margin-bottom: 20px; border-radius: 4px;">
+                    <h2 style="margin: 0 0 10px 0; color: #135e96;">
+                        <img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f4e6.png" alt="📦" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Order Status Updated
+                    </h2>
+                    <p style="margin: 0; color: #135e96;">
+                        <strong>Order #10724</strong>
+                    </p>
+                </div>
+
+                <p>Hello,</p>
+                <p>Your sample order status has been updated:</p>
+
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 4px; text-align: center; margin: 20px 0;">
+                    <div style="display: inline-block;">
+                        <span style="background: #dc3545; color: white; padding: 10px 20px; border-radius: 4px; font-weight: bold;">
+                            Processing                        </span>
+                        <span style="margin: 0 10px; font-size: 24px;">→</span>
+                        <span style="background: #28a745; color: white; padding: 10px 20px; border-radius: 4px; font-weight: bold;">
+                            Failed                        </span>
+                    </div>
+                </div>
+
+                <h3 style="border-bottom: 2px solid #333; padding-bottom: 5px;">Order Details</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Order Number:</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">#10724</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Order Date:</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">November 22, 2025 10:00 AM</td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Current Status:</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Failed</strong></td>
+                    </tr>
+                </table>
+
+                        <div style="background: #2271b122; border-left: 4px solid #2271b1; padding: 15px; margin: 20px 0;">
+            <h4 style="margin: 0 0 10px 0; color: #2271b1;">
+                <img src="https://s.w.org/images/core/emoji/17.0.2/72x72/2139.png" alt="ℹ" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Status Updated            </h4>
+            <p style="margin: 0;">
+                Your order status has been updated to: Failed            </p>
+        </div>
+        
+                <h3 style="border-bottom: 2px solid #333; padding-bottom: 5px;">Shipping Address</h3>
+                <p>
+                    Rafsun Jani<br/>WPHelpZone LLC<br/>467, South Goran, Khilgaon, Dhaka - 1219<br/>Dhaka<br/>Dhaka<br/>1219<br/>Bangladesh                </p>
+
+                <hr style="border: none; border-top: 1px solid #ddd; margin: 30px 0;">
+                
+                <p style="font-size: 12px; color: #666;">
+                    If you have any questions about this order, please contact us.<br>
+                    <strong>Aivon</strong><br>
+                    Email: rafsun@wphelpzone.com                </p>
+            </div>
+        </body>
+        </html>
+        
+    [headers] => Array
+        (
+            [0] => Content-Type: text/html; charset=UTF-8
+            [1] => From: Aivon <rafsun@wphelpzone.com>
+            [2] => Cc: manager@wphelpzone.com
+            [3] => Cc: admin@wphelpzone.com
+        )
+
+    [attachments] => Array
+        (
+        )
+
+)
+
+[2025-12-03 18:34:08] ✓ Email sent successfully
+[2025-12-03 18:38:49] wp_mail called with: Array
+(
+    [to] => rafsun@wphelpzone.com
+    [subject] => Your order at Aivon was unsuccessful
+    [message] => <!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+		<title>Aivon</title>
+	<style type="text/css">@media screen and (max-width: 600px){#template_header_image,#header_wrapper{padding: 16px 10px 0 !important;}#header_wrapper h1{font-size: 24px !important;}#body_content_inner_cell{padding: 10px !important;}#body_content_inner,.email-order-item-meta{font-size: 12px !important;}#body_content .email-order-details .order-totals-total td{font-size: 14px !important;}.email-order-detail-heading{font-size: 16px !important; line-height: 130% !important;}.email-additional-content{padding-top: 16px !important;}}</style></head>
+	<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" style="background-color: #fff; padding: 0; text-align: center;" bgcolor="#fff">
+		<table width="100%" id="outer_wrapper" style="background-color: #fff;" bgcolor="#fff">
+			<tr>
+				<td><!-- Deliberately empty to support consistent sizing and layout across multiple email clients. --></td>
+				<td width="600">
+					<div id="wrapper" dir="ltr" style="margin: 0 auto; padding: 24px 0; width: 100%; max-width: 600px; -webkit-text-size-adjust: none;" width="100%">
+						<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="inner_wrapper" style="background-color: #fff; border-radius: 8px;" bgcolor="#fff">
+							<tr>
+								<td align="center" valign="top">
+																			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td id="template_header_image" style="padding: 32px 32px 0;">
+													<p class="email-logo-text" style='color: #8526ff; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 18px; margin-bottom: 0; text-align: left;' align="left">Aivon</p>												</td>
+											</tr>
+										</table>
+																		<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_container" style="box-shadow: none; background-color: #fff; border: 0; border-radius: 3px;" bgcolor="#fff">
+										<tr>
+											<td align="center" valign="top">
+												<!-- Header -->
+												<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_header" style='background-color: #fff; color: #1e1e1e; border-bottom: 0; font-weight: bold; line-height: 100%; vertical-align: middle; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; border-radius: 3px 3px 0 0;' bgcolor="#fff">
+													<tr>
+														<td id="header_wrapper" style="padding: 20px 32px 0; display: block;">
+															<h1 style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 120%; margin: 0; color: #1e1e1e; background-color: inherit; text-align: left;' bgcolor="inherit">Sorry, your order was unsuccessful</h1>
+														</td>
+													</tr>
+												</table>
+												<!-- End Header -->
+											</td>
+										</tr>
+										<tr>
+											<td align="center" valign="top">
+												<!-- Body -->
+												<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_body">
+													<tr>
+														<td valign="top" id="body_content" style="background-color: #fff;" bgcolor="#fff">
+															<!-- Content -->
+															<table border="0" cellpadding="20" cellspacing="0" width="100%">
+																<tr>
+																	<td valign="top" id="body_content_inner_cell" style="padding: 20px 32px 32px;">
+																		<div id="body_content_inner" style='color: #4b4b4b; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 16px; line-height: 150%; text-align: left;' align="left">
+
+<div class="email-introduction" style="padding-bottom: 24px;"><p style="margin: 0 0 16px;">
+Hi Rafsun,</p>
+<p style="margin: 0 0 16px;">Unfortunately, we couldn't complete your order due to an issue with your payment method.</p>
+<p style="margin: 0 0 16px;">If you'd like to continue with your purchase, please return to Aivon and try a different method of payment.</p>
+<p style="margin: 0 0 16px;">Your order details are as follows:</p>
+</div>
+
+<h2 class="email-order-detail-heading" style='color: #1e1e1e; display: block; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 20px; font-weight: bold; line-height: 160%; margin: 0 0 18px; text-align: left;'>
+	Order summary<br><span style="color: #787c82; display: block; font-size: 14px; font-weight: normal;">Order #10723 (<time datetime="2025-11-22T09:56:20+00:00">November 22, 2025</time>)</span></h2>
+
+<div style="margin-bottom: 24px;">
+	<table class="td font-family email-order-details" cellspacing="0" cellpadding="6" border="0" style='color: #4b4b4b; border: 0; vertical-align: middle; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; width: 100%;' width="100%">
+				<tbody>
+				<tr class="order_item">
+		<td class="td font-family text-align-left" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; padding: 8px 12px; padding-left: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle; word-wrap: break-word;' align="left">
+							<table class="order-item-data" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>
+					<tr>
+						<td style="vertical-align: middle; padding-left: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; border: 0; padding: 0;"><img width="48" height="48" src="https://test-ecommerce-woodmart.rafsun.wphelpzone.com/wp-content/uploads/2022/12/aoc-agon-ag493ucx-1-600x600.jpg" class="attachment-48x48 size-48x48 skip-lazy no-lazyload lazyload-disabled no-lazy skip-lazyload" alt="AOC AGON AG493UCX" data-skip-lazy="true" style="border: none; display: inline-block; font-size: 14px; font-weight: bold; height: auto; outline: none; text-decoration: none; text-transform: capitalize; vertical-align: middle; margin-right: 24px; max-width: 100%;" border="0"></td>						<td style="vertical-align: middle; padding-right: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; border: 0; padding: 0;">
+							AOC AGON AG493UCX<div class="email-order-item-meta" style="color: #787c82; font-size: 14px; line-height: 140%;"></div>						</td>
+					</tr>
+				</table>
+						</td>
+		<td class="td font-family text-align-right" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: right; padding: 8px 12px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle;' align="right">
+			×1		</td>
+		<td class="td font-family text-align-right" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: right; padding: 8px 12px; padding-right: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle;' align="right">
+			<span class="woocommerce-Price-amount amount">1,500.00<span class="woocommerce-Price-currencySymbol">৳ </span></span>		</td>
+	</tr>
+	
+		</tbody>
+		<tfoot>
+								<tr class="order-totals order-totals-subtotal">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-left: 0; padding-top: 24px; border-top-width: 4px;" align="left">
+							Subtotal: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-right: 0; padding-top: 24px; border-top-width: 4px;" align="right"><span class="woocommerce-Price-amount amount">1,500.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></td>
+					</tr>
+										<tr class="order-totals order-totals-discount">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-left: 0;" align="left">
+							Discount: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-right: 0;" align="right">-<span class="woocommerce-Price-amount amount">1,500.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></td>
+					</tr>
+										<tr class="order-totals order-totals-shipping">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-left: 0;" align="left">
+							Shipping: Flat rate BD						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-right: 0;" align="right"><span class="woocommerce-Price-amount amount">5.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></td>
+					</tr>
+										<tr class="order-totals order-totals-total order-totals-last">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; padding-top: 5px; font-weight: bold; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-left: 0;" align="left">
+							Total: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; padding-top: 5px; font-weight: bold; font-size: 20px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-right: 0;" align="right"><span style="color: #46b450; font-weight: bold;"><span class="woocommerce-Price-amount amount">0.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></span> <small style="color: #666;">(Sample Order)</small></td>
+					</tr>
+									<tr class="order-customer-note">
+					<td class="td text-align-left" colspan="3" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-top: 24px; padding-left: 0; padding-right: 0;" align="left">
+						<b>Customer note</b><br>
+						b…Sample order created by rafsun-dev. Approved by: me. Original total: 1500					</td>
+				</tr>
+						</tfoot>
+	</table>
+</div>
+
+<table id="addresses" cellspacing="0" cellpadding="0" border="0" style="width: 100%; vertical-align: top; margin-bottom: 0; padding: 0;" width="100%">
+	<tr>
+		<td class="font-family text-align-left" valign="top" width="50%" style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; border: 0; padding: 0;' align="left">
+							<b class="address-title" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>Billing address</b>
+			
+			<address class="address" style="color: #1e1e1e; font-style: normal; padding: 8px 0; word-break: break-all;">
+				Rafsun Jani<br>WPHelpZone LLC<br>467, South Goran, Khilgaon<br>Dhaka<br>Dhaka<br>1219									<br><a href="tel:01577191676" style="color: #8526ff; font-weight: normal; text-decoration: underline;">01577191676</a>													<br>rafsun@wphelpzone.com											</address>
+		</td>
+					<td class="font-family text-align-left" valign="top" width="50%" style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; padding: 0; padding-left: 10px;' align="left">
+									<b class="address-title" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>Shipping address</b>
+				
+				<address class="address" style="color: #1e1e1e; font-style: normal; padding: 8px 0; word-break: break-all;">
+					Rafsun Jani<br>WPHelpZone LLC<br>467, South Goran, Khilgaon, Dhaka - 1219<br>Dhaka<br>Dhaka<br>1219											<br><a href="tel:01577191676" style="color: #8526ff; font-weight: normal; text-decoration: underline;">01577191676</a>														</address>
+			</td>
+			</tr>
+</table>
+<br><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td class="email-additional-content" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; padding: 32px 0 0;'><p style="text-align: center; margin: 0 0 16px;" align="center">If you need any help with your order, please contact us at rafsun@wphelpzone.com.</p>
+</td></tr></table>																		</div>
+																	</td>
+																</tr>
+															</table>
+															<!-- End Content -->
+														</td>
+													</tr>
+												</table>
+												<!-- End Body -->
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td align="center" valign="top">
+									<!-- Footer -->
+									<table border="0" cellpadding="10" cellspacing="0" width="100%" id="template_footer">
+										<tr>
+											<td valign="top" style="padding: 0; border-radius: 0;">
+												<table border="0" cellpadding="10" cellspacing="0" width="100%">
+													<tr>
+														<td colspan="2" valign="middle" id="credit" style='border-radius: 0; border: 0; border-top: 1px solid rgba(0,0,0,.2); font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 12px; line-height: 140%; text-align: center; padding: 32px; color: #787c82;' align="center">
+															<p style="margin: 0;">Aivon<br>Dhaka, Bangladesh</p>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+									<!-- End Footer -->
+								</td>
+							</tr>
+						</table>
+					</div>
+				</td>
+				<td><!-- Deliberately empty to support consistent sizing and layout across multiple email clients. --></td>
+			</tr>
+		</table>
+	</body>
+</html>
+
+    [headers] => Content-Type: text/html
+Reply-to: Woodmart Ecommerce <rafsun@wphelpzone.com>
+
+    [attachments] => Array
+        (
+        )
+
+)
+
+[2025-12-03 18:38:49] Attempting to send email to: 1999rafsun@gmail.com
+[2025-12-03 18:38:49] Subject: [Sample Order] Order #10723 Status Changed to Failed
+[2025-12-03 18:38:49] CC: manager@wphelpzone.com, admin@wphelpzone.com
+[2025-12-03 18:38:49] wp_mail called with: Array
+(
+    [to] => 1999rafsun@gmail.com
+    [subject] => [Sample Order] Order #10723 Status Changed to Failed
+    [message] =>         <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Aivon</title>
+        </head>
+        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+            <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+                
+                <div style="background: #e7f3ff; border: 1px solid #2271b1; padding: 15px; margin-bottom: 20px; border-radius: 4px;">
+                    <h2 style="margin: 0 0 10px 0; color: #135e96;">
+                        <img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f4e6.png" alt="📦" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Order Status Updated
+                    </h2>
+                    <p style="margin: 0; color: #135e96;">
+                        <strong>Order #10723</strong>
+                    </p>
+                </div>
+
+                <p>Hello,</p>
+                <p>Your sample order status has been updated:</p>
+
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 4px; text-align: center; margin: 20px 0;">
+                    <div style="display: inline-block;">
+                        <span style="background: #dc3545; color: white; padding: 10px 20px; border-radius: 4px; font-weight: bold;">
+                            Processing                        </span>
+                        <span style="margin: 0 10px; font-size: 24px;">→</span>
+                        <span style="background: #28a745; color: white; padding: 10px 20px; border-radius: 4px; font-weight: bold;">
+                            Failed                        </span>
+                    </div>
+                </div>
+
+                <h3 style="border-bottom: 2px solid #333; padding-bottom: 5px;">Order Details</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Order Number:</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">#10723</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Order Date:</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">November 22, 2025 9:56 AM</td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Current Status:</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Failed</strong></td>
+                    </tr>
+                </table>
+
+                        <div style="background: #2271b122; border-left: 4px solid #2271b1; padding: 15px; margin: 20px 0;">
+            <h4 style="margin: 0 0 10px 0; color: #2271b1;">
+                <img src="https://s.w.org/images/core/emoji/17.0.2/72x72/2139.png" alt="ℹ" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Status Updated            </h4>
+            <p style="margin: 0;">
+                Your order status has been updated to: Failed            </p>
+        </div>
+        
+                <h3 style="border-bottom: 2px solid #333; padding-bottom: 5px;">Shipping Address</h3>
+                <p>
+                    Rafsun Jani<br/>WPHelpZone LLC<br/>467, South Goran, Khilgaon, Dhaka - 1219<br/>Dhaka<br/>Dhaka<br/>1219<br/>Bangladesh                </p>
+
+                <hr style="border: none; border-top: 1px solid #ddd; margin: 30px 0;">
+                
+                <p style="font-size: 12px; color: #666;">
+                    If you have any questions about this order, please contact us.<br>
+                    <strong>Aivon</strong><br>
+                    Email: rafsun@wphelpzone.com                </p>
+            </div>
+        </body>
+        </html>
+        
+    [headers] => Array
+        (
+            [0] => Content-Type: text/html; charset=UTF-8
+            [1] => From: Aivon <rafsun@wphelpzone.com>
+            [2] => Cc: manager@wphelpzone.com
+            [3] => Cc: admin@wphelpzone.com
+        )
+
+    [attachments] => Array
+        (
+        )
+
+)
+
+[2025-12-03 18:38:49] ✓ Email sent successfully
+[2025-12-03 18:58:19] wp_mail called with: Array
+(
+    [to] => rafsun@wphelpzone.com
+    [subject] => [Aivon]: You've got a new order: #10727
+    [message] => <!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+		<title>Aivon</title>
+	<style type="text/css">@media screen and (max-width: 600px){#template_header_image,#header_wrapper{padding: 16px 10px 0 !important;}#header_wrapper h1{font-size: 24px !important;}#body_content_inner_cell{padding: 10px !important;}#body_content_inner,.email-order-item-meta{font-size: 12px !important;}#body_content .email-order-details .order-totals-total td{font-size: 14px !important;}.email-order-detail-heading{font-size: 16px !important; line-height: 130% !important;}.email-additional-content{padding-top: 16px !important;}}</style></head>
+	<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" style="background-color: #fff; padding: 0; text-align: center;" bgcolor="#fff">
+		<table width="100%" id="outer_wrapper" style="background-color: #fff;" bgcolor="#fff">
+			<tr>
+				<td><!-- Deliberately empty to support consistent sizing and layout across multiple email clients. --></td>
+				<td width="600">
+					<div id="wrapper" dir="ltr" style="margin: 0 auto; padding: 24px 0; width: 100%; max-width: 600px; -webkit-text-size-adjust: none;" width="100%">
+						<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="inner_wrapper" style="background-color: #fff; border-radius: 8px;" bgcolor="#fff">
+							<tr>
+								<td align="center" valign="top">
+																			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td id="template_header_image" style="padding: 32px 32px 0;">
+													<p class="email-logo-text" style='color: #8526ff; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 18px; margin-bottom: 0; text-align: left;' align="left">Aivon</p>												</td>
+											</tr>
+										</table>
+																		<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_container" style="box-shadow: none; background-color: #fff; border: 0; border-radius: 3px;" bgcolor="#fff">
+										<tr>
+											<td align="center" valign="top">
+												<!-- Header -->
+												<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_header" style='background-color: #fff; color: #1e1e1e; border-bottom: 0; font-weight: bold; line-height: 100%; vertical-align: middle; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; border-radius: 3px 3px 0 0;' bgcolor="#fff">
+													<tr>
+														<td id="header_wrapper" style="padding: 20px 32px 0; display: block;">
+															<h1 style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 120%; margin: 0; color: #1e1e1e; background-color: inherit; text-align: left;' bgcolor="inherit">New order: #10727</h1>
+														</td>
+													</tr>
+												</table>
+												<!-- End Header -->
+											</td>
+										</tr>
+										<tr>
+											<td align="center" valign="top">
+												<!-- Body -->
+												<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_body">
+													<tr>
+														<td valign="top" id="body_content" style="background-color: #fff;" bgcolor="#fff">
+															<!-- Content -->
+															<table border="0" cellpadding="20" cellspacing="0" width="100%">
+																<tr>
+																	<td valign="top" id="body_content_inner_cell" style="padding: 20px 32px 32px;">
+																		<div id="body_content_inner" style='color: #4b4b4b; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 16px; line-height: 150%; text-align: left;' align="left">
+
+<div class="email-introduction" style="padding-bottom: 24px;"><p style="margin: 0 0 16px;">You’ve received a new order from Rafsun Jani:</p>
+</div>
+
+<h2 class="email-order-detail-heading" style='color: #1e1e1e; display: block; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 20px; font-weight: bold; line-height: 160%; margin: 0 0 18px; text-align: left;'>
+	Order summary<br><span style="color: #787c82; display: block; font-size: 14px; font-weight: normal;"><a class="link" href="https://test-ecommerce-woodmart.rafsun.wphelpzone.com/wp-admin/admin.php?page=wc-orders&amp;action=edit&amp;id=10727" style="font-weight: normal; text-decoration: underline; color: #8526ff;">Order #10727</a> (<time datetime="2025-12-03T18:58:19+00:00">December 3, 2025</time>)</span></h2>
+
+<div style="margin-bottom: 24px;">
+	<table class="td font-family email-order-details" cellspacing="0" cellpadding="6" border="0" style='color: #4b4b4b; border: 0; vertical-align: middle; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; width: 100%;' width="100%">
+				<tbody>
+				<tr class="order_item">
+		<td class="td font-family text-align-left" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; padding: 8px 12px; padding-left: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle; word-wrap: break-word;' align="left">
+							<table class="order-item-data" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>
+					<tr>
+						<td style="vertical-align: middle; padding-left: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; border: 0; padding: 0;"><img width="48" height="48" src="https://test-ecommerce-woodmart.rafsun.wphelpzone.com/wp-content/uploads/woocommerce-placeholder-150x150.webp" class="woocommerce-placeholder wp-post-image skip-lazy no-lazyload lazyload-disabled no-lazy skip-lazyload" alt="Apple iPad Mini 6 Wi-Fi - Space Gray" data-skip-lazy="true" style="border: none; display: inline-block; font-size: 14px; font-weight: bold; height: auto; outline: none; text-decoration: none; text-transform: capitalize; vertical-align: middle; margin-right: 24px; max-width: 100%;" border="0"></td>						<td style="vertical-align: middle; padding-right: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; border: 0; padding: 0;">
+							Apple iPad Mini 6 Wi-Fi - Space Gray (#30912)<div class="email-order-item-meta" style="color: #787c82; font-size: 14px; line-height: 140%;"></div>						</td>
+					</tr>
+				</table>
+						</td>
+		<td class="td font-family text-align-right" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: right; padding: 8px 12px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle;' align="right">
+			×1		</td>
+		<td class="td font-family text-align-right" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: right; padding: 8px 12px; padding-right: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle;' align="right">
+			<span class="woocommerce-Price-amount amount">600.00<span class="woocommerce-Price-currencySymbol">৳ </span></span>		</td>
+	</tr>
+	
+		</tbody>
+		<tfoot>
+								<tr class="order-totals order-totals-subtotal">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-left: 0; padding-top: 24px; border-top-width: 4px;" align="left">
+							Subtotal: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-right: 0; padding-top: 24px; border-top-width: 4px;" align="right"><span class="woocommerce-Price-amount amount">600.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></td>
+					</tr>
+										<tr class="order-totals order-totals-shipping">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-left: 0;" align="left">
+							Shipping: Free shipping						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-right: 0;" align="right">Free shipping</td>
+					</tr>
+										<tr class="order-totals order-totals-total">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; padding-bottom: 5px; padding-top: 5px; font-weight: bold; padding-left: 0;" align="left">
+							Total: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; padding-bottom: 5px; padding-top: 5px; font-weight: bold; font-size: 20px; padding-right: 0;" align="right"><span class="woocommerce-Price-amount amount">600.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></td>
+					</tr>
+										<tr class="order-totals order-totals-payment_method order-totals-last">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-top: 5px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-left: 0;" align="left">
+							Payment method: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-top: 5px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-right: 0;" align="right">Cash on delivery</td>
+					</tr>
+									<tr class="order-customer-note">
+					<td class="td text-align-left" colspan="3" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-top: 24px; padding-left: 0; padding-right: 0;" align="left">
+						<b>Customer note</b><br>
+						hey					</td>
+				</tr>
+						</tfoot>
+	</table>
+</div>
+
+<table id="addresses" cellspacing="0" cellpadding="0" border="0" style="width: 100%; vertical-align: top; margin-bottom: 0; padding: 0;" width="100%">
+	<tr>
+		<td class="font-family text-align-left" valign="top" width="50%" style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; border: 0; padding: 0;' align="left">
+							<b class="address-title" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>Billing address</b>
+			
+			<address class="address" style="color: #1e1e1e; font-style: normal; padding: 8px 0; word-break: break-all;">
+				Rafsun Jani<br>WPHelpZone LLC<br>467, South Goran, Khilgaon<br>Dhaka<br>Dhaka<br>1217									<br><a href="tel:+8801577191676" style="color: #8526ff; font-weight: normal; text-decoration: underline;">+8801577191676</a>													<br>1999rafsun@gmail.com											</address>
+		</td>
+					<td class="font-family text-align-left" valign="top" width="50%" style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; padding: 0; padding-left: 10px;' align="left">
+									<b class="address-title" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>Shipping address</b>
+				
+				<address class="address" style="color: #1e1e1e; font-style: normal; padding: 8px 0; word-break: break-all;">
+					Rafsun Jani<br>WPHelpZone LLC<br>467, South Goran, Khilgaon<br>Dhaka<br>Dhaka<br>1217														</address>
+			</td>
+			</tr>
+</table>
+<br><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td class="email-additional-content" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; padding: 32px 0 0;'><p style="text-align: center; margin: 0 0 16px;" align="center">Congratulations on the sale!</p>
+</td></tr></table>Process your orders on the go. <a href="https://woocommerce.com/mobile?blog_id=0&amp;utm_campaign=deeplinks_promote_app&amp;utm_medium=email&amp;utm_source=test-ecommerce-woodmart.rafsun.wphelpzone.com&amp;utm_term=0" style="color: #8526ff; font-weight: normal; text-decoration: underline;">Get the app</a>.																		</div>
+																	</td>
+																</tr>
+															</table>
+															<!-- End Content -->
+														</td>
+													</tr>
+												</table>
+												<!-- End Body -->
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td align="center" valign="top">
+									<!-- Footer -->
+									<table border="0" cellpadding="10" cellspacing="0" width="100%" id="template_footer">
+										<tr>
+											<td valign="top" style="padding: 0; border-radius: 0;">
+												<table border="0" cellpadding="10" cellspacing="0" width="100%">
+													<tr>
+														<td colspan="2" valign="middle" id="credit" style='border-radius: 0; border: 0; border-top: 1px solid rgba(0,0,0,.2); font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 12px; line-height: 140%; text-align: center; padding: 32px; color: #787c82;' align="center">
+															<p style="margin: 0;">Aivon<br>Dhaka, Bangladesh</p>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+									<!-- End Footer -->
+								</td>
+							</tr>
+						</table>
+					</div>
+				</td>
+				<td><!-- Deliberately empty to support consistent sizing and layout across multiple email clients. --></td>
+			</tr>
+		</table>
+	</body>
+</html>
+
+    [headers] => Content-Type: text/html
+Reply-to: Rafsun Jani <1999rafsun@gmail.com>
+
+    [attachments] => Array
+        (
+        )
+
+)
+
+[2025-12-03 18:58:20] wp_mail called with: Array
+(
+    [to] => 1999rafsun@gmail.com
+    [subject] => Your Aivon order has been received!
+    [message] => <!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+		<title>Aivon</title>
+	<style type="text/css">@media screen and (max-width: 600px){#template_header_image,#header_wrapper{padding: 16px 10px 0 !important;}#header_wrapper h1{font-size: 24px !important;}#body_content_inner_cell{padding: 10px !important;}#body_content_inner,.email-order-item-meta{font-size: 12px !important;}#body_content .email-order-details .order-totals-total td{font-size: 14px !important;}.email-order-detail-heading{font-size: 16px !important; line-height: 130% !important;}.email-additional-content{padding-top: 16px !important;}}</style></head>
+	<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" style="background-color: #fff; padding: 0; text-align: center;" bgcolor="#fff">
+		<table width="100%" id="outer_wrapper" style="background-color: #fff;" bgcolor="#fff">
+			<tr>
+				<td><!-- Deliberately empty to support consistent sizing and layout across multiple email clients. --></td>
+				<td width="600">
+					<div id="wrapper" dir="ltr" style="margin: 0 auto; padding: 24px 0; width: 100%; max-width: 600px; -webkit-text-size-adjust: none;" width="100%">
+						<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="inner_wrapper" style="background-color: #fff; border-radius: 8px;" bgcolor="#fff">
+							<tr>
+								<td align="center" valign="top">
+																			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td id="template_header_image" style="padding: 32px 32px 0;">
+													<p class="email-logo-text" style='color: #8526ff; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 18px; margin-bottom: 0; text-align: left;' align="left">Aivon</p>												</td>
+											</tr>
+										</table>
+																		<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_container" style="box-shadow: none; background-color: #fff; border: 0; border-radius: 3px;" bgcolor="#fff">
+										<tr>
+											<td align="center" valign="top">
+												<!-- Header -->
+												<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_header" style='background-color: #fff; color: #1e1e1e; border-bottom: 0; font-weight: bold; line-height: 100%; vertical-align: middle; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; border-radius: 3px 3px 0 0;' bgcolor="#fff">
+													<tr>
+														<td id="header_wrapper" style="padding: 20px 32px 0; display: block;">
+															<h1 style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 120%; margin: 0; color: #1e1e1e; background-color: inherit; text-align: left;' bgcolor="inherit">Thank you for your order</h1>
+														</td>
+													</tr>
+												</table>
+												<!-- End Header -->
+											</td>
+										</tr>
+										<tr>
+											<td align="center" valign="top">
+												<!-- Body -->
+												<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_body">
+													<tr>
+														<td valign="top" id="body_content" style="background-color: #fff;" bgcolor="#fff">
+															<!-- Content -->
+															<table border="0" cellpadding="20" cellspacing="0" width="100%">
+																<tr>
+																	<td valign="top" id="body_content_inner_cell" style="padding: 20px 32px 32px;">
+																		<div id="body_content_inner" style='color: #4b4b4b; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 16px; line-height: 150%; text-align: left;' align="left">
+
+<div class="email-introduction" style="padding-bottom: 24px;"><p style="margin: 0 0 16px;">
+Hi Rafsun,</p>
+	<p style="margin: 0 0 16px;">Just to let you know — we’ve received your order, and it is now being processed.</p>
+	<p style="margin: 0 0 16px;">Here’s a reminder of what you’ve ordered:</p>
+</div>
+<p style="margin: 0 0 16px;">Pay with cash upon delivery.</p>
+
+
+<h2 class="email-order-detail-heading" style='color: #1e1e1e; display: block; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 20px; font-weight: bold; line-height: 160%; margin: 0 0 18px; text-align: left;'>
+	Order summary<br><span style="color: #787c82; display: block; font-size: 14px; font-weight: normal;">Order #10727 (<time datetime="2025-12-03T18:58:19+00:00">December 3, 2025</time>)</span></h2>
+
+<div style="margin-bottom: 24px;">
+	<table class="td font-family email-order-details" cellspacing="0" cellpadding="6" border="0" style='color: #4b4b4b; border: 0; vertical-align: middle; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; width: 100%;' width="100%">
+				<tbody>
+				<tr class="order_item">
+		<td class="td font-family text-align-left" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; padding: 8px 12px; padding-left: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle; word-wrap: break-word;' align="left">
+							<table class="order-item-data" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>
+					<tr>
+						<td style="vertical-align: middle; padding-left: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; border: 0; padding: 0;"><img width="48" height="48" src="https://test-ecommerce-woodmart.rafsun.wphelpzone.com/wp-content/uploads/woocommerce-placeholder-150x150.webp" class="woocommerce-placeholder wp-post-image skip-lazy no-lazyload lazyload-disabled no-lazy skip-lazyload" alt="Apple iPad Mini 6 Wi-Fi - Space Gray" data-skip-lazy="true" style="border: none; display: inline-block; font-size: 14px; font-weight: bold; height: auto; outline: none; text-decoration: none; text-transform: capitalize; vertical-align: middle; margin-right: 24px; max-width: 100%;" border="0"></td>						<td style="vertical-align: middle; padding-right: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; border: 0; padding: 0;">
+							Apple iPad Mini 6 Wi-Fi - Space Gray<div class="email-order-item-meta" style="color: #787c82; font-size: 14px; line-height: 140%;"></div>						</td>
+					</tr>
+				</table>
+						</td>
+		<td class="td font-family text-align-right" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: right; padding: 8px 12px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle;' align="right">
+			×1		</td>
+		<td class="td font-family text-align-right" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: right; padding: 8px 12px; padding-right: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle;' align="right">
+			<span class="woocommerce-Price-amount amount">600.00<span class="woocommerce-Price-currencySymbol">৳ </span></span>		</td>
+	</tr>
+	
+		</tbody>
+		<tfoot>
+								<tr class="order-totals order-totals-subtotal">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-left: 0; padding-top: 24px; border-top-width: 4px;" align="left">
+							Subtotal: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-right: 0; padding-top: 24px; border-top-width: 4px;" align="right"><span class="woocommerce-Price-amount amount">600.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></td>
+					</tr>
+										<tr class="order-totals order-totals-shipping">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-left: 0;" align="left">
+							Shipping: Free shipping						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-right: 0;" align="right">Free shipping</td>
+					</tr>
+										<tr class="order-totals order-totals-total">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; padding-bottom: 5px; padding-top: 5px; font-weight: bold; padding-left: 0;" align="left">
+							Total: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; padding-bottom: 5px; padding-top: 5px; font-weight: bold; font-size: 20px; padding-right: 0;" align="right"><span class="woocommerce-Price-amount amount">600.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></td>
+					</tr>
+										<tr class="order-totals order-totals-payment_method order-totals-last">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-top: 5px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-left: 0;" align="left">
+							Payment method: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-top: 5px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-right: 0;" align="right">Cash on delivery</td>
+					</tr>
+									<tr class="order-customer-note">
+					<td class="td text-align-left" colspan="3" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-top: 24px; padding-left: 0; padding-right: 0;" align="left">
+						<b>Customer note</b><br>
+						hey					</td>
+				</tr>
+						</tfoot>
+	</table>
+</div>
+
+<table id="addresses" cellspacing="0" cellpadding="0" border="0" style="width: 100%; vertical-align: top; margin-bottom: 0; padding: 0;" width="100%">
+	<tr>
+		<td class="font-family text-align-left" valign="top" width="50%" style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; border: 0; padding: 0;' align="left">
+							<b class="address-title" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>Billing address</b>
+			
+			<address class="address" style="color: #1e1e1e; font-style: normal; padding: 8px 0; word-break: break-all;">
+				Rafsun Jani<br>WPHelpZone LLC<br>467, South Goran, Khilgaon<br>Dhaka<br>Dhaka<br>1217<br>Bangladesh									<br><a href="tel:+8801577191676" style="color: #8526ff; font-weight: normal; text-decoration: underline;">+8801577191676</a>													<br>1999rafsun@gmail.com											</address>
+		</td>
+					<td class="font-family text-align-left" valign="top" width="50%" style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; padding: 0; padding-left: 10px;' align="left">
+									<b class="address-title" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>Shipping address</b>
+				
+				<address class="address" style="color: #1e1e1e; font-style: normal; padding: 8px 0; word-break: break-all;">
+					Rafsun Jani<br>WPHelpZone LLC<br>467, South Goran, Khilgaon<br>Dhaka<br>Dhaka<br>1217<br>Bangladesh														</address>
+			</td>
+			</tr>
+</table>
+<br><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td class="email-additional-content" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; padding: 32px 0 0;'><p style="text-align: center; margin: 0 0 16px;" align="center">Thanks again! If you need any help with your order, please contact us at rafsun@wphelpzone.com.</p>
+</td></tr></table>																		</div>
+																	</td>
+																</tr>
+															</table>
+															<!-- End Content -->
+														</td>
+													</tr>
+												</table>
+												<!-- End Body -->
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td align="center" valign="top">
+									<!-- Footer -->
+									<table border="0" cellpadding="10" cellspacing="0" width="100%" id="template_footer">
+										<tr>
+											<td valign="top" style="padding: 0; border-radius: 0;">
+												<table border="0" cellpadding="10" cellspacing="0" width="100%">
+													<tr>
+														<td colspan="2" valign="middle" id="credit" style='border-radius: 0; border: 0; border-top: 1px solid rgba(0,0,0,.2); font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 12px; line-height: 140%; text-align: center; padding: 32px; color: #787c82;' align="center">
+															<p style="margin: 0;">Aivon<br>Dhaka, Bangladesh</p>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+									<!-- End Footer -->
+								</td>
+							</tr>
+						</table>
+					</div>
+				</td>
+				<td><!-- Deliberately empty to support consistent sizing and layout across multiple email clients. --></td>
+			</tr>
+		</table>
+	</body>
+</html>
+
+    [headers] => Content-Type: text/html
+Reply-to: Woodmart Ecommerce <rafsun@wphelpzone.com>
+
+    [attachments] => Array
+        (
+        )
+
+)
+
+[2025-12-03 19:01:16] wp_mail called with: Array
+(
+    [to] => 1999rafsun@gmail.com
+    [subject] => Your order at Aivon was unsuccessful
+    [message] => <!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+		<title>Aivon</title>
+	<style type="text/css">@media screen and (max-width: 600px){#template_header_image,#header_wrapper{padding: 16px 10px 0 !important;}#header_wrapper h1{font-size: 24px !important;}#body_content_inner_cell{padding: 10px !important;}#body_content_inner,.email-order-item-meta{font-size: 12px !important;}#body_content .email-order-details .order-totals-total td{font-size: 14px !important;}.email-order-detail-heading{font-size: 16px !important; line-height: 130% !important;}.email-additional-content{padding-top: 16px !important;}}</style></head>
+	<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" style="background-color: #fff; padding: 0; text-align: center;" bgcolor="#fff">
+		<table width="100%" id="outer_wrapper" style="background-color: #fff;" bgcolor="#fff">
+			<tr>
+				<td><!-- Deliberately empty to support consistent sizing and layout across multiple email clients. --></td>
+				<td width="600">
+					<div id="wrapper" dir="ltr" style="margin: 0 auto; padding: 24px 0; width: 100%; max-width: 600px; -webkit-text-size-adjust: none;" width="100%">
+						<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="inner_wrapper" style="background-color: #fff; border-radius: 8px;" bgcolor="#fff">
+							<tr>
+								<td align="center" valign="top">
+																			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td id="template_header_image" style="padding: 32px 32px 0;">
+													<p class="email-logo-text" style='color: #8526ff; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 18px; margin-bottom: 0; text-align: left;' align="left">Aivon</p>												</td>
+											</tr>
+										</table>
+																		<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_container" style="box-shadow: none; background-color: #fff; border: 0; border-radius: 3px;" bgcolor="#fff">
+										<tr>
+											<td align="center" valign="top">
+												<!-- Header -->
+												<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_header" style='background-color: #fff; color: #1e1e1e; border-bottom: 0; font-weight: bold; line-height: 100%; vertical-align: middle; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; border-radius: 3px 3px 0 0;' bgcolor="#fff">
+													<tr>
+														<td id="header_wrapper" style="padding: 20px 32px 0; display: block;">
+															<h1 style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 120%; margin: 0; color: #1e1e1e; background-color: inherit; text-align: left;' bgcolor="inherit">Sorry, your order was unsuccessful</h1>
+														</td>
+													</tr>
+												</table>
+												<!-- End Header -->
+											</td>
+										</tr>
+										<tr>
+											<td align="center" valign="top">
+												<!-- Body -->
+												<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_body">
+													<tr>
+														<td valign="top" id="body_content" style="background-color: #fff;" bgcolor="#fff">
+															<!-- Content -->
+															<table border="0" cellpadding="20" cellspacing="0" width="100%">
+																<tr>
+																	<td valign="top" id="body_content_inner_cell" style="padding: 20px 32px 32px;">
+																		<div id="body_content_inner" style='color: #4b4b4b; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 16px; line-height: 150%; text-align: left;' align="left">
+
+<div class="email-introduction" style="padding-bottom: 24px;"><p style="margin: 0 0 16px;">
+Hi Rafsun,</p>
+<p style="margin: 0 0 16px;">Unfortunately, we couldn't complete your order due to an issue with your payment method.</p>
+<p style="margin: 0 0 16px;">If you'd like to continue with your purchase, please return to Aivon and try a different method of payment.</p>
+<p style="margin: 0 0 16px;">Your order details are as follows:</p>
+</div>
+<p style="margin: 0 0 16px;">Pay with cash upon delivery.</p>
+
+
+<h2 class="email-order-detail-heading" style='color: #1e1e1e; display: block; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 20px; font-weight: bold; line-height: 160%; margin: 0 0 18px; text-align: left;'>
+	Order summary<br><span style="color: #787c82; display: block; font-size: 14px; font-weight: normal;">Order #10727 (<time datetime="2025-12-03T18:58:19+00:00">December 3, 2025</time>)</span></h2>
+
+<div style="margin-bottom: 24px;">
+	<table class="td font-family email-order-details" cellspacing="0" cellpadding="6" border="0" style='color: #4b4b4b; border: 0; vertical-align: middle; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; width: 100%;' width="100%">
+				<tbody>
+				<tr class="order_item">
+		<td class="td font-family text-align-left" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; padding: 8px 12px; padding-left: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle; word-wrap: break-word;' align="left">
+							<table class="order-item-data" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>
+					<tr>
+						<td style="vertical-align: middle; padding-left: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; border: 0; padding: 0;"><img width="48" height="48" src="https://test-ecommerce-woodmart.rafsun.wphelpzone.com/wp-content/uploads/woocommerce-placeholder-150x150.webp" class="woocommerce-placeholder wp-post-image skip-lazy no-lazyload lazyload-disabled no-lazy skip-lazyload" alt="Apple iPad Mini 6 Wi-Fi - Space Gray" data-skip-lazy="true" style="border: none; display: inline-block; font-size: 14px; font-weight: bold; height: auto; outline: none; text-decoration: none; text-transform: capitalize; vertical-align: middle; margin-right: 24px; max-width: 100%;" border="0"></td>						<td style="vertical-align: middle; padding-right: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; border: 0; padding: 0;">
+							Apple iPad Mini 6 Wi-Fi - Space Gray<div class="email-order-item-meta" style="color: #787c82; font-size: 14px; line-height: 140%;"></div>						</td>
+					</tr>
+				</table>
+						</td>
+		<td class="td font-family text-align-right" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: right; padding: 8px 12px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle;' align="right">
+			×1		</td>
+		<td class="td font-family text-align-right" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: right; padding: 8px 12px; padding-right: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle;' align="right">
+			<span class="woocommerce-Price-amount amount">600.00<span class="woocommerce-Price-currencySymbol">৳ </span></span>		</td>
+	</tr>
+	
+		</tbody>
+		<tfoot>
+								<tr class="order-totals order-totals-subtotal">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-left: 0; padding-top: 24px; border-top-width: 4px;" align="left">
+							Subtotal: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-right: 0; padding-top: 24px; border-top-width: 4px;" align="right"><span class="woocommerce-Price-amount amount">600.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></td>
+					</tr>
+										<tr class="order-totals order-totals-shipping">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-left: 0;" align="left">
+							Shipping: Free shipping						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-right: 0;" align="right">Free shipping</td>
+					</tr>
+										<tr class="order-totals order-totals-total">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; padding-bottom: 5px; padding-top: 5px; font-weight: bold; padding-left: 0;" align="left">
+							Total: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; padding-bottom: 5px; padding-top: 5px; font-weight: bold; font-size: 20px; padding-right: 0;" align="right"><span class="woocommerce-Price-amount amount">600.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></td>
+					</tr>
+										<tr class="order-totals order-totals-payment_method order-totals-last">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-top: 5px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-left: 0;" align="left">
+							Payment method: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-top: 5px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-right: 0;" align="right">Cash on delivery</td>
+					</tr>
+									<tr class="order-customer-note">
+					<td class="td text-align-left" colspan="3" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-top: 24px; padding-left: 0; padding-right: 0;" align="left">
+						<b>Customer note</b><br>
+						hey					</td>
+				</tr>
+						</tfoot>
+	</table>
+</div>
+
+<table id="addresses" cellspacing="0" cellpadding="0" border="0" style="width: 100%; vertical-align: top; margin-bottom: 0; padding: 0;" width="100%">
+	<tr>
+		<td class="font-family text-align-left" valign="top" width="50%" style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; border: 0; padding: 0;' align="left">
+							<b class="address-title" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>Billing address</b>
+			
+			<address class="address" style="color: #1e1e1e; font-style: normal; padding: 8px 0; word-break: break-all;">
+				Rafsun Jani<br>WPHelpZone LLC<br>467, South Goran, Khilgaon<br>Dhaka<br>Dhaka<br>1217									<br><a href="tel:+8801577191676" style="color: #8526ff; font-weight: normal; text-decoration: underline;">+8801577191676</a>													<br>1999rafsun@gmail.com											</address>
+		</td>
+					<td class="font-family text-align-left" valign="top" width="50%" style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; padding: 0; padding-left: 10px;' align="left">
+									<b class="address-title" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>Shipping address</b>
+				
+				<address class="address" style="color: #1e1e1e; font-style: normal; padding: 8px 0; word-break: break-all;">
+					Rafsun Jani<br>WPHelpZone LLC<br>467, South Goran, Khilgaon<br>Dhaka<br>Dhaka<br>1217														</address>
+			</td>
+			</tr>
+</table>
+<br><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td class="email-additional-content" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; padding: 32px 0 0;'><p style="text-align: center; margin: 0 0 16px;" align="center">If you need any help with your order, please contact us at rafsun@wphelpzone.com.</p>
+</td></tr></table>																		</div>
+																	</td>
+																</tr>
+															</table>
+															<!-- End Content -->
+														</td>
+													</tr>
+												</table>
+												<!-- End Body -->
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td align="center" valign="top">
+									<!-- Footer -->
+									<table border="0" cellpadding="10" cellspacing="0" width="100%" id="template_footer">
+										<tr>
+											<td valign="top" style="padding: 0; border-radius: 0;">
+												<table border="0" cellpadding="10" cellspacing="0" width="100%">
+													<tr>
+														<td colspan="2" valign="middle" id="credit" style='border-radius: 0; border: 0; border-top: 1px solid rgba(0,0,0,.2); font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 12px; line-height: 140%; text-align: center; padding: 32px; color: #787c82;' align="center">
+															<p style="margin: 0;">Aivon<br>Dhaka, Bangladesh</p>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+									<!-- End Footer -->
+								</td>
+							</tr>
+						</table>
+					</div>
+				</td>
+				<td><!-- Deliberately empty to support consistent sizing and layout across multiple email clients. --></td>
+			</tr>
+		</table>
+	</body>
+</html>
+
+    [headers] => Content-Type: text/html
+Reply-to: Woodmart Ecommerce <rafsun@wphelpzone.com>
+
+    [attachments] => Array
+        (
+        )
+
+)
+
+[2025-12-03 19:10:17] wp_mail called with: Array
+(
+    [to] => rafsun@wphelpzone.com
+    [subject] => [Aivon]: You've got a new order: #10728
+    [message] => <!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+		<title>Aivon</title>
+	<style type="text/css">@media screen and (max-width: 600px){#template_header_image,#header_wrapper{padding: 16px 10px 0 !important;}#header_wrapper h1{font-size: 24px !important;}#body_content_inner_cell{padding: 10px !important;}#body_content_inner,.email-order-item-meta{font-size: 12px !important;}#body_content .email-order-details .order-totals-total td{font-size: 14px !important;}.email-order-detail-heading{font-size: 16px !important; line-height: 130% !important;}.email-additional-content{padding-top: 16px !important;}}</style></head>
+	<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" style="background-color: #fff; padding: 0; text-align: center;" bgcolor="#fff">
+		<table width="100%" id="outer_wrapper" style="background-color: #fff;" bgcolor="#fff">
+			<tr>
+				<td><!-- Deliberately empty to support consistent sizing and layout across multiple email clients. --></td>
+				<td width="600">
+					<div id="wrapper" dir="ltr" style="margin: 0 auto; padding: 24px 0; width: 100%; max-width: 600px; -webkit-text-size-adjust: none;" width="100%">
+						<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="inner_wrapper" style="background-color: #fff; border-radius: 8px;" bgcolor="#fff">
+							<tr>
+								<td align="center" valign="top">
+																			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td id="template_header_image" style="padding: 32px 32px 0;">
+													<p class="email-logo-text" style='color: #8526ff; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 18px; margin-bottom: 0; text-align: left;' align="left">Aivon</p>												</td>
+											</tr>
+										</table>
+																		<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_container" style="box-shadow: none; background-color: #fff; border: 0; border-radius: 3px;" bgcolor="#fff">
+										<tr>
+											<td align="center" valign="top">
+												<!-- Header -->
+												<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_header" style='background-color: #fff; color: #1e1e1e; border-bottom: 0; font-weight: bold; line-height: 100%; vertical-align: middle; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; border-radius: 3px 3px 0 0;' bgcolor="#fff">
+													<tr>
+														<td id="header_wrapper" style="padding: 20px 32px 0; display: block;">
+															<h1 style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 120%; margin: 0; color: #1e1e1e; background-color: inherit; text-align: left;' bgcolor="inherit">New order: #10728</h1>
+														</td>
+													</tr>
+												</table>
+												<!-- End Header -->
+											</td>
+										</tr>
+										<tr>
+											<td align="center" valign="top">
+												<!-- Body -->
+												<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_body">
+													<tr>
+														<td valign="top" id="body_content" style="background-color: #fff;" bgcolor="#fff">
+															<!-- Content -->
+															<table border="0" cellpadding="20" cellspacing="0" width="100%">
+																<tr>
+																	<td valign="top" id="body_content_inner_cell" style="padding: 20px 32px 32px;">
+																		<div id="body_content_inner" style='color: #4b4b4b; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 16px; line-height: 150%; text-align: left;' align="left">
+
+<div class="email-introduction" style="padding-bottom: 24px;"><p style="margin: 0 0 16px;">You’ve received a new order from Rafsun Jani:</p>
+</div>
+
+<h2 class="email-order-detail-heading" style='color: #1e1e1e; display: block; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 20px; font-weight: bold; line-height: 160%; margin: 0 0 18px; text-align: left;'>
+	Order summary<br><span style="color: #787c82; display: block; font-size: 14px; font-weight: normal;"><a class="link" href="https://test-ecommerce-woodmart.rafsun.wphelpzone.com/wp-admin/admin.php?page=wc-orders&amp;action=edit&amp;id=10728" style="font-weight: normal; text-decoration: underline; color: #8526ff;">Order #10728</a> (<time datetime="2025-12-03T19:10:17+00:00">December 3, 2025</time>)</span></h2>
+
+<div style="margin-bottom: 24px;">
+	<table class="td font-family email-order-details" cellspacing="0" cellpadding="6" border="0" style='color: #4b4b4b; border: 0; vertical-align: middle; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; width: 100%;' width="100%">
+				<tbody>
+				<tr class="order_item">
+		<td class="td font-family text-align-left" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; padding: 8px 12px; padding-left: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle; word-wrap: break-word;' align="left">
+							<table class="order-item-data" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>
+					<tr>
+						<td style="vertical-align: middle; padding-left: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; border: 0; padding: 0;"><img width="48" height="48" src="https://test-ecommerce-woodmart.rafsun.wphelpzone.com/wp-content/uploads/2022/12/alogic-ultra-mini-usb-1-80x80.jpg" class="attachment-48x48 size-48x48 skip-lazy no-lazyload lazyload-disabled no-lazy skip-lazyload" alt="Alogic Ultra Mini USB" data-skip-lazy="true" style="border: none; display: inline-block; font-size: 14px; font-weight: bold; height: auto; outline: none; text-decoration: none; text-transform: capitalize; vertical-align: middle; margin-right: 24px; max-width: 100%;" border="0"></td>						<td style="vertical-align: middle; padding-right: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; border: 0; padding: 0;">
+							Alogic Ultra Mini USB (#397707)<div class="email-order-item-meta" style="color: #787c82; font-size: 14px; line-height: 140%;"></div>						</td>
+					</tr>
+				</table>
+						</td>
+		<td class="td font-family text-align-right" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: right; padding: 8px 12px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle;' align="right">
+			×1		</td>
+		<td class="td font-family text-align-right" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: right; padding: 8px 12px; padding-right: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle;' align="right">
+			<span class="woocommerce-Price-amount amount">50.00<span class="woocommerce-Price-currencySymbol">৳ </span></span>		</td>
+	</tr>
+	
+		</tbody>
+		<tfoot>
+								<tr class="order-totals order-totals-subtotal">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-left: 0; padding-top: 24px; border-top-width: 4px;" align="left">
+							Subtotal: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-right: 0; padding-top: 24px; border-top-width: 4px;" align="right"><span class="woocommerce-Price-amount amount">50.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></td>
+					</tr>
+										<tr class="order-totals order-totals-shipping">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-left: 0;" align="left">
+							Shipping: Free shipping						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-right: 0;" align="right">Free shipping</td>
+					</tr>
+										<tr class="order-totals order-totals-total">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; padding-bottom: 5px; padding-top: 5px; font-weight: bold; padding-left: 0;" align="left">
+							Total: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; padding-bottom: 5px; padding-top: 5px; font-weight: bold; font-size: 20px; padding-right: 0;" align="right"><span class="woocommerce-Price-amount amount">50.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></td>
+					</tr>
+										<tr class="order-totals order-totals-payment_method order-totals-last">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-top: 5px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-left: 0;" align="left">
+							Payment method: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-top: 5px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-right: 0;" align="right">Cash on delivery</td>
+					</tr>
+							</tfoot>
+	</table>
+</div>
+
+<table id="addresses" cellspacing="0" cellpadding="0" border="0" style="width: 100%; vertical-align: top; margin-bottom: 0; padding: 0;" width="100%">
+	<tr>
+		<td class="font-family text-align-left" valign="top" width="50%" style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; border: 0; padding: 0;' align="left">
+							<b class="address-title" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>Billing address</b>
+			
+			<address class="address" style="color: #1e1e1e; font-style: normal; padding: 8px 0; word-break: break-all;">
+				Rafsun Jani<br>WPHelpZone LLC<br>467, South Goran, Khilgaon<br>Dhaka<br>Dhaka<br>1217									<br><a href="tel:+8801577191676" style="color: #8526ff; font-weight: normal; text-decoration: underline;">+8801577191676</a>													<br>1999rafsun@gmail.com											</address>
+		</td>
+					<td class="font-family text-align-left" valign="top" width="50%" style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; padding: 0; padding-left: 10px;' align="left">
+									<b class="address-title" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>Shipping address</b>
+				
+				<address class="address" style="color: #1e1e1e; font-style: normal; padding: 8px 0; word-break: break-all;">
+					Rafsun Jani<br>WPHelpZone LLC<br>467, South Goran, Khilgaon<br>Dhaka<br>Dhaka<br>1217														</address>
+			</td>
+			</tr>
+</table>
+<br><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td class="email-additional-content" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; padding: 32px 0 0;'><p style="text-align: center; margin: 0 0 16px;" align="center">Congratulations on the sale!</p>
+</td></tr></table>Process your orders on the go. <a href="https://woocommerce.com/mobile?blog_id=0&amp;utm_campaign=deeplinks_promote_app&amp;utm_medium=email&amp;utm_source=test-ecommerce-woodmart.rafsun.wphelpzone.com&amp;utm_term=0" style="color: #8526ff; font-weight: normal; text-decoration: underline;">Get the app</a>.																		</div>
+																	</td>
+																</tr>
+															</table>
+															<!-- End Content -->
+														</td>
+													</tr>
+												</table>
+												<!-- End Body -->
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td align="center" valign="top">
+									<!-- Footer -->
+									<table border="0" cellpadding="10" cellspacing="0" width="100%" id="template_footer">
+										<tr>
+											<td valign="top" style="padding: 0; border-radius: 0;">
+												<table border="0" cellpadding="10" cellspacing="0" width="100%">
+													<tr>
+														<td colspan="2" valign="middle" id="credit" style='border-radius: 0; border: 0; border-top: 1px solid rgba(0,0,0,.2); font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 12px; line-height: 140%; text-align: center; padding: 32px; color: #787c82;' align="center">
+															<p style="margin: 0;">Aivon<br>Dhaka, Bangladesh</p>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+									<!-- End Footer -->
+								</td>
+							</tr>
+						</table>
+					</div>
+				</td>
+				<td><!-- Deliberately empty to support consistent sizing and layout across multiple email clients. --></td>
+			</tr>
+		</table>
+	</body>
+</html>
+
+    [headers] => Content-Type: text/html
+Reply-to: Rafsun Jani <1999rafsun@gmail.com>
+
+    [attachments] => Array
+        (
+        )
+
+)
+
+[2025-12-03 19:10:17] wp_mail called with: Array
+(
+    [to] => 1999rafsun@gmail.com
+    [subject] => Your Aivon order has been received!
+    [message] => <!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+		<title>Aivon</title>
+	<style type="text/css">@media screen and (max-width: 600px){#template_header_image,#header_wrapper{padding: 16px 10px 0 !important;}#header_wrapper h1{font-size: 24px !important;}#body_content_inner_cell{padding: 10px !important;}#body_content_inner,.email-order-item-meta{font-size: 12px !important;}#body_content .email-order-details .order-totals-total td{font-size: 14px !important;}.email-order-detail-heading{font-size: 16px !important; line-height: 130% !important;}.email-additional-content{padding-top: 16px !important;}}</style></head>
+	<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" style="background-color: #fff; padding: 0; text-align: center;" bgcolor="#fff">
+		<table width="100%" id="outer_wrapper" style="background-color: #fff;" bgcolor="#fff">
+			<tr>
+				<td><!-- Deliberately empty to support consistent sizing and layout across multiple email clients. --></td>
+				<td width="600">
+					<div id="wrapper" dir="ltr" style="margin: 0 auto; padding: 24px 0; width: 100%; max-width: 600px; -webkit-text-size-adjust: none;" width="100%">
+						<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="inner_wrapper" style="background-color: #fff; border-radius: 8px;" bgcolor="#fff">
+							<tr>
+								<td align="center" valign="top">
+																			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td id="template_header_image" style="padding: 32px 32px 0;">
+													<p class="email-logo-text" style='color: #8526ff; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 18px; margin-bottom: 0; text-align: left;' align="left">Aivon</p>												</td>
+											</tr>
+										</table>
+																		<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_container" style="box-shadow: none; background-color: #fff; border: 0; border-radius: 3px;" bgcolor="#fff">
+										<tr>
+											<td align="center" valign="top">
+												<!-- Header -->
+												<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_header" style='background-color: #fff; color: #1e1e1e; border-bottom: 0; font-weight: bold; line-height: 100%; vertical-align: middle; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; border-radius: 3px 3px 0 0;' bgcolor="#fff">
+													<tr>
+														<td id="header_wrapper" style="padding: 20px 32px 0; display: block;">
+															<h1 style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 120%; margin: 0; color: #1e1e1e; background-color: inherit; text-align: left;' bgcolor="inherit">Thank you for your order</h1>
+														</td>
+													</tr>
+												</table>
+												<!-- End Header -->
+											</td>
+										</tr>
+										<tr>
+											<td align="center" valign="top">
+												<!-- Body -->
+												<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_body">
+													<tr>
+														<td valign="top" id="body_content" style="background-color: #fff;" bgcolor="#fff">
+															<!-- Content -->
+															<table border="0" cellpadding="20" cellspacing="0" width="100%">
+																<tr>
+																	<td valign="top" id="body_content_inner_cell" style="padding: 20px 32px 32px;">
+																		<div id="body_content_inner" style='color: #4b4b4b; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 16px; line-height: 150%; text-align: left;' align="left">
+
+<div class="email-introduction" style="padding-bottom: 24px;"><p style="margin: 0 0 16px;">
+Hi Rafsun,</p>
+	<p style="margin: 0 0 16px;">Just to let you know — we’ve received your order, and it is now being processed.</p>
+	<p style="margin: 0 0 16px;">Here’s a reminder of what you’ve ordered:</p>
+</div>
+<p style="margin: 0 0 16px;">Pay with cash upon delivery.</p>
+
+
+<h2 class="email-order-detail-heading" style='color: #1e1e1e; display: block; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 20px; font-weight: bold; line-height: 160%; margin: 0 0 18px; text-align: left;'>
+	Order summary<br><span style="color: #787c82; display: block; font-size: 14px; font-weight: normal;">Order #10728 (<time datetime="2025-12-03T19:10:17+00:00">December 3, 2025</time>)</span></h2>
+
+<div style="margin-bottom: 24px;">
+	<table class="td font-family email-order-details" cellspacing="0" cellpadding="6" border="0" style='color: #4b4b4b; border: 0; vertical-align: middle; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; width: 100%;' width="100%">
+				<tbody>
+				<tr class="order_item">
+		<td class="td font-family text-align-left" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; padding: 8px 12px; padding-left: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle; word-wrap: break-word;' align="left">
+							<table class="order-item-data" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>
+					<tr>
+						<td style="vertical-align: middle; padding-left: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; border: 0; padding: 0;"><img width="48" height="48" src="https://test-ecommerce-woodmart.rafsun.wphelpzone.com/wp-content/uploads/2022/12/alogic-ultra-mini-usb-1-80x80.jpg" class="attachment-48x48 size-48x48 skip-lazy no-lazyload lazyload-disabled no-lazy skip-lazyload" alt="Alogic Ultra Mini USB" data-skip-lazy="true" style="border: none; display: inline-block; font-size: 14px; font-weight: bold; height: auto; outline: none; text-decoration: none; text-transform: capitalize; vertical-align: middle; margin-right: 24px; max-width: 100%;" border="0"></td>						<td style="vertical-align: middle; padding-right: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; border: 0; padding: 0;">
+							Alogic Ultra Mini USB<div class="email-order-item-meta" style="color: #787c82; font-size: 14px; line-height: 140%;"></div>						</td>
+					</tr>
+				</table>
+						</td>
+		<td class="td font-family text-align-right" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: right; padding: 8px 12px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle;' align="right">
+			×1		</td>
+		<td class="td font-family text-align-right" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: right; padding: 8px 12px; padding-right: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle;' align="right">
+			<span class="woocommerce-Price-amount amount">50.00<span class="woocommerce-Price-currencySymbol">৳ </span></span>		</td>
+	</tr>
+	
+		</tbody>
+		<tfoot>
+								<tr class="order-totals order-totals-subtotal">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-left: 0; padding-top: 24px; border-top-width: 4px;" align="left">
+							Subtotal: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-right: 0; padding-top: 24px; border-top-width: 4px;" align="right"><span class="woocommerce-Price-amount amount">50.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></td>
+					</tr>
+										<tr class="order-totals order-totals-shipping">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-left: 0;" align="left">
+							Shipping: Free shipping						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-right: 0;" align="right">Free shipping</td>
+					</tr>
+										<tr class="order-totals order-totals-total">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; padding-bottom: 5px; padding-top: 5px; font-weight: bold; padding-left: 0;" align="left">
+							Total: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; padding-bottom: 5px; padding-top: 5px; font-weight: bold; font-size: 20px; padding-right: 0;" align="right"><span class="woocommerce-Price-amount amount">50.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></td>
+					</tr>
+										<tr class="order-totals order-totals-payment_method order-totals-last">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-top: 5px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-left: 0;" align="left">
+							Payment method: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-top: 5px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-right: 0;" align="right">Cash on delivery</td>
+					</tr>
+							</tfoot>
+	</table>
+</div>
+
+<table id="addresses" cellspacing="0" cellpadding="0" border="0" style="width: 100%; vertical-align: top; margin-bottom: 0; padding: 0;" width="100%">
+	<tr>
+		<td class="font-family text-align-left" valign="top" width="50%" style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; border: 0; padding: 0;' align="left">
+							<b class="address-title" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>Billing address</b>
+			
+			<address class="address" style="color: #1e1e1e; font-style: normal; padding: 8px 0; word-break: break-all;">
+				Rafsun Jani<br>WPHelpZone LLC<br>467, South Goran, Khilgaon<br>Dhaka<br>Dhaka<br>1217<br>Bangladesh									<br><a href="tel:+8801577191676" style="color: #8526ff; font-weight: normal; text-decoration: underline;">+8801577191676</a>													<br>1999rafsun@gmail.com											</address>
+		</td>
+					<td class="font-family text-align-left" valign="top" width="50%" style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; padding: 0; padding-left: 10px;' align="left">
+									<b class="address-title" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>Shipping address</b>
+				
+				<address class="address" style="color: #1e1e1e; font-style: normal; padding: 8px 0; word-break: break-all;">
+					Rafsun Jani<br>WPHelpZone LLC<br>467, South Goran, Khilgaon<br>Dhaka<br>Dhaka<br>1217<br>Bangladesh														</address>
+			</td>
+			</tr>
+</table>
+<br><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td class="email-additional-content" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; padding: 32px 0 0;'><p style="text-align: center; margin: 0 0 16px;" align="center">Thanks again! If you need any help with your order, please contact us at rafsun@wphelpzone.com.</p>
+</td></tr></table>																		</div>
+																	</td>
+																</tr>
+															</table>
+															<!-- End Content -->
+														</td>
+													</tr>
+												</table>
+												<!-- End Body -->
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td align="center" valign="top">
+									<!-- Footer -->
+									<table border="0" cellpadding="10" cellspacing="0" width="100%" id="template_footer">
+										<tr>
+											<td valign="top" style="padding: 0; border-radius: 0;">
+												<table border="0" cellpadding="10" cellspacing="0" width="100%">
+													<tr>
+														<td colspan="2" valign="middle" id="credit" style='border-radius: 0; border: 0; border-top: 1px solid rgba(0,0,0,.2); font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 12px; line-height: 140%; text-align: center; padding: 32px; color: #787c82;' align="center">
+															<p style="margin: 0;">Aivon<br>Dhaka, Bangladesh</p>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+									<!-- End Footer -->
+								</td>
+							</tr>
+						</table>
+					</div>
+				</td>
+				<td><!-- Deliberately empty to support consistent sizing and layout across multiple email clients. --></td>
+			</tr>
+		</table>
+	</body>
+</html>
+
+    [headers] => Content-Type: text/html
+Reply-to: Woodmart Ecommerce <rafsun@wphelpzone.com>
+
+    [attachments] => Array
+        (
+        )
+
+)
+
+[2025-12-03 19:10:37] wp_mail called with: Array
+(
+    [to] => 1999rafsun@gmail.com
+    [subject] => Your order at Aivon was unsuccessful
+    [message] => <!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+		<title>Aivon</title>
+	<style type="text/css">@media screen and (max-width: 600px){#template_header_image,#header_wrapper{padding: 16px 10px 0 !important;}#header_wrapper h1{font-size: 24px !important;}#body_content_inner_cell{padding: 10px !important;}#body_content_inner,.email-order-item-meta{font-size: 12px !important;}#body_content .email-order-details .order-totals-total td{font-size: 14px !important;}.email-order-detail-heading{font-size: 16px !important; line-height: 130% !important;}.email-additional-content{padding-top: 16px !important;}}</style></head>
+	<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" style="background-color: #fff; padding: 0; text-align: center;" bgcolor="#fff">
+		<table width="100%" id="outer_wrapper" style="background-color: #fff;" bgcolor="#fff">
+			<tr>
+				<td><!-- Deliberately empty to support consistent sizing and layout across multiple email clients. --></td>
+				<td width="600">
+					<div id="wrapper" dir="ltr" style="margin: 0 auto; padding: 24px 0; width: 100%; max-width: 600px; -webkit-text-size-adjust: none;" width="100%">
+						<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="inner_wrapper" style="background-color: #fff; border-radius: 8px;" bgcolor="#fff">
+							<tr>
+								<td align="center" valign="top">
+																			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td id="template_header_image" style="padding: 32px 32px 0;">
+													<p class="email-logo-text" style='color: #8526ff; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 18px; margin-bottom: 0; text-align: left;' align="left">Aivon</p>												</td>
+											</tr>
+										</table>
+																		<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_container" style="box-shadow: none; background-color: #fff; border: 0; border-radius: 3px;" bgcolor="#fff">
+										<tr>
+											<td align="center" valign="top">
+												<!-- Header -->
+												<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_header" style='background-color: #fff; color: #1e1e1e; border-bottom: 0; font-weight: bold; line-height: 100%; vertical-align: middle; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; border-radius: 3px 3px 0 0;' bgcolor="#fff">
+													<tr>
+														<td id="header_wrapper" style="padding: 20px 32px 0; display: block;">
+															<h1 style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 120%; margin: 0; color: #1e1e1e; background-color: inherit; text-align: left;' bgcolor="inherit">Sorry, your order was unsuccessful</h1>
+														</td>
+													</tr>
+												</table>
+												<!-- End Header -->
+											</td>
+										</tr>
+										<tr>
+											<td align="center" valign="top">
+												<!-- Body -->
+												<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_body">
+													<tr>
+														<td valign="top" id="body_content" style="background-color: #fff;" bgcolor="#fff">
+															<!-- Content -->
+															<table border="0" cellpadding="20" cellspacing="0" width="100%">
+																<tr>
+																	<td valign="top" id="body_content_inner_cell" style="padding: 20px 32px 32px;">
+																		<div id="body_content_inner" style='color: #4b4b4b; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 16px; line-height: 150%; text-align: left;' align="left">
+
+<div class="email-introduction" style="padding-bottom: 24px;"><p style="margin: 0 0 16px;">
+Hi Rafsun,</p>
+<p style="margin: 0 0 16px;">Unfortunately, we couldn't complete your order due to an issue with your payment method.</p>
+<p style="margin: 0 0 16px;">If you'd like to continue with your purchase, please return to Aivon and try a different method of payment.</p>
+<p style="margin: 0 0 16px;">Your order details are as follows:</p>
+</div>
+<p style="margin: 0 0 16px;">Pay with cash upon delivery.</p>
+
+
+<h2 class="email-order-detail-heading" style='color: #1e1e1e; display: block; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 20px; font-weight: bold; line-height: 160%; margin: 0 0 18px; text-align: left;'>
+	Order summary<br><span style="color: #787c82; display: block; font-size: 14px; font-weight: normal;">Order #10728 (<time datetime="2025-12-03T19:10:17+00:00">December 3, 2025</time>)</span></h2>
+
+<div style="margin-bottom: 24px;">
+	<table class="td font-family email-order-details" cellspacing="0" cellpadding="6" border="0" style='color: #4b4b4b; border: 0; vertical-align: middle; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; width: 100%;' width="100%">
+				<tbody>
+				<tr class="order_item">
+		<td class="td font-family text-align-left" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; padding: 8px 12px; padding-left: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle; word-wrap: break-word;' align="left">
+							<table class="order-item-data" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>
+					<tr>
+						<td style="vertical-align: middle; padding-left: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; border: 0; padding: 0;"><img width="48" height="48" src="https://test-ecommerce-woodmart.rafsun.wphelpzone.com/wp-content/uploads/2022/12/alogic-ultra-mini-usb-1-80x80.jpg" class="attachment-48x48 size-48x48 skip-lazy no-lazyload lazyload-disabled no-lazy skip-lazyload" alt="Alogic Ultra Mini USB" data-skip-lazy="true" style="border: none; display: inline-block; font-size: 14px; font-weight: bold; height: auto; outline: none; text-decoration: none; text-transform: capitalize; vertical-align: middle; margin-right: 24px; max-width: 100%;" border="0"></td>						<td style="vertical-align: middle; padding-right: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; border: 0; padding: 0;">
+							Alogic Ultra Mini USB<div class="email-order-item-meta" style="color: #787c82; font-size: 14px; line-height: 140%;"></div>						</td>
+					</tr>
+				</table>
+						</td>
+		<td class="td font-family text-align-right" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: right; padding: 8px 12px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle;' align="right">
+			×1		</td>
+		<td class="td font-family text-align-right" style='color: #4b4b4b; border: 0; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: right; padding: 8px 12px; padding-right: 0; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; vertical-align: middle;' align="right">
+			<span class="woocommerce-Price-amount amount">50.00<span class="woocommerce-Price-currencySymbol">৳ </span></span>		</td>
+	</tr>
+	
+		</tbody>
+		<tfoot>
+								<tr class="order-totals order-totals-subtotal">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-left: 0; padding-top: 24px; border-top-width: 4px;" align="left">
+							Subtotal: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-right: 0; padding-top: 24px; border-top-width: 4px;" align="right"><span class="woocommerce-Price-amount amount">50.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></td>
+					</tr>
+										<tr class="order-totals order-totals-shipping">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-left: 0;" align="left">
+							Shipping: Free shipping						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-bottom: 5px; padding-top: 5px; padding-right: 0;" align="right">Free shipping</td>
+					</tr>
+										<tr class="order-totals order-totals-total">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; padding-bottom: 5px; padding-top: 5px; font-weight: bold; padding-left: 0;" align="left">
+							Total: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; padding-bottom: 5px; padding-top: 5px; font-weight: bold; font-size: 20px; padding-right: 0;" align="right"><span class="woocommerce-Price-amount amount">50.00<span class="woocommerce-Price-currencySymbol">৳ </span></span></td>
+					</tr>
+										<tr class="order-totals order-totals-payment_method order-totals-last">
+						<th class="td text-align-left" scope="row" colspan="2" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: left; padding: 8px 12px; font-weight: normal; padding-top: 5px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-left: 0;" align="left">
+							Payment method: 						</th>
+						<td class="td text-align-right" style="color: #4b4b4b; border: 0; vertical-align: middle; text-align: right; padding: 8px 12px; font-weight: normal; padding-top: 5px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 24px; padding-right: 0;" align="right">Cash on delivery</td>
+					</tr>
+							</tfoot>
+	</table>
+</div>
+
+<table id="addresses" cellspacing="0" cellpadding="0" border="0" style="width: 100%; vertical-align: top; margin-bottom: 0; padding: 0;" width="100%">
+	<tr>
+		<td class="font-family text-align-left" valign="top" width="50%" style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; border: 0; padding: 0;' align="left">
+							<b class="address-title" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>Billing address</b>
+			
+			<address class="address" style="color: #1e1e1e; font-style: normal; padding: 8px 0; word-break: break-all;">
+				Rafsun Jani<br>WPHelpZone LLC<br>467, South Goran, Khilgaon<br>Dhaka<br>Dhaka<br>1217									<br><a href="tel:+8801577191676" style="color: #8526ff; font-weight: normal; text-decoration: underline;">+8801577191676</a>													<br>1999rafsun@gmail.com											</address>
+		</td>
+					<td class="font-family text-align-left" valign="top" width="50%" style='font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; text-align: left; padding: 0; padding-left: 10px;' align="left">
+									<b class="address-title" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;'>Shipping address</b>
+				
+				<address class="address" style="color: #1e1e1e; font-style: normal; padding: 8px 0; word-break: break-all;">
+					Rafsun Jani<br>WPHelpZone LLC<br>467, South Goran, Khilgaon<br>Dhaka<br>Dhaka<br>1217														</address>
+			</td>
+			</tr>
+</table>
+<br><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td class="email-additional-content" style='color: #1e1e1e; font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; padding: 32px 0 0;'><p style="text-align: center; margin: 0 0 16px;" align="center">If you need any help with your order, please contact us at rafsun@wphelpzone.com.</p>
+</td></tr></table>																		</div>
+																	</td>
+																</tr>
+															</table>
+															<!-- End Content -->
+														</td>
+													</tr>
+												</table>
+												<!-- End Body -->
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td align="center" valign="top">
+									<!-- Footer -->
+									<table border="0" cellpadding="10" cellspacing="0" width="100%" id="template_footer">
+										<tr>
+											<td valign="top" style="padding: 0; border-radius: 0;">
+												<table border="0" cellpadding="10" cellspacing="0" width="100%">
+													<tr>
+														<td colspan="2" valign="middle" id="credit" style='border-radius: 0; border: 0; border-top: 1px solid rgba(0,0,0,.2); font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; font-size: 12px; line-height: 140%; text-align: center; padding: 32px; color: #787c82;' align="center">
+															<p style="margin: 0;">Aivon<br>Dhaka, Bangladesh</p>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+									<!-- End Footer -->
+								</td>
+							</tr>
+						</table>
+					</div>
+				</td>
+				<td><!-- Deliberately empty to support consistent sizing and layout across multiple email clients. --></td>
+			</tr>
+		</table>
+	</body>
+</html>
+
+    [headers] => Content-Type: text/html
+Reply-to: Woodmart Ecommerce <rafsun@wphelpzone.com>
+
+    [attachments] => Array
+        (
+        )
+
+)
+

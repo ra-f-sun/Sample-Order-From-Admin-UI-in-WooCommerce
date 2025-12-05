@@ -302,10 +302,10 @@ class WCSO_Admin {
         $current_user = wp_get_current_user();
         $enable_scanner = get_option('wcso_enable_barcode_scanner', '0');
 
-         $shipping_zones = $this->render_shipping_details();
-            echo '<pre>';
-            var_dump($shipping_zones);
-            echo '</pre>';
+        //  $shipping_zones = $this->render_shipping_details();
+        //     echo '<pre>';
+        //     var_dump($shipping_zones);
+        //     echo '</pre>';
            
 
         ?>
