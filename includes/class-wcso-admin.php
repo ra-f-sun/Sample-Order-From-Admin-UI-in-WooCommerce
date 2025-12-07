@@ -1,22 +1,25 @@
 <?php
+
 /**
  * Admin Pages Handler
  */
 if (!defined('ABSPATH')) exit;
 
-class WCSO_Admin {
+class WCSO_Admin
+{
 
     private static $instance = null;
 
-    public static function get_instance() {
+    public static function get_instance()
+    {
         if (null === self::$instance) self::$instance = new self();
         return self::$instance;
     }
 
-    private function __construct() {
+    private function __construct()
+    {
         add_action('admin_menu', array($this, 'add_admin_menu'));
         add_action('admin_menu', array($this, 'add_settings_page'), 99);
-        add_action('admin_init', array($this, 'register_settings'));
         add_action('admin_enqueue_scripts', array($this, 'enqueue_assets'));
 
         // Order list customization
@@ -26,7 +29,8 @@ class WCSO_Admin {
         add_filter('parse_query', array($this, 'filter_orders'));
     }
 
-    public function add_admin_menu() {
+    public function add_admin_menu()
+    {
         add_menu_page(
             __('Sample Orders', 'wc-sample-orders'),
             __('Sample Orders', 'wc-sample-orders'),
@@ -38,7 +42,8 @@ class WCSO_Admin {
         );
     }
 
-    public function add_settings_page() {
+    public function add_settings_page()
+    {
         add_submenu_page(
             'wc-sample-orders',
             __('Settings', 'wc-sample-orders'),
@@ -49,15 +54,9 @@ class WCSO_Admin {
         );
     }
 
-    public function register_settings() {
-        register_setting('wcso_settings', 'wcso_enable_barcode_scanner');
-    }
-
-    public function enqueue_assets($hook) {
+    public function enqueue_assets($hook)
+    {
         if ($hook !== 'toplevel_page_wc-sample-orders' && $hook !== 'sample-orders_page_wc-sample-orders-settings') return;
-
-        
-        $all_shipping_data = $this->render_shipping_details();
 
         // CSS
         wp_enqueue_style(
@@ -76,239 +75,194 @@ class WCSO_Admin {
             true
         );
 
-        // Localize data (includes Woo countries/states, shipping data)
+        // Get Tier Config from Settings Helper
+        $tier_config = WCSO_Settings::get_tier_config();
+
+        // Localize data
         wp_localize_script('wcso-admin-script', 'wcsoData', array(
             'ajaxUrl'      => admin_url('admin-ajax.php'),
             'searchNonce'  => wp_create_nonce('wcso_search'),
             'cacheNonce'   => wp_create_nonce('wcso_cache'),
             'orderNonce'   => wp_create_nonce('wcso_create_order'),
-            'enableScanner'=> get_option('wcso_enable_barcode_scanner', '0'),
+            'enableScanner' => get_option('wcso_enable_barcode_scanner', '0'),
             'currentUser'  => wp_get_current_user()->user_login,
             'countries'    => WC()->countries->get_countries(),
             'states'       => WC()->countries->get_states(),
             'baseCountry'  => WC()->countries->get_base_country(),
             'baseState'    => WC()->countries->get_base_state(),
             'shippingZones' => $this->render_shipping_details(),
+            'tierConfig'   => $tier_config // <--- NEW: Tier Configuration for JS
         ));
     }
 
-
-   public function render_shipping_details() {
-    if (!current_user_can('manage_woocommerce')) wp_die(__('You do not have sufficient permissions.'));
-    
-    $shipping_zones = WC_Shipping_Zones::get_zones();
-    $all_shipping_zone_with_methods = array(); 
-    
-    foreach ($shipping_zones as $shipping_zone) {
-        $shipping_zone_id = $shipping_zone['zone_id']; 
-        $shipping_zone_name = $shipping_zone['zone_name'];
-        $shipping_zone_formatted_location = $shipping_zone['formatted_zone_location'];
-        $zone_locations = $shipping_zone['zone_locations'];
-        
-        $current_zone = array(
-            'zone_id' => $shipping_zone_id,
-            'zone_name' => $shipping_zone_name,
-            'formatted_location' => $shipping_zone_formatted_location,
-            'zone_locations' => $zone_locations, 
-            'shipping_methods' => array() 
-        );
-        
-        $shipping_methods = $shipping_zone['shipping_methods'];
-        
-        foreach($shipping_methods as $shipping_method) {
-            $shipping_method_id = $shipping_method->id; 
-            $shipping_method_title = $shipping_method->method_title;
-            $shipping_method_instance_id = $shipping_method->instance_id; 
-            $shipping_method_instance_settings = $shipping_method->instance_settings;
-            $shipping_method_instance_title = $shipping_method->instance_settings['title'];
-            $shipping_method_instance_cost = $shipping_method->instance_settings['cost'];
-            
-            $current_zone['shipping_methods'][] = array(
-                'id' => $shipping_method_id, 
-                'title' => $shipping_method_title,
-                'instance_id' => $shipping_method_instance_id, 
-                'method_id' => $shipping_method_id . ':' . $shipping_method_instance_id, 
-                'instance_title' => $shipping_method_instance_title,
-                'instance_cost' => $shipping_method_instance_cost,
-                'enabled' => $shipping_method->enabled, 
-            );
-        }
-        
-        $all_shipping_zone_with_methods[] = $current_zone;
-    }
-    
-    return $all_shipping_zone_with_methods;
-}
-
-    public function render_settings_page() {
+    public function render_shipping_details()
+    {
         if (!current_user_can('manage_woocommerce')) wp_die(__('You do not have sufficient permissions.'));
-        
-        if (isset($_POST['wcso_save_settings']) && check_admin_referer('wcso_settings_nonce')) {
-            // Barcode scanner
-            $enable_scanner = isset($_POST['wcso_enable_barcode_scanner']) ? '1' : '0';
-            update_option('wcso_enable_barcode_scanner', $enable_scanner);
-            
-            // Email settings
-            $cc_emails = sanitize_textarea_field($_POST['wcso_cc_emails'] ?? '');
-            update_option('wcso_cc_emails', $cc_emails);
-            
-            $email_logging = isset($_POST['wcso_email_logging']) ? '1' : '0';
-            update_option('wcso_email_logging', $email_logging);
-            
-            $email_from_name = sanitize_text_field($_POST['wcso_email_from_name'] ?? '');
-            update_option('wcso_email_from_name', $email_from_name);
-            
-            $email_from_email = sanitize_email($_POST['wcso_email_from_email'] ?? '');
-            update_option('wcso_email_from_email', $email_from_email);
-            
-            echo '<div class="notice notice-success"><p>Settings saved successfully!</p></div>';
+
+        $shipping_zones = WC_Shipping_Zones::get_zones();
+        $all_shipping_zone_with_methods = array();
+
+        foreach ($shipping_zones as $shipping_zone) {
+            $shipping_zone_id = $shipping_zone['zone_id'];
+            $shipping_zone_name = $shipping_zone['zone_name'];
+            $shipping_zone_formatted_location = $shipping_zone['formatted_zone_location'];
+            $zone_locations = $shipping_zone['zone_locations'];
+
+            $current_zone = array(
+                'zone_id' => $shipping_zone_id,
+                'zone_name' => $shipping_zone_name,
+                'formatted_location' => $shipping_zone_formatted_location,
+                'zone_locations' => $zone_locations,
+                'shipping_methods' => array()
+            );
+
+            $shipping_methods = $shipping_zone['shipping_methods'];
+
+            foreach ($shipping_methods as $shipping_method) {
+                $shipping_method_id = $shipping_method->id;
+                $shipping_method_title = $shipping_method->method_title;
+                $shipping_method_instance_id = $shipping_method->instance_id;
+                $shipping_method_instance_title = $shipping_method->instance_settings['title'];
+                $shipping_method_instance_cost = $shipping_method->instance_settings['cost'] ?? 0;
+
+                $current_zone['shipping_methods'][] = array(
+                    'id' => $shipping_method_id,
+                    'title' => $shipping_method_title,
+                    'instance_id' => $shipping_method_instance_id,
+                    'method_id' => $shipping_method_id . ':' . $shipping_method_instance_id,
+                    'instance_title' => $shipping_method_instance_title,
+                    'instance_cost' => $shipping_method_instance_cost,
+                    'enabled' => $shipping_method->enabled,
+                );
+            }
+            $all_shipping_zone_with_methods[] = $current_zone;
         }
-        
+        return $all_shipping_zone_with_methods;
+    }
+
+    public function render_settings_page()
+    {
+        if (!current_user_can('manage_woocommerce')) wp_die(__('You do not have sufficient permissions.'));
+
         // Clear log action
         if (isset($_POST['wcso_clear_log']) && check_admin_referer('wcso_clear_log_nonce')) {
             WCSO_Email_Handler::get_instance()->clear_email_log();
             echo '<div class="notice notice-success"><p>Email log cleared!</p></div>';
         }
-        
-        $enable_scanner = get_option('wcso_enable_barcode_scanner', '0');
-        $cc_emails = get_option('wcso_cc_emails', '');
-        $email_logging = get_option('wcso_email_logging', '1');
-        $email_from_name = get_option('wcso_email_from_name', get_bloginfo('name'));
-        $email_from_email = get_option('wcso_email_from_email', get_option('admin_email'));
-        ?>
+?>
         <div class="wrap">
-            <h1><?php _e('Sample Orders Settings', 'wc-sample-orders'); ?></h1>
-            
-            <form method="post" action="">
-                <?php wp_nonce_field('wcso_settings_nonce'); ?>
-                
-                <h2 class="title"><?php _e('General Settings', 'wc-sample-orders'); ?></h2>
-                <table class="form-table">
+            <h1>Sample Orders Settings v2.0</h1>
+
+            <form method="post" action="options.php">
+                <?php settings_fields('wcso_settings'); ?>
+
+                <h2 class="title">Tier Configuration</h2>
+                <p class="description">Configure the approval workflow based on order value.</p>
+
+                <table class="form-table" style="background: #fff; padding: 10px; border: 1px solid #ccd0d4; border-radius: 4px; box-shadow: 0 1px 1px rgba(0,0,0,.04);">
+                    <tr style="background:#f0f0f1">
+                        <th colspan="2" style="padding:10px;"><strong>Tier 1 (Total &le; 15) - Auto Approved</strong></th>
+                    </tr>
                     <tr>
-                        <th scope="row"><label for="wcso_enable_barcode_scanner"><?php _e('Enable Barcode Scanner', 'wc-sample-orders'); ?></label></th>
+                        <th scope="row">Owner/Approver Label</th>
+                        <td><input type="text" name="wcso_t1_name" value="<?php echo esc_attr(get_option('wcso_t1_name', 'Customer Service Team')); ?>" class="regular-text"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">CC Emails</th>
+                        <td><textarea name="wcso_t1_cc" class="large-text" rows="2" placeholder="email@example.com, another@example.com"><?php echo esc_textarea(get_option('wcso_t1_cc')); ?></textarea></td>
+                    </tr>
+
+                    <tr style="background:#f0f0f1">
+                        <th colspan="2" style="padding:10px;"><strong>Tier 2 (15 < Total &le; 100) - Requires Approval</strong>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th scope="row">Approver Name</th>
+                        <td><input type="text" name="wcso_t2_name" value="<?php echo esc_attr(get_option('wcso_t2_name', 'Bren')); ?>" class="regular-text"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Approver Email</th>
                         <td>
-                            <label>
-                                <input type="checkbox" id="wcso_enable_barcode_scanner" name="wcso_enable_barcode_scanner" value="1" <?php checked($enable_scanner, '1'); ?>>
-                                <?php _e('Enable barcode/QR scanning with Barcode2Win', 'wc-sample-orders'); ?>
-                            </label>
+                            <input type="email" name="wcso_t2_email" value="<?php echo esc_attr(get_option('wcso_t2_email')); ?>" class="regular-text">
+                            <p class="description">The "Action Required" email with the approval link sends here.</p>
                         </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">CC Emails</th>
+                        <td><textarea name="wcso_t2_cc" class="large-text" rows="2"><?php echo esc_textarea(get_option('wcso_t2_cc')); ?></textarea></td>
+                    </tr>
+
+                    <tr style="background:#f0f0f1">
+                        <th colspan="2" style="padding:10px;"><strong>Tier 3 (Total > 100) - Requires Tier 2 & 3 Approval</strong></th>
+                    </tr>
+                    <tr>
+                        <th scope="row">Approver Name</th>
+                        <td><input type="text" name="wcso_t3_name" value="<?php echo esc_attr(get_option('wcso_t3_name', 'Josh')); ?>" class="regular-text"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Approver Email</th>
+                        <td><input type="email" name="wcso_t3_email" value="<?php echo esc_attr(get_option('wcso_t3_email')); ?>" class="regular-text"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">CC Emails</th>
+                        <td><textarea name="wcso_t3_cc" class="large-text" rows="2"><?php echo esc_textarea(get_option('wcso_t3_cc')); ?></textarea></td>
                     </tr>
                 </table>
 
-                <h2 class="title"><?php _e('Email Notification Settings', 'wc-sample-orders'); ?></h2>
+                <h2 class="title">General Settings</h2>
                 <table class="form-table">
                     <tr>
-                        <th scope="row"><label for="wcso_email_from_name"><?php _e('From Name', 'wc-sample-orders'); ?></label></th>
+                        <th scope="row">Barcode Scanner</th>
                         <td>
-                            <input type="text" id="wcso_email_from_name" name="wcso_email_from_name" value="<?php echo esc_attr($email_from_name); ?>" class="regular-text">
-                            <p class="description"><?php _e('The name that appears in the "From" field of emails.', 'wc-sample-orders'); ?></p>
+                            <label><input type="checkbox" name="wcso_enable_barcode_scanner" value="1" <?php checked(get_option('wcso_enable_barcode_scanner'), '1'); ?>> Enable Barcode2Win integration</label>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row"><label for="wcso_email_from_email"><?php _e('From Email', 'wc-sample-orders'); ?></label></th>
+                        <th scope="row">Email Logging</th>
                         <td>
-                            <input type="email" id="wcso_email_from_email" name="wcso_email_from_email" value="<?php echo esc_attr($email_from_email); ?>" class="regular-text">
-                            <p class="description"><?php _e('The email address that appears in the "From" field.', 'wc-sample-orders'); ?></p>
+                            <label><input type="checkbox" name="wcso_email_logging" value="1" <?php checked(get_option('wcso_email_logging'), '1'); ?>> Enable logging (for testing)</label>
+                            <p class="description">Logs all emails to a file in the plugin directory. Use this to find Approval Links during testing.</p>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row"><label for="wcso_cc_emails"><?php _e('CC Email Addresses', 'wc-sample-orders'); ?></label></th>
-                        <td>
-                            <textarea id="wcso_cc_emails" name="wcso_cc_emails" rows="4" class="large-text code"><?php echo esc_textarea($cc_emails); ?></textarea>
-                            <p class="description">
-                                <?php _e('Enter email addresses to CC on all sample order notifications. Separate multiple emails with commas.', 'wc-sample-orders'); ?><br>
-                                <strong><?php _e('Example:', 'wc-sample-orders'); ?></strong> manager@wphelpzone.com, admin@wphelpzone.com
-                            </p>
-                        </td>
+                        <th scope="row">From Name</th>
+                        <td><input type="text" name="wcso_email_from_name" value="<?php echo esc_attr(get_option('wcso_email_from_name', get_bloginfo('name'))); ?>" class="regular-text"></td>
                     </tr>
                     <tr>
-                        <th scope="row"><label for="wcso_email_logging"><?php _e('Email Logging', 'wc-sample-orders'); ?></label></th>
-                        <td>
-                            <label>
-                                <input type="checkbox" id="wcso_email_logging" name="wcso_email_logging" value="1" <?php checked($email_logging, '1'); ?>>
-                                <?php _e('Enable email logging for testing (logs all email attempts to email-log.txt)', 'wc-sample-orders'); ?>
-                            </label>
-                            <p class="description" style="color: #d63638;">
-                                <strong><?php _e('Note:', 'wc-sample-orders'); ?></strong> <?php _e('Disable this in production to avoid large log files.', 'wc-sample-orders'); ?>
-                            </p>
-                        </td>
+                        <th scope="row">From Email</th>
+                        <td><input type="email" name="wcso_email_from_email" value="<?php echo esc_attr(get_option('wcso_email_from_email', get_option('admin_email'))); ?>" class="regular-text"></td>
                     </tr>
                 </table>
 
-                <p class="submit">
-                    <button type="submit" name="wcso_save_settings" class="button button-primary"><?php _e('Save Settings', 'wc-sample-orders'); ?></button>
-                </p>
+                <?php submit_button(); ?>
             </form>
 
             <hr>
-
-            <h2 class="title"><?php _e('Email Testing & Logs', 'wc-sample-orders'); ?></h2>
+            <h2 class="title">Email Log (Testing Console)</h2>
             <div class="card" style="max-width: none;">
-                <h3><?php _e('Email Log', 'wc-sample-orders'); ?></h3>
-                <p><?php _e('View all email attempts below. This helps you verify emails are being triggered correctly even without a mail server.', 'wc-sample-orders'); ?></p>
-                
-                <form method="post" style="margin-bottom: 15px;">
+                <p>Use this log to retrieve the "Approve/Reject" links if you do not have a real mail server set up.</p>
+                <form method="post" style="margin-bottom: 10px;">
                     <?php wp_nonce_field('wcso_clear_log_nonce'); ?>
-                    <button type="submit" name="wcso_clear_log" class="button"><?php _e('Clear Log', 'wc-sample-orders'); ?></button>
+                    <button type="submit" name="wcso_clear_log" class="button">Clear Log</button>
                 </form>
-                
                 <div style="background: #f5f5f5; padding: 15px; border: 1px solid #ddd; border-radius: 4px; max-height: 400px; overflow-y: auto;">
-                    <pre style="margin: 0; font-family: monospace; font-size: 12px; white-space: pre-wrap; word-wrap: break-word;"><?php 
-                        echo esc_html(WCSO_Email_Handler::get_instance()->get_email_log()); 
-                    ?></pre>
+                    <pre style="margin: 0; font-family: monospace; font-size: 12px; white-space: pre-wrap; word-wrap: break-word;">
+                        <?php
+                        echo esc_html(WCSO_Email_Handler::get_instance()->get_email_log());
+                        ?>
+                    </pre>
                 </div>
             </div>
-
-            <div class="card" style="max-width: none; margin-top: 20px;">
-                <h3><?php _e('Testing Plugins Recommendation', 'wc-sample-orders'); ?></h3>
-                <p><?php _e('To test email functionality without a real mail server, we recommend these plugins:', 'wc-sample-orders'); ?></p>
-                <ul style="list-style: disc; margin-left: 20px;">
-                    <li>
-                        <strong>WP Mail Logging</strong> - 
-                        <a href="<?php echo admin_url('plugin-install.php?s=WP+Mail+Logging&tab=search&type=term'); ?>" target="_blank">Install Now</a>
-                        <p style="margin: 5px 0 10px 0; color: #666;">
-                            <?php _e('Logs all emails sent by WordPress. View subject, recipients, content, and headers.', 'wc-sample-orders'); ?>
-                        </p>
-                    </li>
-                    <li>
-                        <strong>MailHog</strong> (for local development) - 
-                        <a href="https://github.com/mailhog/MailHog" target="_blank">Learn More</a>
-                        <p style="margin: 5px 0 10px 0; color: #666;">
-                            <?php _e('Catches all outgoing emails locally. Perfect for testing without sending real emails.', 'wc-sample-orders'); ?>
-                        </p>
-                    </li>
-                    <li>
-                        <strong>Check Email</strong> - 
-                        <a href="<?php echo admin_url('plugin-install.php?s=Check+Email&tab=search&type=term'); ?>" target="_blank">Install Now</a>
-                        <p style="margin: 5px 0 10px 0; color: #666;">
-                            <?php _e('Logs and displays all emails sent by WordPress. Includes test email feature.', 'wc-sample-orders'); ?>
-                        </p>
-                    </li>
-                    <li>
-                        <strong>WP Mail SMTP</strong> - 
-                        <a href="<?php echo admin_url('plugin-install.php?s=WP+Mail+SMTP&tab=search&type=term'); ?>" target="_blank">Install Now</a>
-                        <p style="margin: 5px 0 10px 0; color: #666;">
-                            <?php _e('Configure SMTP settings and send test emails. Required when you\'re ready to send real emails.', 'wc-sample-orders'); ?>
-                        </p>
-                    </li>
-                </ul>
-            </div>
         </div>
-        <?php
+    <?php
     }
 
-    public function render_order_page() {
+    public function render_order_page()
+    {
         if (!current_user_can('manage_woocommerce')) wp_die(__('You do not have sufficient permissions.'));
         $current_user = wp_get_current_user();
         $enable_scanner = get_option('wcso_enable_barcode_scanner', '0');
-
-        //  $shipping_zones = $this->render_shipping_details();
-        //     echo '<pre>';
-        //     var_dump($shipping_zones);
-        //     echo '</pre>';
-           
-
-        ?>
+    ?>
         <div class="wrap wcso-wrap">
             <div class="wcso-header">
                 <h1 class="wcso-page-title"><span class="dashicons dashicons-cart"></span> <?php _e('Create Sample Order', 'wc-sample-orders'); ?></h1>
@@ -321,11 +275,8 @@ class WCSO_Admin {
             <form id="wcso-order-form" method="post">
                 <?php wp_nonce_field('wcso_create_order', 'wcso_nonce'); ?>
 
-                <!-- Section: Billing & Shipping -->
                 <div class="wcso-section">
                     <div class="wcso-grid">
-
-                        <!-- Billing (user selector) -->
                         <div class="wcso-card">
                             <h3 class="wcso-section-title"><span class="dashicons dashicons-businessman"></span> Billing Information</h3>
                             <div class="wcso-form-group">
@@ -333,8 +284,8 @@ class WCSO_Admin {
                                 <select id="billing_user_id" class="wcso-input">
                                     <?php
                                     $eligible = get_users(array(
-                                        'role__in' => array('administrator','shop_manager'), // add 'customer' if needed
-                                        'fields'   => array('ID','display_name','user_login'),
+                                        'role__in' => array('administrator', 'shop_manager'),
+                                        'fields'   => array('ID', 'display_name', 'user_login'),
                                         'orderby'  => 'display_name',
                                         'order'    => 'ASC',
                                     ));
@@ -349,11 +300,10 @@ class WCSO_Admin {
                                     }
                                     ?>
                                 </select>
-                                <p class="description">Defaults to current user; choose another eligible user if needed.</p>
+                                <p class="description">Defaults to current user.</p>
                             </div>
                         </div>
 
-                        <!-- Shipping full address -->
                         <div class="wcso-card">
                             <h3 class="wcso-section-title"><span class="dashicons dashicons-location"></span> Shipping Information</h3>
 
@@ -404,7 +354,7 @@ class WCSO_Admin {
                                 </div>
                             </div>
 
-                           <div class="wcso-grid" style="grid-template-columns: 1fr 1fr; gap: var(--wcso-spacing-md);">
+                            <div class="wcso-grid" style="grid-template-columns: 1fr 1fr; gap: var(--wcso-spacing-md);">
                                 <div class="wcso-form-group">
                                     <label for="shipping_phone">Phone (optional)</label>
                                     <input type="text" id="shipping_phone" class="wcso-input">
@@ -412,9 +362,6 @@ class WCSO_Admin {
                                 <div class="wcso-form-group">
                                     <label for="shipping_email">Email address (optional)</label>
                                     <input type="email" id="shipping_email" class="wcso-input" placeholder="recipient@example.com">
-                                    <p class="description" style="font-size: 11px; margin-top: 4px; color: #666;">
-                                        If provided, this email will be displayed in the order's shipping details.
-                                    </p>
                                 </div>
                             </div>
 
@@ -423,14 +370,12 @@ class WCSO_Admin {
                                 <select id="shipping_method" class="wcso-input"></select>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
-                <!-- Section: Add Products -->
                 <div class="wcso-section">
                     <div class="wcso-card wcso-card-prominent">
-                        <h3 class="wcso-section-title"><span class="dashicons dashicons-search"></span> Add Products to Order</h3>
+                        <h3 class="wcso-section-title"><span class="dashicons dashicons-search"></span> Add Products</h3>
 
                         <div class="wcso-search-container">
                             <div class="wcso-form-group">
@@ -445,9 +390,9 @@ class WCSO_Admin {
                             <?php if ($enable_scanner === '1'): ?>
                                 <div class="wcso-or-divider">OR</div>
                                 <div class="wcso-form-group">
-                                    <label for="barcode_input"><span class="dashicons dashicons-smartphone"></span> Scan Barcode/QR Code</label>
+                                    <label for="barcode_input"><span class="dashicons dashicons-smartphone"></span> Scan Barcode</label>
                                     <div class="wcso-search-input-wrapper">
-                                        <input type="text" id="barcode_input" class="wcso-input wcso-input-search" placeholder="Click here to scan with Barcode2Win..." autocomplete="off">
+                                        <input type="text" id="barcode_input" class="wcso-input wcso-input-search" placeholder="Click here to scan..." autocomplete="off">
                                         <span class="wcso-search-icon dashicons dashicons-camera"></span>
                                     </div>
                                 </div>
@@ -456,7 +401,6 @@ class WCSO_Admin {
                     </div>
                 </div>
 
-                <!-- Section: Selected Products -->
                 <div class="wcso-section">
                     <div class="wcso-card">
                         <h3 class="wcso-section-title"><span class="dashicons dashicons-clipboard"></span> Selected Products <span id="products-count" class="wcso-count-badge"></span></h3>
@@ -465,18 +409,32 @@ class WCSO_Admin {
                     </div>
                 </div>
 
-                <!-- Section: Approval & Notes -->
                 <div class="wcso-section">
                     <div class="wcso-grid wcso-grid-40-60">
                         <div class="wcso-card">
-                            <h3 class="wcso-section-title"><span class="dashicons dashicons-yes-alt"></span> Approval</h3>
+                            <h3 class="wcso-section-title"><span class="dashicons dashicons-yes-alt"></span> Approval & Category</h3>
+
                             <div class="wcso-form-group">
-                                <label for="approved_by">Approved By <span class="required">*</span></label>
-                                <input type="text" id="approved_by" class="wcso-input" placeholder="Name of approver" required>
+                                <label>Owner / Approver Status</label>
+                                <div id="wcso-approval-status-box" style="background: #f6f7f7; padding: 10px; border: 1px solid #c3c4c7; border-left: 4px solid #2271b1; border-radius: 4px;">
+                                    <span class="dashicons dashicons-info" style="color:#2271b1; vertical-align:middle;"></span>
+                                    <span id="wcso-approval-text" style="font-weight:600;">Add products to calculate...</span>
+                                </div>
+                                <p class="description">The system will automatically assign the approver based on the order total.</p>
+                            </div>
+
+                            <div class="wcso-form-group">
+                                <label for="sample_category">Sample Category <span class="required">*</span></label>
+                                <select id="sample_category" class="wcso-input">
+                                    <option value="Customer Service">Customer Service</option>
+                                    <option value="Sales Reps">Sales Reps</option>
+                                    <option value="Promotions">Promotions</option>
+                                </select>
                             </div>
                         </div>
+
                         <div class="wcso-card">
-                            <h3 class="wcso-section-title"><span class="dashicons dashicons-edit"></span> Additional Information</h3>
+                            <h3 class="wcso-section-title"><span class="dashicons dashicons-edit"></span> Notes</h3>
                             <div class="wcso-form-group">
                                 <label for="order_note">Order Note</label>
                                 <textarea id="order_note" class="wcso-textarea" rows="4" placeholder="Add any special instructions or notes..."></textarea>
@@ -485,7 +443,6 @@ class WCSO_Admin {
                     </div>
                 </div>
 
-                <!-- Submit -->
                 <div class="wcso-section wcso-submit-section">
                     <button type="submit" class="wcso-btn wcso-btn-primary wcso-btn-large" id="submit_order"><span class="dashicons dashicons-cart"></span> Create Sample Order</button>
                     <span id="order_loading" style="display:none; margin-left:15px;"><span class="spinner is-active"></span> Creating order...</span>
@@ -495,7 +452,6 @@ class WCSO_Admin {
             <div id="order_message"></div>
         </div>
 
-        <!-- Modal -->
         <div id="product_modal" class="wcso-modal">
             <div class="wcso-modal-overlay"></div>
             <div class="wcso-modal-content">
@@ -507,11 +463,12 @@ class WCSO_Admin {
                 <div id="modal_products"></div>
             </div>
         </div>
-        <?php
+    <?php
     }
 
     // Orders list custom column/filter
-    public function add_order_column($columns) {
+    public function add_order_column($columns)
+    {
         $new = array();
         foreach ($columns as $key => $col) {
             $new[$key] = $col;
@@ -520,28 +477,33 @@ class WCSO_Admin {
         return $new;
     }
 
-    public function display_order_column($column, $post_id) {
+    public function display_order_column($column, $post_id)
+    {
         if ($column !== 'sample_order') return;
         $order = wc_get_order($post_id);
         if ($order && $order->get_meta('_is_sample_order') === 'yes') {
-            echo '<span style="background:#46b450;color:#fff;padding:3px 8px;border-radius:3px;font-size:11px;">SAMPLE</span>';
+            $tier = $order->get_meta('_wcso_tier');
+            $tier_label = $tier ? strtoupper(str_replace('so', '', $tier)) : 'SAMPLE';
+            echo '<span style="background:#46b450;color:#fff;padding:3px 8px;border-radius:3px;font-size:11px;">' . esc_html($tier_label) . '</span>';
         }
     }
 
-    public function add_order_filter() {
+    public function add_order_filter()
+    {
         global $typenow;
         if ($typenow !== 'shop_order') return;
         $selected = isset($_GET['sample_filter']) ? $_GET['sample_filter'] : '';
-        ?>
+    ?>
         <select name="sample_filter">
             <option value="">All Orders</option>
             <option value="yes" <?php selected($selected, 'yes'); ?>>Sample Orders</option>
-            <option value="no"  <?php selected($selected, 'no');  ?>>Regular Orders</option>
+            <option value="no" <?php selected($selected, 'no');  ?>>Regular Orders</option>
         </select>
-        <?php
+<?php
     }
 
-    public function filter_orders($query) {
+    public function filter_orders($query)
+    {
         global $pagenow, $typenow;
         if ($typenow === 'shop_order' && $pagenow === 'edit.php' && isset($_GET['sample_filter']) && $_GET['sample_filter'] !== '') {
             $query->set('meta_query', array(

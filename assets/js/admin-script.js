@@ -1,11 +1,11 @@
 /**
- * WooCommerce Sample Orders - Admin Script
- * v2: Countries/States + Shipping fields + existing features
+ * WooCommerce Sample Orders - Admin Script v2.1.0
+ * Handles Caching, Searching, Scanning, Tier Logic, Order Submission, and Dynamic Notes
  */
 jQuery(document).ready(function ($) {
   "use strict";
 
-  // ========= State =========
+  // ========= State Management =========
   let selectedProducts = [];
   let productsCache = null;
   let searchTimeout;
@@ -14,9 +14,11 @@ jQuery(document).ready(function ($) {
   const CACHE_TIMESTAMP_KEY = "wcso_products_cache_timestamp";
   const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24h
 
+  // Config loaded from wp_localize_script
   const config = {
     enableScanner: wcsoData.enableScanner === "1",
     ajaxUrl: wcsoData.ajaxUrl,
+    tierConfig: wcsoData.tierConfig, // New v2 Config
     nonces: {
       search: wcsoData.searchNonce,
       cache: wcsoData.cacheNonce,
@@ -29,8 +31,9 @@ jQuery(document).ready(function ($) {
     loadProductCache();
     bindEvents();
     updateProductsTable();
+    populateCountries();
+    // v2 Change: Removed populateApproverDropdown()
     if (config.enableScanner) $("#barcode_input").focus();
-    populateCountries(); // hydrate shipping country/state
   }
 
   // ========= Events =========
@@ -61,30 +64,31 @@ jQuery(document).ready(function ($) {
 
     // Country/State
     $(document).on("change", "#shipping_country", populateStates);
+    $(document).on(
+      "change",
+      "#shipping_country, #shipping_state",
+      populateShippingMethods
+    );
 
     // Submit
     $("#wcso-order-form").on("submit", handleFormSubmit);
   }
 
-  // ========= Countries / States =========
+  // ========= Countries / States / Shipping =========
   function populateCountries() {
     const $country = $("#shipping_country");
     if (!$country.length) return;
     $country.empty();
 
-    // console.log("wcsoData:", wcsoData);
-    // console.log("typeof wcsoData:", typeof wcsoData);
-
     const countries = wcsoData.countries || {};
-
-    // console.log("Countries:", countries);
     Object.keys(countries).forEach((code) => {
       $country.append(new Option(countries[code], code));
     });
-    if (wcsoData.baseCountry && countries[wcsoData.baseCountry])
+
+    if (wcsoData.baseCountry && countries[wcsoData.baseCountry]) {
       $country.val(wcsoData.baseCountry);
+    }
     populateStates();
-    // populateShippingMethods();
   }
 
   function populateStates() {
@@ -93,16 +97,17 @@ jQuery(document).ready(function ($) {
     if (!$country.length || !$state.length) return;
 
     const cc = $country.val();
-
-    console.log("cc:", cc);
     const all = wcsoData.states || {};
     const map = all[cc] || {};
     const has = Object.keys(map).length > 0;
 
+    // Handle text input fallback if needed
     if ($("#shipping_state_text").length) $("#shipping_state_text").remove();
 
     if (has) {
       $state.show().prop("disabled", false).empty();
+      // Add placeholder
+      $state.append(new Option("Select an option...", ""));
       Object.keys(map).forEach((code) =>
         $state.append(new Option(map[code], code))
       );
@@ -131,51 +136,37 @@ jQuery(document).ready(function ($) {
     if (!$country.length || !$shippingMethod.length) return;
 
     const selectedCountry = $country.val();
-
-    console.log("Selected Country:", selectedCountry);
-
     $shippingMethod.empty();
 
     const shippingZones = wcsoData.shippingZones || [];
-
-    console.log("All Shipping Zones:", shippingZones);
-
     let matchedZone = null;
 
+    // 1. Try to find zone by country
     for (let zone of shippingZones) {
       const zoneLocations = zone.zone_locations || [];
-
       for (let location of zoneLocations) {
         if (location.type === "country" && location.code === selectedCountry) {
           matchedZone = zone;
           break;
         }
       }
-
       if (matchedZone) break;
     }
 
-    if (!matchedZone) {
-      for (let zone of shippingZones) {
-        const zoneLocations = zone.zone_locations || [];
-        for (let location of zoneLocations) {
-          if (location.type === "continent" && location.code === "NA") {
-            matchedZone = zone;
-            break;
-          }
-        }
-        if (matchedZone) break;
-      }
+    if (!matchedZone && shippingZones.length > 0) {
+      // Just pick the last zone (usually "Locations not covered by your other zones")
+      // matchedZone = shippingZones[shippingZones.length - 1];
     }
-
-    console.log("Matched Zone:", matchedZone);
 
     if (matchedZone && matchedZone.shipping_methods) {
       matchedZone.shipping_methods.forEach((method) => {
         if (method.enabled === "yes") {
-          const label = method.instance_title + " - " + method.instance_cost;
+          const label =
+            method.instance_title +
+            (parseFloat(method.instance_cost) > 0
+              ? " - " + method.instance_cost
+              : "");
           const option = new Option(label, method.method_id);
-
           $(option).data("methodData", {
             id: method.id,
             instance_id: method.instance_id,
@@ -183,7 +174,6 @@ jQuery(document).ready(function ($) {
             title: method.instance_title,
             cost: method.instance_cost,
           });
-
           $shippingMethod.append(option);
         }
       });
@@ -193,6 +183,7 @@ jQuery(document).ready(function ($) {
       $shippingMethod.append(new Option("No shipping methods available", ""));
     }
   }
+
   // ========= Cache =========
   function loadProductCache() {
     const cached = localStorage.getItem(CACHE_KEY);
@@ -200,14 +191,18 @@ jQuery(document).ready(function ($) {
     const now = Date.now();
 
     if (cached && ts && now - parseInt(ts, 10) < CACHE_DURATION) {
-      productsCache = JSON.parse(cached);
-      updateCacheStatus(
-        "Loaded " + productsCache.length + " products (cached)",
-        "success"
-      );
-      $("#search-mode")
-        .text("(instant search)")
-        .addClass("wcso-badge wcso-badge-publish");
+      try {
+        productsCache = JSON.parse(cached);
+        updateCacheStatus(
+          "Loaded " + productsCache.length + " products (cached)",
+          "success"
+        );
+        $("#search-mode")
+          .text("(instant search)")
+          .addClass("wcso-badge wcso-badge-publish");
+      } catch (e) {
+        fetchAndCacheProducts();
+      }
     } else {
       updateCacheStatus("Loading products...", "info");
       fetchAndCacheProducts();
@@ -267,15 +262,14 @@ jQuery(document).ready(function ($) {
     $("#cache-info").text(msg);
   }
 
-  // ========= Search =========
+  // ========= Search & Dropdown =========
   function handleProductSearch() {
     clearTimeout(searchTimeout);
     const term = $(this).val().trim();
     if (term.length < 2) return hideDropdown();
 
     if (productsCache) {
-      const results = searchInCache(term);
-      displayDropdown(results);
+      displayDropdown(searchInCache(term));
     } else {
       searchTimeout = setTimeout(
         () => searchServer(term, displayDropdown),
@@ -320,25 +314,18 @@ jQuery(document).ready(function ($) {
     }
     let html = "";
     products.forEach((p) => {
-      html +=
-        '<div class="wcso-dropdown-item" data-product=\'' +
-        escapeHtml(JSON.stringify(p)) +
-        "'>";
-      html += "<strong>" + escapeHtml(p.name) + "</strong> ";
-      html +=
-        '<span class="wcso-badge wcso-badge-' +
-        p.status +
-        '">' +
-        String(p.status).toUpperCase() +
-        "</span>";
-      html +=
-        '<span style="float:right;">' + escapeHtml(p.price_html) + "</span>";
-      html +=
-        '<br><small style="color:#666;">ID: ' +
-        p.id +
-        (p.sku ? " | SKU: " + escapeHtml(p.sku) : "") +
-        "</small>";
-      html += "</div>";
+      html += `<div class="wcso-dropdown-item" data-product='${escapeHtml(
+        JSON.stringify(p)
+      )}'>
+        <strong>${escapeHtml(p.name)}</strong> 
+        <span class="wcso-badge wcso-badge-${p.status}">${String(
+        p.status
+      ).toUpperCase()}</span>
+        <span style="float:right;">${escapeHtml(p.price_html)}</span><br>
+        <small style="color:#666;">ID: ${p.id}${
+        p.sku ? " | SKU: " + escapeHtml(p.sku) : ""
+      }</small>
+      </div>`;
     });
     $("#product_dropdown").html(html).show();
   }
@@ -382,8 +369,7 @@ jQuery(document).ready(function ($) {
   }
   function processBarcode(code) {
     if (productsCache) {
-      const res = searchInCache(code);
-      handleBarcodeResults(res, code);
+      handleBarcodeResults(searchInCache(code), code);
     } else {
       searchServer(code, (res) => handleBarcodeResults(res, code));
     }
@@ -400,10 +386,7 @@ jQuery(document).ready(function ($) {
     const existing = selectedProducts.find((x) => x.id === p.id);
     if (existing) {
       existing.quantity++;
-      showNotification(
-        "Quantity increased: " + p.name + " (x" + existing.quantity + ")",
-        "success"
-      );
+      showNotification("Quantity increased: " + p.name, "success");
     } else {
       p.quantity = 1;
       selectedProducts.push(p);
@@ -443,121 +426,105 @@ jQuery(document).ready(function ($) {
     const id = $(this).data("id");
     selectedProducts = selectedProducts.filter((x) => x.id !== id);
     updateProductsTable();
-    showNotification("Product removed", "warning");
   }
 
-  // ========= Table =========
+  // ========= Table & Totals =========
   function updateProductsTable() {
     if (!selectedProducts.length) {
       $("#selected_products_table").html(
-        '<div class="wcso-table-empty">No products selected. Search or scan to add products.</div>'
+        '<div class="wcso-table-empty">No products selected.</div>'
       );
       $("#selected_products_data").val("");
       $("#products-count").text("");
+
+      // Reset Status Text
+      $("#wcso-approval-text").text("Add products to calculate...");
+      $("#wcso-approval-status-box").css("border-left-color", "#2271b1");
       return;
     }
+
     let totalQty = 0,
       totalPrice = 0;
-    $("#products-count").text(
-      selectedProducts.length +
-        " items, " +
-        selectedProducts.reduce((s, p) => s + p.quantity, 0) +
-        " units"
-    );
-
     let html =
-      '<div class="wcso-table-wrapper"><table class="wcso-table"><thead><tr>';
-    html +=
-      "<th>#</th><th>Product</th><th>ID</th><th>SKU</th><th>Price</th><th>Quantity</th><th>Subtotal</th><th>Status</th><th></th>";
-    html += "</tr></thead><tbody>";
+      '<div class="wcso-table-wrapper"><table class="wcso-table"><thead><tr>' +
+      "<th>Product</th><th>Price</th><th>Qty</th><th>Subtotal</th><th></th></tr></thead><tbody>";
 
-    selectedProducts.forEach((p, i) => {
+    selectedProducts.forEach((p) => {
       const itemTotal = (parseFloat(p.price) || 0) * p.quantity;
       totalQty += p.quantity;
       totalPrice += itemTotal;
 
-      html += "<tr>";
-      html += "<td>" + (i + 1) + "</td>";
-      html += "<td><strong>" + escapeHtml(p.name) + "</strong></td>";
-      html += "<td>" + p.id + "</td>";
-      html += "<td>" + (p.sku ? escapeHtml(p.sku) : "—") + "</td>";
-      html += "<td>" + p.price + "/-</td>";
-      html += '<td><div class="wcso-qty-controls">';
-      html +=
-        '<button type="button" class="wcso-qty-btn wcso-qty-decrease" data-id="' +
-        p.id +
-        '">−</button>';
-      html +=
-        '<input type="number" class="wcso-qty-input" data-id="' +
-        p.id +
-        '" value="' +
-        p.quantity +
-        '" min="1">';
-      html +=
-        '<button type="button" class="wcso-qty-btn wcso-qty-increase" data-id="' +
-        p.id +
-        '">+</button>';
-      html += "</div></td>";
-      html += "<td><strong>" + itemTotal.toFixed(2) + "/-</strong></td>";
-      html +=
-        '<td><span class="wcso-badge wcso-badge-' +
-        p.status +
-        '">' +
-        String(p.status).toUpperCase() +
-        "</span></td>";
-      html +=
-        '<td><a href="#" class="wcso-remove-btn" data-id="' +
-        p.id +
-        '">×</a></td>';
-      html += "</tr>";
+      html += `<tr>
+        <td><strong>${escapeHtml(p.name)}</strong><br><small>SKU: ${
+        p.sku || "-"
+      }</small></td>
+        <td>${p.price}</td>
+        <td>
+            <div class="wcso-qty-controls">
+                <button type="button" class="wcso-qty-btn wcso-qty-decrease" data-id="${
+                  p.id
+                }">−</button>
+                <input type="number" class="wcso-qty-input" data-id="${
+                  p.id
+                }" value="${p.quantity}" min="1">
+                <button type="button" class="wcso-qty-btn wcso-qty-increase" data-id="${
+                  p.id
+                }">+</button>
+            </div>
+        </td>
+        <td>${itemTotal.toFixed(2)}</td>
+        <td><a href="#" class="wcso-remove-btn" data-id="${
+          p.id
+        }">&times;</a></td>
+      </tr>`;
     });
-
     html += "</tbody></table></div>";
-    html += '<div class="wcso-summary">';
-    html +=
-      '<div class="wcso-summary-row"><span>Original Total:</span><span>' +
-      totalPrice.toFixed(2) +
-      "/-</span></div>";
-    html +=
-      '<div class="wcso-summary-row"><span>Discount (100%):</span><span>-' +
-      totalPrice.toFixed(2) +
-      "/-</span></div>";
-    html +=
-      '<div class="wcso-summary-row total"><span>Final Total:</span><span>0/-</span></div>';
-    html +=
-      '<div class="wcso-discount-badge">🎁 100% Sample Discount Applied</div>';
-    html += "</div>";
+
+    // Summary
+    html += `<div class="wcso-summary">
+      <div class="wcso-summary-row"><span>Original Total:</span><span>${totalPrice.toFixed(
+        2
+      )}</span></div>
+      <div class="wcso-summary-row total"><span>Sample Total:</span><span>0.00</span></div>
+    </div>`;
 
     $("#selected_products_table").html(html);
+    $("#products-count").text(selectedProducts.length + " items");
     $("#selected_products_data").val(JSON.stringify(selectedProducts));
+
+    // --- NEW LOGIC: Update Status Text ---
+    const tierConf = config.tierConfig;
+    let statusMsg = "";
+    let borderColor = "#2271b1"; // Default Blue
+
+    if (totalPrice <= 15) {
+      statusMsg = "Auto-Approved (" + tierConf.t1.name + ")";
+      borderColor = "#46b450"; // Green
+    } else if (totalPrice <= 100) {
+      statusMsg = "Approval Needed: " + tierConf.t2.name;
+      borderColor = "#f0b849"; // Orange
+    } else {
+      statusMsg = "Approval Needed: " + tierConf.t3.name;
+      borderColor = "#d63638"; // Red
+    }
+
+    $("#wcso-approval-text").text(statusMsg);
+    $("#wcso-approval-status-box").css("border-left-color", borderColor);
   }
 
   // ========= Modal =========
   function showModal(products, code) {
     $("#scanned_code").html(
-      "<strong>Scanned Code:</strong> <code>" + escapeHtml(code) + "</code>"
+      `<strong>Scanned:</strong> <code>${escapeHtml(code)}</code>`
     );
     let html = "";
     products.forEach((p) => {
-      html +=
-        '<div class="wcso-modal-item" data-product=\'' +
-        escapeHtml(JSON.stringify(p)) +
-        "'>";
-      html += "<strong>" + escapeHtml(p.name) + "</strong> ";
-      html +=
-        '<span class="wcso-badge wcso-badge-' +
-        p.status +
-        '">' +
-        String(p.status).toUpperCase() +
-        "</span>";
-      html +=
-        "<br><small>ID: " +
-        p.id +
-        (p.sku ? " | SKU: " + escapeHtml(p.sku) : "") +
-        " | " +
-        escapeHtml(p.price_html) +
-        "</small>";
-      html += "</div>";
+      html += `<div class="wcso-modal-item" data-product='${escapeHtml(
+        JSON.stringify(p)
+      )}'>
+        <strong>${escapeHtml(p.name)}</strong> 
+        <small>${p.price_html}</small>
+      </div>`;
     });
     $("#modal_products").html(html);
     $("#product_modal").css("display", "flex");
@@ -578,15 +545,34 @@ jQuery(document).ready(function ($) {
 
     if (!selectedProducts.length)
       return alert("Please select at least one product");
-    if (!$("#approved_by").val().trim()) {
-      alert('Please fill in "Approved By" field');
-      return;
-    }
+
+    // 1. Calculate Total
+    let total = 0;
+    selectedProducts.forEach((p) => {
+      total += (parseFloat(p.price) || 0) * p.quantity;
+    });
+
+    // v2 Change: Removed Hard Validation Logic entirely.
 
     $("#submit_order").prop("disabled", true);
     $("#order_loading").show();
     $("#order_message").html("");
 
+    // 3. Prepare Note with System Details
+    const billerName = $("#billing_user_id option:selected").text(); // "Rafsun Jani (rafsun-dev)"
+    const userNote = $("#order_note").val();
+
+    const systemNote = `
+--- SYSTEM GENERATED DETAILS ---
+Order by: ${billerName}
+Order Total: ${total.toFixed(2)}
+Approver assigned automatically by system.
+`;
+
+    // Combine notes
+    const finalNote = userNote ? userNote + "\n" + systemNote : systemNote;
+
+    // 4. Prepare Payload
     const stateValue =
       $("#shipping_state").is(":visible") &&
       !$("#shipping_state").prop("disabled")
@@ -595,7 +581,6 @@ jQuery(document).ready(function ($) {
         ? $("#shipping_state_text").val()
         : "";
 
-    // Get selected shipping method data
     const $selectedMethod = $("#shipping_method option:selected");
     const methodData = $selectedMethod.data("methodData");
 
@@ -603,7 +588,6 @@ jQuery(document).ready(function ($) {
       action: "wcso_create_order",
       nonce: config.nonces.order,
       billing_user_id: $("#billing_user_id").val(),
-
       shipping_first_name: $("#shipping_first_name").val(),
       shipping_last_name: $("#shipping_last_name").val(),
       shipping_company: $("#shipping_company").val(),
@@ -619,12 +603,13 @@ jQuery(document).ready(function ($) {
       shipping_method_title: methodData ? methodData.title : "",
       shipping_method_cost: methodData ? methodData.cost : "",
       shipping_method_instance_id: methodData ? methodData.instance_id : "",
-
-      products: selectedProducts,
-      approved_by: $("#approved_by").val(),
-      order_note: $("#order_note").val(),
+      products: JSON.stringify(selectedProducts),
+      // v2 Change: Removed approved_by from payload
+      sample_category: $("#sample_category").val(),
+      order_note: finalNote,
     };
 
+    // 5. Send
     $.ajax({
       url: config.ajaxUrl,
       type: "POST",
@@ -632,35 +617,30 @@ jQuery(document).ready(function ($) {
       success: function (resp) {
         $("#submit_order").prop("disabled", false);
         $("#order_loading").hide();
-
         if (resp && resp.success) {
-          $("#order_message").html(
-            '<div class="notice notice-success" style="padding:15px; margin-top:20px;">' +
-              '<p style="margin:0;"><strong>✓ Success!</strong> ' +
-              '<a href="' +
-              resp.data.order_url +
-              '" target="_blank" class="button button-primary" style="margin-left:10px;">View Order #' +
-              resp.data.order_id +
-              "</a></p></div>"
-          );
+          $("#order_message")
+            .html(`<div class="notice notice-success" style="padding:15px; margin-top:20px;">
+            <p><strong>✓ Success!</strong> <a href="${resp.data.order_url}" target="_blank" class="button button-primary">View Order #${resp.data.order_id}</a></p>
+          </div>`);
           resetForm();
           $("html, body").animate(
             { scrollTop: $("#order_message").offset().top - 100 },
             500
           );
         } else {
-          $("#order_message").html(
-            '<div class="notice notice-error" style="padding:15px; margin-top:20px;"><p style="margin:0;"><strong>✗ Error:</strong> ' +
-              (resp && resp.data ? resp.data : "Unknown error") +
-              "</p></div>"
-          );
+          $("#order_message")
+            .html(`<div class="notice notice-error" style="padding:15px; margin-top:20px;">
+            <p><strong>✗ Error:</strong> ${
+              resp && resp.data ? resp.data : "Unknown error"
+            }</p>
+          </div>`);
         }
       },
       error: function () {
         $("#submit_order").prop("disabled", false);
         $("#order_loading").hide();
         $("#order_message").html(
-          '<div class="notice notice-error" style="padding:15px; margin-top:20px;"><p style="margin:0;"><strong>Error:</strong> Connection failed. Please try again.</p></div>'
+          '<div class="notice notice-error" style="padding:15px; margin-top:20px;"><p>Connection failed.</p></div>'
         );
       },
     });
@@ -670,11 +650,11 @@ jQuery(document).ready(function ($) {
     $("#wcso-order-form")[0].reset();
     selectedProducts = [];
     updateProductsTable();
-    if (config.enableScanner) $("#barcode_input").focus();
     populateCountries();
+    // v2 Change: Removed populateApproverDropdown();
+    if (config.enableScanner) $("#barcode_input").focus();
   }
 
-  // ========= Notifications & Utils =========
   function showNotification(message, type) {
     const colors = { success: "#46b450", error: "#dc3232", warning: "#ffb900" };
     $("<div>")
@@ -710,6 +690,5 @@ jQuery(document).ready(function ($) {
     return String(txt).replace(/[&<>"']/g, (s) => map[s]);
   }
 
-  // Boot
   init();
 });

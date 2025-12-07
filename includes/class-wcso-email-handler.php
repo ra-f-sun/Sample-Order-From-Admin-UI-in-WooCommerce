@@ -1,460 +1,130 @@
 <?php
-/**
- * Email Notification Handler for Sample Orders
- */
 if (!defined('ABSPATH')) exit;
 
-class WCSO_Email_Handler {
+class WCSO_Email_Handler
+{
 
     private static $instance = null;
+    private $log_file;
 
-    /**
-     * Hardcoded CC emails - Update these as needed
-     */
-    private $cc_emails = array(
-        'manager@wphelpzone.com',
-        'admin@wphelpzone.com',
-    );
-
-    public static function get_instance() {
-        if (null === self::$instance) {
-            self::$instance = new self();
-        }
+    public static function get_instance()
+    {
+        if (null === self::$instance) self::$instance = new self();
         return self::$instance;
     }
 
-    private function __construct() {
-        // Hook into order status changes
-        add_action('woocommerce_order_status_changed', array($this, 'send_status_change_email'), 10, 4);
-        
-        // Hook into new sample order creation
-        add_action('wcso_sample_order_created', array($this, 'send_new_order_email'), 10, 1);
-        
-        // Add settings page for CC emails
-        add_action('admin_init', array($this, 'register_email_settings'));
-        
-        // Email logging for testing
-        if (get_option('wcso_email_logging', '1') === '1') {
-            add_action('wp_mail', array($this, 'log_email'), 10, 1);
-            add_filter('wp_mail_failed', array($this, 'log_email_failure'), 10, 1);
+    private function __construct()
+    {
+        // Define log file path once
+        $this->log_file = WCSO_PLUGIN_DIR . 'email-log.txt';
+
+        add_action('wcso_sample_order_created', array($this, 'send_notifications'), 10, 1);
+
+        if (get_option('wcso_email_logging') === '1') {
+            add_action('wp_mail', array($this, 'log_email'));
         }
     }
 
-    /**
-     * Register email settings
-     */
-    public function register_email_settings() {
-        register_setting('wcso_settings', 'wcso_cc_emails');
-        register_setting('wcso_settings', 'wcso_email_logging');
-        register_setting('wcso_settings', 'wcso_email_from_name');
-        register_setting('wcso_settings', 'wcso_email_from_email');
-    }
-
-    /**
-     * Get CC emails (from settings or default hardcoded)
-     */
-    private function get_cc_emails() {
-        $saved_cc = get_option('wcso_cc_emails', '');
-        
-        if (!empty($saved_cc)) {
-            $emails = array_map('trim', explode(',', $saved_cc));
-            return array_filter($emails, 'is_email');
-        }
-        
-        return $this->cc_emails;
-    }
-
-    /**
-     * Send email when new sample order is created
-     */
-    public function send_new_order_email($order_id) {
+    public function send_notifications($order_id)
+    {
         $order = wc_get_order($order_id);
-        
-        if (!$order || $order->get_meta('_is_sample_order') !== 'yes') {
-            return;
+        if (!$order) return;
+
+        $tier = $order->get_meta('_wcso_tier');
+        $config = WCSO_Settings::get_tier_config();
+
+        // --- 1. BILLING NOTIFICATION ---
+        $billing_email = $order->get_billing_email();
+        $cc_emails = array();
+
+        if ($tier === 't1so' && !empty($config['t1']['cc'])) $cc_emails = explode(',', $config['t1']['cc']);
+        if ($tier === 't2so' && !empty($config['t2']['cc'])) $cc_emails = explode(',', $config['t2']['cc']);
+        if ($tier === 't3so' && !empty($config['t3']['cc'])) $cc_emails = explode(',', $config['t3']['cc']);
+
+        if ($billing_email) {
+            $headers = array('Content-Type: text/html; charset=UTF-8');
+            foreach ($cc_emails as $cc) {
+                if (is_email(trim($cc))) $headers[] = 'Cc: ' . trim($cc);
+            }
+
+            $status_msg = ($tier === 't1so') ? 'Processing' : 'Pending Approval';
+            $subject = "[Sample Order] Request Received #{$order->get_id()} ({$status_msg})";
+
+            $msg = "<h2>Sample Order Received</h2>";
+            $msg .= "<p>Your order #{$order->get_id()} has been placed.</p>";
+            $msg .= "<p><strong>Current Status:</strong> {$status_msg}</p>";
+            $msg .= "<p><strong>Total Value:</strong> " . $order->get_meta('_original_total') . "</p>";
+
+            wp_mail($billing_email, $subject, $msg, $headers);
         }
 
-        $shipping_email = $order->get_meta('_shipping_email');
-        
-        if (empty($shipping_email)) {
-            $this->log_message('No shipping email found for order #' . $order_id . '. Email not sent.');
-            return;
-        }
+        // --- 2. ACTION EMAILS (Approvers) ---
+        $needed = $order->get_meta('_wcso_approvals_needed') ?: array();
 
-        $subject = sprintf(__('[Sample Order] New Order #%s', 'wc-sample-orders'), $order->get_order_number());
-        $message = $this->get_new_order_email_content($order);
-        $headers = $this->get_email_headers();
-        
-        $sent = $this->send_email($shipping_email, $subject, $message, $headers);
-        
-        if ($sent) {
-            $order->add_order_note(
-                sprintf(__('Sample order notification sent to: %s', 'wc-sample-orders'), $shipping_email),
-                false,
-                true
-            );
-        }
-    }
+        foreach ($needed as $approver_email) {
+            if (!is_email($approver_email)) continue;
 
-    /**
-     * Send email when order status changes
-     */
-    public function send_status_change_email($order_id, $old_status, $new_status, $order) {
-        if (!$order || $order->get_meta('_is_sample_order') !== 'yes') {
-            return;
-        }
+            $approve_link = WCSO_Approval::get_instance()->get_action_url($order_id, $approver_email, 'approve');
+            $reject_link  = WCSO_Approval::get_instance()->get_action_url($order_id, $approver_email, 'reject');
 
-        $shipping_email = $order->get_meta('_shipping_email');
-        
-        if (empty($shipping_email)) {
-            return;
-        }
+            $subject = "[Action Required] Approve Sample Order #{$order->get_id()}";
 
-        $subject = sprintf(
-            __('[Sample Order] Order #%s Status Changed to %s', 'wc-sample-orders'),
-            $order->get_order_number(),
-            ucfirst($new_status)
-        );
-        
-        $message = $this->get_status_change_email_content($order, $old_status, $new_status);
-        $headers = $this->get_email_headers();
-        
-        $sent = $this->send_email($shipping_email, $subject, $message, $headers);
-        
-        if ($sent) {
-            $order->add_order_note(
-                sprintf(
-                    __('Status change notification sent to: %s (Status: %s → %s)', 'wc-sample-orders'),
-                    $shipping_email,
-                    $old_status,
-                    $new_status
-                ),
-                false,
-                true
-            );
+            $msg = "<h2>Approval Required</h2>";
+            $msg .= "<p>A Tier " . strtoupper(str_replace('so', '', $tier)) . " sample order requires your approval.</p>";
+            $msg .= "<p><strong>Created By:</strong> " . $order->get_meta('_wcso_origin') . "</p>";
+            $msg .= "<p><strong>Total Value:</strong> " . $order->get_meta('_original_total') . "</p>";
+            $msg .= "<div style='margin:20px 0;'>";
+            $msg .= "<a href='{$approve_link}' style='background:green;color:white;padding:10px 15px;text-decoration:none;margin-right:10px;'>APPROVE</a>";
+            $msg .= "<a href='{$reject_link}' style='background:red;color:white;padding:10px 15px;text-decoration:none;'>REJECT</a>";
+            $msg .= "</div>";
+            $msg .= "<p><small>Clicking these links simulates a login-free approval action.</small></p>";
+
+            $headers = array('Content-Type: text/html; charset=UTF-8');
+            wp_mail($approver_email, $subject, $msg, $headers);
         }
     }
 
     /**
-     * Build email headers with CC
+     * Log email to Text File
      */
-    private function get_email_headers() {
-        $headers = array('Content-Type: text/html; charset=UTF-8');
-        
-        // Custom From name and email
-        $from_name = get_option('wcso_email_from_name', get_bloginfo('name'));
-        $from_email = get_option('wcso_email_from_email', get_option('admin_email'));
-        
-        $headers[] = 'From: ' . $from_name . ' <' . $from_email . '>';
-        
-        // Add CC emails
-        $cc_emails = $this->get_cc_emails();
-        foreach ($cc_emails as $cc_email) {
-            if (is_email($cc_email)) {
-                $headers[] = 'Cc: ' . $cc_email;
+    public function log_email($args)
+    {
+        $entry = "--------------------------------------------------\n";
+        $entry .= "[" . current_time('mysql') . "] TO: " . $args['to'] . " | SUBJ: " . $args['subject'] . "\n";
+
+        // Extract links for easier testing
+        // We look for single quotes because that's how we built the HTML string
+        if (strpos($args['message'], 'wcso_action') !== false) {
+            preg_match_all('/href=\'(.*?)\'/', $args['message'], $matches);
+            if (isset($matches[1]) && !empty($matches[1])) {
+                foreach ($matches[1] as $link) {
+                    // FIX: Decode &amp; back to & for browser testing
+                    $clean_link = html_entity_decode($link);
+                    $entry .= "   >>> ACTION LINK: " . $clean_link . "\n";
+                }
             }
         }
-        
-        return $headers;
+        $entry .= "\n";
+
+        // Append to file
+        file_put_contents($this->log_file, $entry, FILE_APPEND);
     }
-
     /**
-     * Send email wrapper
+     * Get log content
      */
-    private function send_email($to, $subject, $message, $headers) {
-        $this->log_message('Attempting to send email to: ' . $to);
-        $this->log_message('Subject: ' . $subject);
-        $this->log_message('CC: ' . implode(', ', $this->get_cc_emails()));
-        
-        $sent = wp_mail($to, $subject, $message, $headers);
-        
-        if ($sent) {
-            $this->log_message('✓ Email sent successfully');
-        } else {
-            $this->log_message('✗ Email sending failed');
-        }
-        
-        return $sent;
-    }
-
-    /**
-     * Get new order email content
-     */
-    private function get_new_order_email_content($order) {
-        $approved_by = $order->get_meta('_approved_by');
-        $created_by = $order->get_meta('_created_by');
-        
-        ob_start();
-        ?>
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="UTF-8">
-            <title><?php echo esc_html(get_bloginfo('name')); ?></title>
-        </head>
-        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
-            <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
-                
-                <div style="background: #fff3cd; border: 1px solid #ffc107; padding: 15px; margin-bottom: 20px; border-radius: 4px;">
-                    <h2 style="margin: 0 0 10px 0; color: #856404;">
-                        🛒 New Sample Order Received
-                    </h2>
-                    <p style="margin: 0; color: #856404;">
-                        <strong>Order #<?php echo $order->get_order_number(); ?></strong>
-                    </p>
-                </div>
-
-                <p>Hello,</p>
-                <p>A new sample order has been created and is ready for processing.</p>
-
-                <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
-                    <tr style="background: #f8f9fa;">
-                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Order Number:</strong></td>
-                        <td style="padding: 10px; border: 1px solid #ddd;">#<?php echo $order->get_order_number(); ?></td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Order Date:</strong></td>
-                        <td style="padding: 10px; border: 1px solid #ddd;"><?php echo $order->get_date_created()->format('F j, Y g:i A'); ?></td>
-                    </tr>
-                    <tr style="background: #f8f9fa;">
-                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Status:</strong></td>
-                        <td style="padding: 10px; border: 1px solid #ddd;"><?php echo ucfirst($order->get_status()); ?></td>
-                    </tr>
-                    <?php if (!empty($approved_by)): ?>
-                    <tr>
-                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Approved By:</strong></td>
-                        <td style="padding: 10px; border: 1px solid #ddd;"><?php echo esc_html($approved_by); ?></td>
-                    </tr>
-                    <?php endif; ?>
-                </table>
-
-                <h3 style="border-bottom: 2px solid #333; padding-bottom: 5px;">Shipping Address</h3>
-                <p>
-                    <?php echo $order->get_formatted_shipping_address(); ?>
-                </p>
-
-                <h3 style="border-bottom: 2px solid #333; padding-bottom: 5px;">Order Items</h3>
-                <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
-                    <thead>
-                        <tr style="background: #333; color: white;">
-                            <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Product</th>
-                            <th style="padding: 10px; border: 1px solid #ddd; text-align: center;">Quantity</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($order->get_items() as $item): ?>
-                        <tr>
-                            <td style="padding: 10px; border: 1px solid #ddd;"><?php echo $item->get_name(); ?></td>
-                            <td style="padding: 10px; border: 1px solid #ddd; text-align: center;"><?php echo $item->get_quantity(); ?></td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-
-                <div style="background: #e7f3ff; border-left: 4px solid #2271b1; padding: 15px; margin: 20px 0;">
-                    <p style="margin: 0; font-size: 14px;">
-                        <strong>Note:</strong> This is a sample order with zero cost. No payment is required.
-                    </p>
-                </div>
-
-                <?php if ($order->get_customer_note()): ?>
-                <h3 style="border-bottom: 2px solid #333; padding-bottom: 5px;">Order Note</h3>
-                <p style="background: #f8f9fa; padding: 15px; border-radius: 4px;">
-                    <?php echo nl2br(esc_html($order->get_customer_note())); ?>
-                </p>
-                <?php endif; ?>
-
-                <hr style="border: none; border-top: 1px solid #ddd; margin: 30px 0;">
-                
-                <p style="font-size: 12px; color: #666;">
-                    If you have any questions about this order, please contact us.<br>
-                    <strong><?php echo get_bloginfo('name'); ?></strong><br>
-                    Email: <?php echo get_option('admin_email'); ?>
-                </p>
-            </div>
-        </body>
-        </html>
-        <?php
-        return ob_get_clean();
-    }
-
-    /**
-     * Get status change email content
-     */
-    private function get_status_change_email_content($order, $old_status, $new_status) {
-        ob_start();
-        ?>
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="UTF-8">
-            <title><?php echo esc_html(get_bloginfo('name')); ?></title>
-        </head>
-        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
-            <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
-                
-                <div style="background: #e7f3ff; border: 1px solid #2271b1; padding: 15px; margin-bottom: 20px; border-radius: 4px;">
-                    <h2 style="margin: 0 0 10px 0; color: #135e96;">
-                        📦 Order Status Updated
-                    </h2>
-                    <p style="margin: 0; color: #135e96;">
-                        <strong>Order #<?php echo $order->get_order_number(); ?></strong>
-                    </p>
-                </div>
-
-                <p>Hello,</p>
-                <p>Your sample order status has been updated:</p>
-
-                <div style="background: #f8f9fa; padding: 20px; border-radius: 4px; text-align: center; margin: 20px 0;">
-                    <div style="display: inline-block;">
-                        <span style="background: #dc3545; color: white; padding: 10px 20px; border-radius: 4px; font-weight: bold;">
-                            <?php echo ucfirst($old_status); ?>
-                        </span>
-                        <span style="margin: 0 10px; font-size: 24px;">→</span>
-                        <span style="background: #28a745; color: white; padding: 10px 20px; border-radius: 4px; font-weight: bold;">
-                            <?php echo ucfirst($new_status); ?>
-                        </span>
-                    </div>
-                </div>
-
-                <h3 style="border-bottom: 2px solid #333; padding-bottom: 5px;">Order Details</h3>
-                <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
-                    <tr style="background: #f8f9fa;">
-                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Order Number:</strong></td>
-                        <td style="padding: 10px; border: 1px solid #ddd;">#<?php echo $order->get_order_number(); ?></td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Order Date:</strong></td>
-                        <td style="padding: 10px; border: 1px solid #ddd;"><?php echo $order->get_date_created()->format('F j, Y g:i A'); ?></td>
-                    </tr>
-                    <tr style="background: #f8f9fa;">
-                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Current Status:</strong></td>
-                        <td style="padding: 10px; border: 1px solid #ddd;"><strong><?php echo ucfirst($new_status); ?></strong></td>
-                    </tr>
-                </table>
-
-                <?php $this->render_status_message($new_status); ?>
-
-                <h3 style="border-bottom: 2px solid #333; padding-bottom: 5px;">Shipping Address</h3>
-                <p>
-                    <?php echo $order->get_formatted_shipping_address(); ?>
-                </p>
-
-                <hr style="border: none; border-top: 1px solid #ddd; margin: 30px 0;">
-                
-                <p style="font-size: 12px; color: #666;">
-                    If you have any questions about this order, please contact us.<br>
-                    <strong><?php echo get_bloginfo('name'); ?></strong><br>
-                    Email: <?php echo get_option('admin_email'); ?>
-                </p>
-            </div>
-        </body>
-        </html>
-        <?php
-        return ob_get_clean();
-    }
-
-    /**
-     * Render status-specific message
-     */
-    private function render_status_message($status) {
-        $messages = array(
-            'processing' => array(
-                'icon'  => '⏳',
-                'title' => 'Order is Being Processed',
-                'text'  => 'Your sample order is currently being prepared for shipment.',
-                'color' => '#ffc107'
-            ),
-            'completed' => array(
-                'icon'  => '✅',
-                'title' => 'Order Completed',
-                'text'  => 'Your sample order has been completed and shipped.',
-                'color' => '#28a745'
-            ),
-            'on-hold' => array(
-                'icon'  => '⏸️',
-                'title' => 'Order On Hold',
-                'text'  => 'Your sample order is temporarily on hold. We will contact you if needed.',
-                'color' => '#ff9800'
-            ),
-            'cancelled' => array(
-                'icon'  => '❌',
-                'title' => 'Order Cancelled',
-                'text'  => 'Your sample order has been cancelled.',
-                'color' => '#dc3545'
-            ),
-        );
-
-        $info = isset($messages[$status]) ? $messages[$status] : array(
-            'icon'  => 'ℹ️',
-            'title' => 'Status Updated',
-            'text'  => 'Your order status has been updated to: ' . ucfirst($status),
-            'color' => '#2271b1'
-        );
-
-        ?>
-        <div style="background: <?php echo $info['color']; ?>22; border-left: 4px solid <?php echo $info['color']; ?>; padding: 15px; margin: 20px 0;">
-            <h4 style="margin: 0 0 10px 0; color: <?php echo $info['color']; ?>;">
-                <?php echo $info['icon']; ?> <?php echo $info['title']; ?>
-            </h4>
-            <p style="margin: 0;">
-                <?php echo $info['text']; ?>
-            </p>
-        </div>
-        <?php
-    }
-
-    /**
-     * Log email attempt
-     */
-    public function log_email($args) {
-        $this->log_message('wp_mail called with: ' . print_r($args, true));
-    }
-
-    /**
-     * Log email failure
-     */
-    public function log_email_failure($error) {
-        $this->log_message('Email failed: ' . $error->get_error_message());
-        return $error;
-    }
-
-    /**
-     * Write to log file
-     */
-    private function log_message($message) {
-        if (get_option('wcso_email_logging', '1') !== '1') {
-            return;
-        }
-
-        $log_file = WCSO_PLUGIN_DIR . 'email-log.txt';
-        $timestamp = current_time('Y-m-d H:i:s');
-        $log_entry = "[{$timestamp}] {$message}\n";
-        
-        file_put_contents($log_file, $log_entry, FILE_APPEND);
-    }
-
-    /**
-     * Get email log contents (for testing)
-     */
-    public function get_email_log() {
-        $log_file = WCSO_PLUGIN_DIR . 'email-log.txt';
-        
-        if (!file_exists($log_file)) {
+    public function get_email_log()
+    {
+        if (!file_exists($this->log_file)) {
             return 'No emails logged yet.';
         }
-        
-        return file_get_contents($log_file);
+        return file_get_contents($this->log_file);
     }
 
     /**
-     * Clear email log
+     * Clear log (Safely empty file instead of deleting)
      */
-    public function clear_email_log() {
-        $log_file = WCSO_PLUGIN_DIR . 'email-log.txt';
-        
-        if (file_exists($log_file)) {
-            unlink($log_file);
-        }
+    public function clear_email_log()
+    {
+        file_put_contents($this->log_file, '');
     }
 }
