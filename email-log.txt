@@ -1,44 +1,47 @@
 --------------------------------------------------
-[2025-12-06 12:57:05] TO: rafsun@wphelpzone.com | SUBJ: [Aivon]: You've got a new order: #10732
+[2025-12-07 19:12:48] TO: rafsun@wphelpzone.com | SUBJ: [Aivon]: You've got a new order: #10736
 
 --------------------------------------------------
-[2025-12-06 12:57:05] TO: rafsun@wphelpzone.com | SUBJ: Your Aivon order has been received!
+[2025-12-07 19:12:48] TO: rafsun@wphelpzone.com | SUBJ: Your Aivon order has been received!
 
 --------------------------------------------------
-[2025-12-06 12:57:05] TO: rafsun@wphelpzone.com | SUBJ: [Sample Order] Request Received #10732 (Pending Approval)
+[2025-12-07 19:12:48] TO: rafsun@wphelpzone.com | SUBJ: [Sample Order] Request Received #10736 (Processing)
 
 --------------------------------------------------
-[2025-12-06 12:57:05] TO: approver1@example.com | SUBJ: [Action Required] Approve Sample Order #10732
-   >>> ACTION LINK: https://test-ecommerce-woodmart.rafsun.wphelpzone.com/?wcso_action=approve&wcso_oid=10732&wcso_email=approver1%40example.com&wcso_token=98548b3f67a00bfba5b17fc4c3df5a34c158226e247e5497bc5ceb302c2f6205
-   >>> ACTION LINK: https://test-ecommerce-woodmart.rafsun.wphelpzone.com/?wcso_action=reject&wcso_oid=10732&wcso_email=approver1%40example.com&wcso_token=c767f11cd1a7d922b88ca5327863a88c040e9c37415624ee5ba313f203720743
+[2025-12-07 19:14:13] TO: rafsun@wphelpzone.com | SUBJ: [Aivon]: You've got a new order: #10737
 
 --------------------------------------------------
-[2025-12-06 12:57:05] TO: approver2@example.com | SUBJ: [Action Required] Approve Sample Order #10732
-   >>> ACTION LINK: https://test-ecommerce-woodmart.rafsun.wphelpzone.com/?wcso_action=approve&wcso_oid=10732&wcso_email=approver2%40example.com&wcso_token=21d0381ed35bee463a36d309f6b81b5d387f335afc4070a24e9c839b5db41b0a
-   >>> ACTION LINK: https://test-ecommerce-woodmart.rafsun.wphelpzone.com/?wcso_action=reject&wcso_oid=10732&wcso_email=approver2%40example.com&wcso_token=bbb076fcb96e310cfeaf50a9eaf98105ccda8eec2e64e72fd2ea8272f8d7065c
+[2025-12-07 19:14:13] TO: rafsun@wphelpzone.com | SUBJ: Your Aivon order has been received!
 
 --------------------------------------------------
-[2025-12-06 12:58:14] TO: rafsun@wphelpzone.com | SUBJ: Your Aivon order has been received!
+[2025-12-07 19:14:13] TO: rafsun@wphelpzone.com | SUBJ: [Sample Order] Request Received #10737 (Pending Approval)
 
 --------------------------------------------------
-[2025-12-06 19:22:12] TO: rafsun@wphelpzone.com | SUBJ: [Aivon]: You've got a new order: #10733
+[2025-12-07 19:14:13] TO: approver1@example.com | SUBJ: [Action Required] Approve Sample Order #10737
+   >>> ACTION LINK: https://test-ecommerce-woodmart.rafsun.wphelpzone.com/?wcso_action=approve&wcso_oid=10737&wcso_email=approver1%40example.com&wcso_token=d3e8397b90e9f6a95e9fea0ba6a67cc30d3e856baffc3e693ce87994e678c577
+   >>> ACTION LINK: https://test-ecommerce-woodmart.rafsun.wphelpzone.com/?wcso_action=reject&wcso_oid=10737&wcso_email=approver1%40example.com&wcso_token=f7974712e883d24949900bf06b566ad12d411512bbdaef07f59cfc4255d71a8a
 
 --------------------------------------------------
-[2025-12-06 19:22:12] TO: rafsun@wphelpzone.com | SUBJ: Your Aivon order has been received!
+[2025-12-07 19:14:13] TO: approver2@example.com | SUBJ: [Action Required] Approve Sample Order #10737
+   >>> ACTION LINK: https://test-ecommerce-woodmart.rafsun.wphelpzone.com/?wcso_action=approve&wcso_oid=10737&wcso_email=approver2%40example.com&wcso_token=356323e51787cb2c658685d5de1cc16d8e77124ffce2e7f5b61c36a9f5a5c788
+   >>> ACTION LINK: https://test-ecommerce-woodmart.rafsun.wphelpzone.com/?wcso_action=reject&wcso_oid=10737&wcso_email=approver2%40example.com&wcso_token=519d11e66c577edf6308862aa4adc64e147d4821acda20027621794c97284070
 
 --------------------------------------------------
-[2025-12-06 19:22:12] TO: rafsun@wphelpzone.com | SUBJ: [Sample Order] Request Received #10733 (Pending Approval)
+[2025-12-07 19:16:46] TO: rafsun@wphelpzone.com | SUBJ: [Aivon]: You've got a new order: #10738
 
 --------------------------------------------------
-[2025-12-06 19:22:12] TO: approver1@example.com | SUBJ: [Action Required] Approve Sample Order #10733
-   >>> ACTION LINK: https://test-ecommerce-woodmart.rafsun.wphelpzone.com/?wcso_action=approve&wcso_oid=10733&wcso_email=approver1%40example.com&wcso_token=8477f38e93207909e8d6c2294f782abcd6ec9198120b6f3ff30ef0d5b65b6f25
-   >>> ACTION LINK: https://test-ecommerce-woodmart.rafsun.wphelpzone.com/?wcso_action=reject&wcso_oid=10733&wcso_email=approver1%40example.com&wcso_token=c8fd6d88e68152f9f3a496405aa13d695a914d8ff0903880940e4731ec2a3a44
+[2025-12-07 19:16:46] TO: rafsun@wphelpzone.com | SUBJ: Your Aivon order has been received!
 
 --------------------------------------------------
-[2025-12-06 19:22:12] TO: approver2@example.com | SUBJ: [Action Required] Approve Sample Order #10733
-   >>> ACTION LINK: https://test-ecommerce-woodmart.rafsun.wphelpzone.com/?wcso_action=approve&wcso_oid=10733&wcso_email=approver2%40example.com&wcso_token=d37c5a438d158eab88b7a5bb9f1dbf582e64eeb11e4ef4e9215ba25b8e0d8b48
-   >>> ACTION LINK: https://test-ecommerce-woodmart.rafsun.wphelpzone.com/?wcso_action=reject&wcso_oid=10733&wcso_email=approver2%40example.com&wcso_token=9dbed339a1321e498d3eabd456bd233a734538d765cc131a69e303e264de3a58
+[2025-12-07 19:16:46] TO: rafsun@wphelpzone.com | SUBJ: [Sample Order] Request Received #10738 (Pending Approval)
 
 --------------------------------------------------
-[2025-12-06 19:28:35] TO: rafsun@wphelpzone.com | SUBJ: Your Aivon order has been received!
+[2025-12-07 19:16:46] TO: approver1@example.com | SUBJ: [Action Required] Approve Sample Order #10738
+   >>> ACTION LINK: https://test-ecommerce-woodmart.rafsun.wphelpzone.com/?wcso_action=approve&wcso_oid=10738&wcso_email=approver1%40example.com&wcso_token=6a599491a08f0c4babe344c6558f0d7436973896f0bb48459e76d069d52f1d17
+   >>> ACTION LINK: https://test-ecommerce-woodmart.rafsun.wphelpzone.com/?wcso_action=reject&wcso_oid=10738&wcso_email=approver1%40example.com&wcso_token=30e0c9200d273646e1d13af4011c55bec043e3458c9f96ac70479a557d6203ff
+
+--------------------------------------------------
+[2025-12-07 19:16:46] TO: approver2@example.com | SUBJ: [Action Required] Approve Sample Order #10738
+   >>> ACTION LINK: https://test-ecommerce-woodmart.rafsun.wphelpzone.com/?wcso_action=approve&wcso_oid=10738&wcso_email=approver2%40example.com&wcso_token=549f94a6fb29cbed4b03e12b618eb0e3f72758aaf46ee77673370ffc36ebbdd5
+   >>> ACTION LINK: https://test-ecommerce-woodmart.rafsun.wphelpzone.com/?wcso_action=reject&wcso_oid=10738&wcso_email=approver2%40example.com&wcso_token=cc2d7710643a2bed0f06f841ee4cddcec064753c7b65e5d9a8fb169b4def78d9
 

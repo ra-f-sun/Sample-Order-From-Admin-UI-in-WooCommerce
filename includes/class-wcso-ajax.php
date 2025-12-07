@@ -211,7 +211,18 @@ class WCSO_Ajax
             $order->add_item($shipping_item);
 
             // --- COUPON APPLICATION START ---
-            $coupon_code = 'flat100';
+            $coupon_code = get_option('wcso_coupon_code', 'flat100');
+
+            // Only apply if a code is set
+            if (!empty($coupon_code)) {
+                $result = $order->apply_coupon($coupon_code);
+
+                // Log error if coupon fails, but proceed
+                if (is_wp_error($result)) {
+                    $order->add_order_note('Error applying sample coupon (' . $coupon_code . '): ' . $result->get_error_message());
+                }
+            }
+
             $result = $order->apply_coupon($coupon_code);
 
             // Log error if coupon fails, but proceed

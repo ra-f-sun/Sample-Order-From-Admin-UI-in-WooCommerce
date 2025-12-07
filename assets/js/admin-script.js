@@ -504,7 +504,8 @@ jQuery(document).ready(function ($) {
       statusMsg = "Approval Needed: " + tierConf.t2.name;
       borderColor = "#f0b849"; // Orange
     } else {
-      statusMsg = "Approval Needed: " + tierConf.t3.name;
+      statusMsg =
+        "Approval Needed: " + tierConf.t3.name + " and " + tierConf.t2.name;
       borderColor = "#d63638"; // Red
     }
 

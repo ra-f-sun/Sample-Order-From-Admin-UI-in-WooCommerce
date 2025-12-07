@@ -232,6 +232,13 @@ class WCSO_Admin
                         <th scope="row">From Email</th>
                         <td><input type="email" name="wcso_email_from_email" value="<?php echo esc_attr(get_option('wcso_email_from_email', get_option('admin_email'))); ?>" class="regular-text"></td>
                     </tr>
+                    <tr>
+                        <th scope="row">Sample Coupon Code</th>
+                        <td>
+                            <input type="text" name="wcso_coupon_code" value="<?php echo esc_attr(get_option('wcso_coupon_code', 'flat100')); ?>" class="regular-text">
+                            <p class="description">Enter the coupon code to automatically apply to sample orders (e.g., <code>flat100</code>). Leave empty to apply no discount.</p>
+                        </td>
+                    </tr>
                 </table>
 
                 <?php submit_button(); ?>
