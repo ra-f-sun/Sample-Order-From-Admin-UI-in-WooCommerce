@@ -18,6 +18,9 @@ class WCSO_Ajax
         add_action('wp_ajax_wcso_get_all_products', array($this, 'get_all_products'));
         add_action('wp_ajax_wcso_create_order', array($this, 'create_sample_order'));
         add_action('wp_ajax_wcso_save_settings', array($this, 'save_settings'));
+
+        add_action('wp_ajax_wcso_get_email_log', array($this, 'get_email_log'));
+        add_action('wp_ajax_wcso_clear_log', array($this, 'clear_email_log'));
     }
 
     /**
@@ -36,23 +39,28 @@ class WCSO_Ajax
         // 1. Save General Settings
         update_option('wcso_enable_barcode_scanner', sanitize_text_field($data['barcode_scanner']));
         update_option('wcso_coupon_code', sanitize_text_field($data['coupon_code']));
+        update_option('wcso_email_logging', sanitize_text_field($data['email_logging']));
 
-        // 2. Save Tier Settings (Using your existing Option Names)
+        // 2. Save Tier Settings
+        // FIX: Use the V2 option names (wcso_tX_...) to match get_tier_config()
         $tiers = $data['tiers'];
 
         // Tier 1
-        update_option('wcso_tier1_name', sanitize_text_field($tiers['t1']['name']));
-        update_option('wcso_tier1_limit', absint($tiers['t1']['limit']));
+        update_option('wcso_t1_name', sanitize_text_field($tiers['t1']['name']));
+        // If you added limits in V3, save them. If hardcoded in V2, you can skip or add new options.
+        update_option('wcso_t1_limit', absint($tiers['t1']['limit']));
 
         // Tier 2
-        update_option('wcso_tier2_name', sanitize_text_field($tiers['t2']['name']));
-        update_option('wcso_tier2_limit', absint($tiers['t2']['limit']));
-        update_option('wcso_tier2_approver', sanitize_email($tiers['t2']['approver']));
+        update_option('wcso_t2_name', sanitize_text_field($tiers['t2']['name']));
+        update_option('wcso_t2_limit', absint($tiers['t2']['limit']));
+        // FIX: Key is 'email' in React now, map to 'wcso_t2_email'
+        update_option('wcso_t2_email', sanitize_email($tiers['t2']['email']));
 
         // Tier 3
-        update_option('wcso_tier3_name', sanitize_text_field($tiers['t3']['name']));
-        update_option('wcso_tier3_limit', absint($tiers['t3']['limit']));
-        update_option('wcso_tier3_approver', sanitize_email($tiers['t3']['approver']));
+        update_option('wcso_t3_name', sanitize_text_field($tiers['t3']['name']));
+        update_option('wcso_t3_limit', absint($tiers['t3']['limit']));
+        // FIX: Key is 'email' in React now, map to 'wcso_t3_email'
+        update_option('wcso_t3_email', sanitize_email($tiers['t3']['email']));
 
         wp_send_json_success('Settings saved successfully.');
     }
@@ -179,18 +187,19 @@ class WCSO_Ajax
             $assigned_approver = ''; // New variable
 
             // 3. Determine Tier & Assign (SERVER SIDE AUTHORITY)
-            if ($original_total <= 15) {
+            // Uses dynamic limits from Settings
+            if ($original_total <= $config['t1']['limit']) {
                 // Tier 1
                 $tier = 't1so';
                 $assigned_approver = $config['t1']['name'];
-            } elseif ($original_total <= 100) {
+            } elseif ($original_total <= $config['t2']['limit']) {
                 // Tier 2
                 $tier = 't2so';
                 $status = 'on-hold';
                 $needed_approvals[] = $config['t2']['email'];
                 $assigned_approver = $config['t2']['name'];
             } else {
-                // Tier 3 (> 100)
+                // Tier 3 (Greater than Tier 2 limit)
                 $tier = 't3so';
                 $status = 'on-hold';
                 // Needs T2 AND T3
@@ -309,5 +318,24 @@ class WCSO_Ajax
         } catch (Exception $e) {
             wp_send_json_error($e->getMessage());
         }
+    }
+
+    // --- NEW METHODS ---
+    public function get_email_log()
+    {
+        check_ajax_referer('wcso_save_settings', 'nonce'); // Reuse settings nonce
+        if (!current_user_can('manage_woocommerce')) wp_send_json_error('Unauthorized');
+
+        $content = WCSO_Email_Handler::get_instance()->get_email_log();
+        wp_send_json_success($content);
+    }
+
+    public function clear_email_log()
+    {
+        check_ajax_referer('wcso_save_settings', 'nonce');
+        if (!current_user_can('manage_woocommerce')) wp_send_json_error('Unauthorized');
+
+        WCSO_Email_Handler::get_instance()->clear_email_log();
+        wp_send_json_success('Log cleared.');
     }
 }

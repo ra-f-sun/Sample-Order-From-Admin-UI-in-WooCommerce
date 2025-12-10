@@ -220,11 +220,17 @@ const OrderForm = ({ formData, setFormData }) => {
       </div>
 
       <div className="wcso-grid-2">
-        {Object.keys(availableStates).length > 0 && (
-          <div className="wcso-form-group">
-            <label>
-              State / District <span className="wcso-required">*</span>
-            </label>
+        {/* FIX: Conditional Rendering for State Input */}
+        <div className="wcso-form-group">
+          <label>
+            State / District{" "}
+            {Object.keys(availableStates).length > 0 && (
+              <span className="wcso-required">*</span>
+            )}
+          </label>
+
+          {Object.keys(availableStates).length > 0 ? (
+            // Scenario A: Country has States -> Show Dropdown
             <select
               name="shipping_state"
               value={formData.shipping_state}
@@ -238,8 +244,19 @@ const OrderForm = ({ formData, setFormData }) => {
                 </option>
               ))}
             </select>
-          </div>
-        )}
+          ) : (
+            // Scenario B: No States -> Show Text Input (Manual Entry)
+            <input
+              type="text"
+              name="shipping_state"
+              value={formData.shipping_state}
+              onChange={handleChange}
+              className="wcso-input"
+              placeholder="Enter state / district"
+            />
+          )}
+        </div>
+
         <div className="wcso-form-group">
           <label>
             Postcode / ZIP <span className="wcso-required">*</span>

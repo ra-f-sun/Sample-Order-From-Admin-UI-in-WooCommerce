@@ -95,22 +95,21 @@ class WCSO_Admin
             'ajaxUrl'          => admin_url('admin-ajax.php'),
             'createOrderNonce' => wp_create_nonce('wcso_create_order'),
             'searchNonce'      => wp_create_nonce('wcso_search'),
-            'saveSettingsNonce' => wp_create_nonce('wcso_save_settings'),
 
-            // User Data
+            // *** NEW: Add this line ***
+            'cacheNonce'       => wp_create_nonce('wcso_cache'),
+
+            'saveSettingsNonce' => wp_create_nonce('wcso_save_settings'),
+            // ... (keep the rest of the array exactly as it was) ...
             'currentUserId'    => get_current_user_id(),
             'users'            => $user_query,
-
-            // *** THE FIX IS HERE: Pass tierConfig as a top-level key ***
             'tierConfig'       => $tier_config,
-
-            // Settings for the Settings Page
             'initialSettings'  => array(
                 'barcode_scanner' => get_option('wcso_enable_barcode_scanner', 'no'),
                 'coupon_code'     => get_option('wcso_coupon_code', 'flat100'),
-                'tiers'           => $tier_config // We pass it here too for the Settings form
+                'email_logging'   => get_option('wcso_email_logging', '0'),
+                'tiers'           => $tier_config
             ),
-
             'countries'        => WC()->countries->get_countries(),
             'states'           => WC()->countries->get_states(),
             'baseCountry'      => WC()->countries->get_base_country(),

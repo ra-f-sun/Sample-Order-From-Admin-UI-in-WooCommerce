@@ -49,15 +49,20 @@ class WCSO_Settings
         return array(
             't1' => array(
                 'name'  => get_option('wcso_t1_name', 'Customer Service Team'),
+                'limit' => (int)get_option('wcso_t1_limit', 15), // Default to 15 if not set
                 'cc'    => get_option('wcso_t1_cc', ''),
             ),
             't2' => array(
                 'name'  => get_option('wcso_t2_name', 'Bren'),
+                'limit' => (int)get_option('wcso_t2_limit', 100), // Default to 100
                 'email' => get_option('wcso_t2_email', ''),
                 'cc'    => get_option('wcso_t2_cc', ''),
             ),
             't3' => array(
                 'name'  => get_option('wcso_t3_name', 'Josh'),
+                // Tier 3 is anything ABOVE Tier 2, so we technically just need T1 and T2 limits
+                // But we store this for completeness in the UI
+                'limit' => (int)get_option('wcso_t3_limit', 100),
                 'email' => get_option('wcso_t3_email', ''),
                 'cc'    => get_option('wcso_t3_cc', ''),
             )

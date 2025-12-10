@@ -1,28 +1,35 @@
 import React, { useState } from "react";
 
-const Settings = () => {
-  // Initialize state with data passed from PHP
-  const [formData, setFormData] = useState(window.wcsoData.initialSettings);
+// Accept Props from App.js
+const Settings = ({ appSettings, onUpdateSetting }) => {
+  // Local state for the form, initialized from Props
+  const [formData, setFormData] = useState(appSettings);
   const [isSaving, setIsSaving] = useState(false);
   const [message, setMessage] = useState(null);
 
-  // Handle Deep Nested Changes (for Tiers)
+  // Sync prop changes if they happen externally (rare but good practice)
+  React.useEffect(() => {
+    setFormData(appSettings);
+  }, [appSettings]);
+
   const handleTierChange = (tierKey, field, value) => {
     setFormData((prev) => ({
       ...prev,
       tiers: {
         ...prev.tiers,
-        [tierKey]: {
-          ...prev.tiers[tierKey],
-          [field]: value,
-        },
+        [tierKey]: { ...prev.tiers[tierKey], [field]: value },
       },
     }));
   };
 
-  // Handle Top Level Changes (General)
   const handleGeneralChange = (field, value) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+    const newData = { ...formData, [field]: value };
+    setFormData(newData);
+
+    // Update Global App State IMMEDIATELY for the Sidebar toggle
+    if (field === "email_logging") {
+      onUpdateSetting(field, value);
+    }
   };
 
   const handleSave = () => {
@@ -40,7 +47,8 @@ const Settings = () => {
         setIsSaving(false);
         if (response.success) {
           setMessage({ type: "success", text: "Settings Saved!" });
-          // Hide message after 3 seconds
+          // Ensure App state matches saved state
+          onUpdateSetting("email_logging", formData.email_logging);
           setTimeout(() => setMessage(null), 3000);
         } else {
           setMessage({ type: "error", text: "Error saving settings." });
@@ -66,10 +74,9 @@ const Settings = () => {
             type="text"
             value={formData.coupon_code}
             onChange={(e) => handleGeneralChange("coupon_code", e.target.value)}
-            placeholder="e.g. flat100"
           />
-          <small>The coupon applied to make the order $0.00.</small>
         </div>
+
         <div className="wcso-field-row">
           <label>
             <input
@@ -84,6 +91,32 @@ const Settings = () => {
             />
             Enable Barcode Scanner Mode
           </label>
+        </div>
+
+        {/* --- NEW LOGGING TOGGLE --- */}
+        <div className="wcso-field-row">
+          <label
+            style={{
+              fontWeight: "bold",
+              color: formData.email_logging === "1" ? "#2271b1" : "inherit",
+            }}
+          >
+            <input
+              type="checkbox"
+              checked={formData.email_logging === "1"}
+              onChange={(e) =>
+                handleGeneralChange(
+                  "email_logging",
+                  e.target.checked ? "1" : "0"
+                )
+              }
+            />
+            Enable Email Debug Logging
+          </label>
+          <small>
+            Enables the "Email Log" menu in the sidebar. Useful for checking
+            approval links.
+          </small>
         </div>
       </div>
 
@@ -126,7 +159,7 @@ const Settings = () => {
             <label>Approver Email</label>
             <input
               type="email"
-              value={formData.tiers.t2.approver}
+              value={formData.tiers.t2.email}
               onChange={(e) =>
                 handleTierChange("t2", "approver", e.target.value)
               }
@@ -151,7 +184,7 @@ const Settings = () => {
             <label>Approver Email</label>
             <input
               type="email"
-              value={formData.tiers.t3.approver}
+              value={formData.tiers.t3.email}
               onChange={(e) =>
                 handleTierChange("t3", "approver", e.target.value)
               }
