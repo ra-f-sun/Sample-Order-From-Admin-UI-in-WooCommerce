@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+vendor/
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Build Artifacts (Optional - Read Note Below*)
+# build/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+debug.log
+
+# IDE Settings
+.vscode/
+.idea/
+*.swp

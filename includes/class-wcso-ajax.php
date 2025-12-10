@@ -17,6 +17,44 @@ class WCSO_Ajax
         add_action('wp_ajax_wcso_search_products', array($this, 'search_products'));
         add_action('wp_ajax_wcso_get_all_products', array($this, 'get_all_products'));
         add_action('wp_ajax_wcso_create_order', array($this, 'create_sample_order'));
+        add_action('wp_ajax_wcso_save_settings', array($this, 'save_settings'));
+    }
+
+    /**
+     * Handle Settings Save via React
+     */
+    public function save_settings()
+    {
+        check_ajax_referer('wcso_save_settings', 'nonce');
+
+        if (!current_user_can('manage_woocommerce')) {
+            wp_send_json_error('Unauthorized');
+        }
+
+        $data = $_POST['settings'];
+
+        // 1. Save General Settings
+        update_option('wcso_enable_barcode_scanner', sanitize_text_field($data['barcode_scanner']));
+        update_option('wcso_coupon_code', sanitize_text_field($data['coupon_code']));
+
+        // 2. Save Tier Settings (Using your existing Option Names)
+        $tiers = $data['tiers'];
+
+        // Tier 1
+        update_option('wcso_tier1_name', sanitize_text_field($tiers['t1']['name']));
+        update_option('wcso_tier1_limit', absint($tiers['t1']['limit']));
+
+        // Tier 2
+        update_option('wcso_tier2_name', sanitize_text_field($tiers['t2']['name']));
+        update_option('wcso_tier2_limit', absint($tiers['t2']['limit']));
+        update_option('wcso_tier2_approver', sanitize_email($tiers['t2']['approver']));
+
+        // Tier 3
+        update_option('wcso_tier3_name', sanitize_text_field($tiers['t3']['name']));
+        update_option('wcso_tier3_limit', absint($tiers['t3']['limit']));
+        update_option('wcso_tier3_approver', sanitize_email($tiers['t3']['approver']));
+
+        wp_send_json_success('Settings saved successfully.');
     }
 
     public function get_all_products()

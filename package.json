@@ -1,0 +1,24 @@
+{
+  "name": "woocommerce-sample-orders",
+  "version": "3.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "wp-scripts start",
+    "build": "wp-scripts build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ra-f-sun/Sample-Order-From-Admin-UI-in-WooCommerce.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ra-f-sun/Sample-Order-From-Admin-UI-in-WooCommerce/issues"
+  },
+  "homepage": "https://github.com/ra-f-sun/Sample-Order-From-Admin-UI-in-WooCommerce#readme",
+  "description": "",
+  "devDependencies": {
+    "@wordpress/scripts": "^31.1.0"
+  }
+}
