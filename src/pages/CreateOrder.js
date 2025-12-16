@@ -4,12 +4,11 @@ import CartTable from "../components/CartTable";
 import TierStatus from "../components/TierStatus";
 import OrderForm from "../components/OrderForm";
 
-const CreateOrder = () => {
+const CreateOrder = ({ appSettings }) => {
   const [cart, setCart] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [successData, setSuccessData] = useState(null); // Stores { order_id, order_url }
+  const [successData, setSuccessData] = useState(null);
 
-  // Initial Form State
   const [formData, setFormData] = useState({
     billing_user_id: window.wcsoData.currentUserId || "",
     shipping_first_name: "",
@@ -26,7 +25,6 @@ const CreateOrder = () => {
     shipping_method: "",
     sample_category: "Customer Service",
     order_note: "",
-    // Extra Shipping Data placeholders
     shipping_method_id: "",
     shipping_method_title: "",
     shipping_method_cost: "",
@@ -39,9 +37,7 @@ const CreateOrder = () => {
   );
 
   const handleAddProduct = (product) => {
-    // Clear previous success message when starting a new order
     if (successData) setSuccessData(null);
-
     const existing = cart.find((item) => item.id === product.id);
     if (existing) handleUpdateQty(product.id, existing.quantity + 1);
     else setCart([...cart, { ...product, quantity: 1 }]);
@@ -61,10 +57,8 @@ const CreateOrder = () => {
   };
 
   const handleSubmit = () => {
-    // 1. Cart Validation
     if (cart.length === 0) return alert("Please add products.");
 
-    // 2. Strict Field Validation
     const required = [
       "shipping_first_name",
       "shipping_last_name",
@@ -75,7 +69,6 @@ const CreateOrder = () => {
       "shipping_method",
     ];
 
-    // Check required fields
     for (let field of required) {
       if (!formData[field] || formData[field].trim() === "") {
         const niceName = field.replace("shipping_", "").replace(/_/g, " ");
@@ -83,16 +76,14 @@ const CreateOrder = () => {
       }
     }
 
-    // Check State if country has states
     const states = window.wcsoData.states[formData.shipping_country];
     if (states && Object.keys(states).length > 0 && !formData.shipping_state) {
       return alert("Field Required: State / District");
     }
 
     setIsSubmitting(true);
-    setSuccessData(null); // Clear previous messages
+    setSuccessData(null);
 
-    // 3. Generate System Note Logic
     const config = window.wcsoData.tierConfig;
     let approvalMsg = "Approval: Not Needed";
 
@@ -120,7 +111,6 @@ ${approvalMsg}`;
 
     const finalNote = userNote ? userNote + "\n" + systemNote : systemNote;
 
-    // 4. Prepare Payload
     const payload = {
       action: "wcso_create_order",
       nonce: window.wcsoData.createOrderNonce,
@@ -138,10 +128,7 @@ ${approvalMsg}`;
       success: (response) => {
         setIsSubmitting(false);
         if (response.success) {
-          // Success! Set data for the notice
           setSuccessData(response.data);
-
-          // Reset Form
           setCart([]);
           setFormData((prev) => ({
             ...prev,
@@ -171,7 +158,11 @@ ${approvalMsg}`;
   return (
     <div className="wcso-create-layout">
       <div className="wcso-col-left">
-        <ProductSearch onAddProduct={handleAddProduct} />
+        {/* 🔥 FIX: Pass scannerEnabled prop */}
+        <ProductSearch
+          onAddProduct={handleAddProduct}
+          scannerEnabled={appSettings.barcode_scanner === "yes"}
+        />
         <OrderForm formData={formData} setFormData={setFormData} />
       </div>
 
@@ -191,26 +182,11 @@ ${approvalMsg}`;
           {isSubmitting ? "Creating..." : "Create Sample Order"}
         </button>
 
-        {/* Success Notice */}
         {successData && (
-          <div
-            className="notice notice-success"
-            style={{
-              marginTop: "15px",
-              padding: "12px",
-              borderLeft: "4px solid #46b450",
-              boxShadow: "0 1px 1px rgba(0,0,0,0.04)",
-              background: "#fff",
-            }}
-          >
-            <p style={{ margin: 0, fontSize: "14px" }}>
+          <div className="notice notice-success wcso-success-notice">
+            <p>
               <strong>✓ Order Created! </strong>
-              <a
-                href={successData.order_url}
-                target="_blank"
-                rel="noreferrer"
-                style={{ textDecoration: "none" }}
-              >
+              <a href={successData.order_url} target="_blank" rel="noreferrer">
                 View Order #{successData.order_id} &rarr;
               </a>
             </p>

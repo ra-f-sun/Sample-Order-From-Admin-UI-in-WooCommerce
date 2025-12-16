@@ -4,7 +4,7 @@
  * Plugin Name: WooCommerce Sample Orders
  * Plugin URI: https://wphelpzone.com
  * Description: Create sample orders with tiered approval workflow and dynamic settings.
- * Version: 3.0.0
+ * Version: 3.1.1
  * Author: Rafsun Jani (WPHelpZone LLC)
  * Author URI: https://wphelpzone.com
  * Requires at least: 5.8
@@ -14,7 +14,7 @@
 
 if (!defined('ABSPATH')) exit;
 
-define('WCSO_VERSION', '2.0.0');
+define('WCSO_VERSION', '3.1.1');
 define('WCSO_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('WCSO_PLUGIN_URL', plugin_dir_url(__FILE__));
 

@@ -5,7 +5,7 @@ const OrderForm = ({ formData, setFormData }) => {
   const [availableStates, setAvailableStates] = useState({});
   const [availableMethods, setAvailableMethods] = useState([]);
 
-  // 1. Update States when Country changes
+  // Update States when Country changes
   useEffect(() => {
     const countryCode = formData.shipping_country;
     if (states[countryCode]) {
@@ -15,7 +15,7 @@ const OrderForm = ({ formData, setFormData }) => {
     }
   }, [formData.shipping_country, states]);
 
-  // 2. Update Shipping Methods when Country changes
+  // Update Shipping Methods when Country changes
   useEffect(() => {
     let matchedZone = null;
     for (let zone of shippingZones) {

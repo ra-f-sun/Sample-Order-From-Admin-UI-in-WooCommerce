@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 
-// Accept Props from App.js
 const Settings = ({ appSettings, onUpdateSetting }) => {
-  // Local state for the form, initialized from Props
   const [formData, setFormData] = useState(appSettings);
   const [isSaving, setIsSaving] = useState(false);
   const [message, setMessage] = useState(null);
 
-  // Sync prop changes if they happen externally (rare but good practice)
   React.useEffect(() => {
     setFormData(appSettings);
   }, [appSettings]);
@@ -26,8 +23,8 @@ const Settings = ({ appSettings, onUpdateSetting }) => {
     const newData = { ...formData, [field]: value };
     setFormData(newData);
 
-    // Update Global App State IMMEDIATELY for the Sidebar toggle
-    if (field === "email_logging") {
+    // 🔥 FIX: Update App state IMMEDIATELY for barcode_scanner and email_logging
+    if (field === "email_logging" || field === "barcode_scanner") {
       onUpdateSetting(field, value);
     }
   };
@@ -47,8 +44,13 @@ const Settings = ({ appSettings, onUpdateSetting }) => {
         setIsSaving(false);
         if (response.success) {
           setMessage({ type: "success", text: "Settings Saved!" });
-          // Ensure App state matches saved state
+
+          // Ensure all settings synced after save
           onUpdateSetting("email_logging", formData.email_logging);
+          onUpdateSetting("barcode_scanner", formData.barcode_scanner);
+          onUpdateSetting("coupon_code", formData.coupon_code);
+          onUpdateSetting("tiers", formData.tiers);
+
           setTimeout(() => setMessage(null), 3000);
         } else {
           setMessage({ type: "error", text: "Error saving settings." });
@@ -65,9 +67,9 @@ const Settings = ({ appSettings, onUpdateSetting }) => {
         <div className={`wcso-notice ${message.type}`}>{message.text}</div>
       )}
 
-      {/* General Section */}
       <div className="wcso-card">
         <h3>General Options</h3>
+
         <div className="wcso-field-row">
           <label>Discount Coupon Code</label>
           <input
@@ -93,14 +95,8 @@ const Settings = ({ appSettings, onUpdateSetting }) => {
           </label>
         </div>
 
-        {/* --- NEW LOGGING TOGGLE --- */}
         <div className="wcso-field-row">
-          <label
-            style={{
-              fontWeight: "bold",
-              color: formData.email_logging === "1" ? "#2271b1" : "inherit",
-            }}
-          >
+          <label>
             <input
               type="checkbox"
               checked={formData.email_logging === "1"}
@@ -146,7 +142,6 @@ const Settings = ({ appSettings, onUpdateSetting }) => {
         </div>
       </div>
 
-      {/* Tier 1 */}
       <div className="wcso-card" style={{ borderLeft: "4px solid #46b450" }}>
         <h3>Tier 1: Auto-Approval</h3>
         <div className="wcso-grid-2">
@@ -169,7 +164,6 @@ const Settings = ({ appSettings, onUpdateSetting }) => {
         </div>
       </div>
 
-      {/* Tier 2 */}
       <div className="wcso-card" style={{ borderLeft: "4px solid #f0b849" }}>
         <h3>Tier 2: Manager Approval</h3>
         <div className="wcso-grid-2">
@@ -186,15 +180,12 @@ const Settings = ({ appSettings, onUpdateSetting }) => {
             <input
               type="email"
               value={formData.tiers.t2.email}
-              onChange={(e) =>
-                handleTierChange("t2", "approver", e.target.value)
-              }
+              onChange={(e) => handleTierChange("t2", "email", e.target.value)}
             />
           </div>
         </div>
       </div>
 
-      {/* Tier 3 */}
       <div className="wcso-card" style={{ borderLeft: "4px solid #d63638" }}>
         <h3>Tier 3: Executive Approval</h3>
         <div className="wcso-grid-2">
@@ -211,9 +202,7 @@ const Settings = ({ appSettings, onUpdateSetting }) => {
             <input
               type="email"
               value={formData.tiers.t3.email}
-              onChange={(e) =>
-                handleTierChange("t3", "approver", e.target.value)
-              }
+              onChange={(e) => handleTierChange("t3", "email", e.target.value)}
             />
           </div>
         </div>

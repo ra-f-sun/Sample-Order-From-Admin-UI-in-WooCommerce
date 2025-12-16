@@ -3,7 +3,7 @@ import Sidebar from "./components/Sidebar";
 import CreateOrder from "./pages/CreateOrder";
 import Settings from "./pages/Settings";
 import Analytics from "./pages/Analytics";
-import EmailLogs from "./pages/EmailLogs"; // <--- Import
+import EmailLogs from "./pages/EmailLogs";
 
 const App = () => {
   const [currentView, setCurrentView] = useState("create_order");
@@ -20,7 +20,8 @@ const App = () => {
   const renderView = () => {
     switch (currentView) {
       case "create_order":
-        return <CreateOrder />;
+        // 🔥 FIX: Pass appSettings to CreateOrder
+        return <CreateOrder appSettings={appSettings} />;
       case "settings":
         return (
           <Settings
@@ -35,10 +36,10 @@ const App = () => {
         return appSettings.email_logging === "1" ? (
           <EmailLogs />
         ) : (
-          <CreateOrder />
+          <CreateOrder appSettings={appSettings} />
         );
       default:
-        return <CreateOrder />;
+        return <CreateOrder appSettings={appSettings} />;
     }
   };
 
@@ -47,7 +48,7 @@ const App = () => {
       <Sidebar
         activeView={currentView}
         onChangeView={setCurrentView}
-        settings={appSettings} // Pass settings to Sidebar
+        settings={appSettings}
       />
       <div className="wcso-content-area">{renderView()}</div>
     </div>
