@@ -1,9 +1,7 @@
 <?php
 if (!defined('ABSPATH')) exit;
-
 class WCSO_Ajax
 {
-
     private static $instance = null;
 
     public static function get_instance()
@@ -21,11 +19,13 @@ class WCSO_Ajax
 
         add_action('wp_ajax_wcso_get_email_log', array($this, 'get_email_log'));
         add_action('wp_ajax_wcso_clear_log', array($this, 'clear_email_log'));
+
+        // Fetch Sample Orders Created before Analytics
+        add_action('wp_ajax_wcso_analytics_backfill', array($this, 'analytics_backfill'));
     }
 
-    /**
-     * Handle Settings Save via React
-     */
+
+    // Handle Settings Save via React
     public function save_settings()
     {
         check_ajax_referer('wcso_save_settings', 'nonce');
@@ -36,41 +36,40 @@ class WCSO_Ajax
 
         $data = $_POST['settings'];
 
-        // 1. Save General Settings
+        // Save General Settings
         update_option('wcso_enable_barcode_scanner', sanitize_text_field($data['barcode_scanner']));
         update_option('wcso_coupon_code', sanitize_text_field($data['coupon_code']));
         update_option('wcso_email_logging', sanitize_text_field($data['email_logging']));
 
-        // 2. Save Tier Settings
-        // FIX: Use the V2 option names (wcso_tX_...) to match get_tier_config()
+        // ===Save Tier Settings Start===
         $tiers = $data['tiers'];
 
         // Tier 1
         update_option('wcso_t1_name', sanitize_text_field($tiers['t1']['name']));
-        // If you added limits in V3, save them. If hardcoded in V2, you can skip or add new options.
         update_option('wcso_t1_limit', absint($tiers['t1']['limit']));
 
         // Tier 2
         update_option('wcso_t2_name', sanitize_text_field($tiers['t2']['name']));
         update_option('wcso_t2_limit', absint($tiers['t2']['limit']));
-        // FIX: Key is 'email' in React now, map to 'wcso_t2_email'
         update_option('wcso_t2_email', sanitize_email($tiers['t2']['email']));
 
         // Tier 3
         update_option('wcso_t3_name', sanitize_text_field($tiers['t3']['name']));
         update_option('wcso_t3_limit', absint($tiers['t3']['limit']));
-        // FIX: Key is 'email' in React now, map to 'wcso_t3_email'
         update_option('wcso_t3_email', sanitize_email($tiers['t3']['email']));
+
+        // ===Save Tier Settings End===
 
         wp_send_json_success('Settings saved successfully.');
     }
 
+    // To select products for orders
     public function get_all_products()
     {
         check_ajax_referer('wcso_cache', 'nonce');
         if (!current_user_can('manage_woocommerce')) wp_send_json_error('Unauthorized');
 
-        $ids = get_posts(array(
+        $all_product_ids = get_posts(array(
             'post_type'      => 'product',
             'post_status'    => array('publish', 'draft', 'private', 'pending'),
             'posts_per_page' => -1,
@@ -79,22 +78,22 @@ class WCSO_Ajax
             'fields'         => 'ids'
         ));
 
-        $out = array();
-        foreach ($ids as $id) {
-            $p = wc_get_product($id);
-            if (!$p) continue;
-            $post = get_post($id);
-            $status = ($post->post_status !== 'publish') ? $post->post_status : $p->get_catalog_visibility();
-            $out[] = array(
-                'id'         => $p->get_id(),
-                'name'       => $p->get_name(),
-                'sku'        => $p->get_sku(),
+        $products_necessary_data = array();
+        foreach ($all_product_ids as $single_product_id) {
+            $single_product = wc_get_product($single_product_id);
+            if (!$single_product) continue;
+            $post = get_post($single_product_id);
+            $status = ($post->post_status !== 'publish') ? $post->post_status : $single_product->get_catalog_visibility();
+            $products_necessary_data[] = array(
+                'id'         => $single_product->get_id(),
+                'name'       => $single_product->get_name(),
+                'sku'        => $single_product->get_sku(),
                 'status'     => $status,
-                'price'      => $p->get_price(),
-                'price_html' => $p->get_price() . '/-'
+                'price'      => $single_product->get_price(),
+                'price_html' => $single_product->get_price() . '/-'
             );
         }
-        wp_send_json_success($out);
+        wp_send_json_success($products_necessary_data);
     }
 
     public function search_products()
@@ -138,23 +137,23 @@ class WCSO_Ajax
         }
 
         $seen = array();
-        $out  = array();
+        $products_necessary_data  = array();
         foreach ($products as $post) {
             if (in_array($post->ID, $seen)) continue;
             $seen[] = $post->ID;
-            $p = wc_get_product($post->ID);
-            if (!$p) continue;
-            $status = ($post->post_status !== 'publish') ? $post->post_status : $p->get_catalog_visibility();
-            $out[] = array(
-                'id'         => $p->get_id(),
-                'name'       => $p->get_name(),
-                'sku'        => $p->get_sku(),
+            $single_product = wc_get_product($post->ID);
+            if (!$single_product) continue;
+            $status = ($post->post_status !== 'publish') ? $post->post_status : $single_product->get_catalog_visibility();
+            $products_necessary_data[] = array(
+                'id'         => $single_product->get_id(),
+                'name'       => $single_product->get_name(),
+                'sku'        => $single_product->get_sku(),
                 'status'     => $status,
-                'price'      => $p->get_price(),
-                'price_html' => $p->get_price() . '/-'
+                'price'      => $single_product->get_price(),
+                'price_html' => $single_product->get_price() . '/-'
             );
         }
-        wp_send_json_success($out);
+        wp_send_json_success($products_necessary_data);
     }
 
     public function create_sample_order()
@@ -164,29 +163,30 @@ class WCSO_Ajax
 
         try {
             $products = is_array($_POST['products']) ? $_POST['products'] : json_decode(stripslashes($_POST['products']), true);
-            // v2 Update: We do not get approved_by from POST anymore. We calculate it.
+
+            // Purpose of sample order is being called sample category
             $category = sanitize_text_field($_POST['sample_category'] ?? '');
 
             if (empty($products)) wp_send_json_error('No products selected');
 
-            // 1. Calculate Original Total (Before Coupon)
+            // Calculate Original Total (Before Coupon)
             // We use this for Tier logic
             $original_total = 0;
             foreach ($products as $item) {
-                $pid = isset($item['id']) ? absint($item['id']) : 0;
-                $qty = max(1, intval($item['quantity']));
-                $p = wc_get_product($pid);
-                if ($p) $original_total += floatval($p->get_price()) * $qty;
+                $product_id = isset($item['id']) ? absint($item['id']) : 0;
+                $product_quantity = max(1, intval($item['quantity']));
+                $single_product = wc_get_product($product_id);
+                if ($single_product) $original_total += floatval($single_product->get_price()) * $product_quantity;
             }
 
-            // 2. Load Settings Logic
+            // Load Settings Logic for approval
             $config = WCSO_Settings::get_tier_config();
             $tier = '';
             $status = 'processing'; // default
             $needed_approvals = array();
-            $assigned_approver = ''; // New variable
+            $assigned_approver = '';
 
-            // 3. Determine Tier & Assign (SERVER SIDE AUTHORITY)
+            // Determine Tier & Assign
             // Uses dynamic limits from Settings
             if ($original_total <= $config['t1']['limit']) {
                 // Tier 1
@@ -202,6 +202,7 @@ class WCSO_Ajax
                 // Tier 3 (Greater than Tier 2 limit)
                 $tier = 't3so';
                 $status = 'on-hold';
+
                 // Needs T2 AND T3
                 if (!empty($config['t2']['email'])) $needed_approvals[] = $config['t2']['email'];
                 if (!empty($config['t3']['email'])) $needed_approvals[] = $config['t3']['email'];
@@ -209,28 +210,29 @@ class WCSO_Ajax
                 $assigned_approver = $config['t3']['name'];
             }
 
-            // 4. Create Order
+            // Create Order
             $order = wc_create_order();
             if (!$order) wp_send_json_error('Failed to create order');
 
             // Add Products
             foreach ($products as $item) {
-                $pid = absint($item['id']);
-                $qty = max(1, intval($item['quantity']));
-                if ($p = wc_get_product($pid)) {
-                    // Note: We add the product at full price now, coupon will discount it later
-                    $order->add_product($p, $qty);
+                $product_id = absint($item['id']);
+                $product_quantity = max(1, intval($item['quantity']));
+                if ($single_product = wc_get_product($product_id)) {
+
+                    // Create in original price, reduce later by coupon
+                    $order->add_product($single_product, $product_quantity);
                 }
             }
 
-            // Set Customer/Billing (Basic implementation of fields)
+            // Set Billing
             $billing_user_id = isset($_POST['billing_user_id']) ? absint($_POST['billing_user_id']) : 0;
             if ($billing_user_id) {
                 $order->set_customer_id($billing_user_id);
-                $u = get_user_by('id', $billing_user_id);
-                if ($u) {
-                    $order->set_billing_first_name(get_user_meta($u->ID, 'billing_first_name', true) ?: $u->display_name);
-                    $order->set_billing_email($u->user_email);
+                $billing_user = get_user_by('id', $billing_user_id);
+                if ($billing_user) {
+                    $order->set_billing_first_name(get_user_meta($billing_user->ID, 'billing_first_name', true) ?: $billing_user->display_name);
+                    $order->set_billing_email($billing_user->user_email);
                 }
             }
 
@@ -257,7 +259,8 @@ class WCSO_Ajax
             $shipping_item->set_instance_id(sanitize_text_field($_POST['shipping_method_instance_id']));
             $order->add_item($shipping_item);
 
-            // --- COUPON APPLICATION START ---
+            // ===Apply Coupon Start===
+            // Get coupon code, fallback "flat100"
             $coupon_code = get_option('wcso_coupon_code', 'flat100');
 
             // Only apply if a code is set
@@ -279,7 +282,7 @@ class WCSO_Ajax
 
             // Calculate totals (This applies the discount)
             $order->calculate_totals();
-            // --- COUPON APPLICATION END ---
+            // ===Apply Coupon End===
 
             // 5. Save Meta
             $current_user = wp_get_current_user();
@@ -293,10 +296,8 @@ class WCSO_Ajax
             $order->update_meta_data('_wcso_sample_category', $category);
             $order->update_meta_data('_wcso_origin', $origin);
 
-            // v2 Update: Use system assigned approver, not POST data
             $order->update_meta_data('_approved_by', $assigned_approver);
 
-            // Approval State
             $order->update_meta_data('_wcso_approvals_needed', $needed_approvals);
             $order->update_meta_data('_wcso_approvals_granted', array());
 
@@ -308,7 +309,7 @@ class WCSO_Ajax
             $order->set_status($status);
             $order->save();
 
-            // 6. Trigger Emails
+            // Trigger Emails
             do_action('wcso_sample_order_created', $order->get_id());
 
             wp_send_json_success(array(
@@ -320,7 +321,7 @@ class WCSO_Ajax
         }
     }
 
-    // --- NEW METHODS ---
+    // Email Log
     public function get_email_log()
     {
         check_ajax_referer('wcso_save_settings', 'nonce'); // Reuse settings nonce
@@ -337,5 +338,14 @@ class WCSO_Ajax
 
         WCSO_Email_Handler::get_instance()->clear_email_log();
         wp_send_json_success('Log cleared.');
+    }
+
+    public function analytics_backfill()
+    {
+        check_ajax_referer('wcso_save_settings', 'nonce');
+        if (!current_user_can('manage_woocommerce')) wp_send_json_error('Unauthorized');
+
+        $count = WCSO_Analytics_DB::get_instance()->backfill_data();
+        wp_send_json_success("Successfully indexed {$count} orders for analytics.");
     }
 }

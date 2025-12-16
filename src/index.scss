@@ -1,82 +1,105 @@
-// Main Container (Flexbox for side-by-side layout)
+/* --- Main Container (Now Column Layout) --- */
 .wcso-app-wrapper {
   display: flex;
+  flex-direction: column; /* Stack Nav on top of Content */
   background: #fff;
   min-height: 600px;
   border: 1px solid #c3c4c7;
   margin-top: 20px;
   margin-right: 20px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
 }
 
-// Sidebar (Left Column)
+/* --- Top Navigation (Formerly Sidebar) --- */
 .wcso-sidebar {
-  width: 220px;
-  background: #f0f0f1;
-  border-right: 1px solid #c3c4c7;
-  flex-shrink: 0; // Don't shrink if screen is small
+  width: 100%; /* Full Width */
+  background: #fff;
+  border-bottom: 1px solid #c3c4c7; /* Separator line */
+  border-right: none; /* Remove old border */
+  flex-shrink: 0;
 
   ul {
     margin: 0;
-    padding: 0;
+    padding: 0 20px; /* Horizontal padding */
     list-style: none;
+    display: flex; /* Make items horizontal */
+    gap: 30px; /* Space between tabs */
 
     li {
-      padding: 15px 20px;
+      padding: 15px 0; /* Vertical padding only */
       cursor: pointer;
-      border-bottom: 1px solid #e0e0e0;
       display: flex;
       align-items: center;
-      color: #3c434a;
+      color: #646970;
       font-weight: 500;
+      font-size: 14px;
       transition: all 0.2s;
+      border-bottom: 3px solid transparent; /* Tab indicator (invisible) */
+      margin-bottom: -1px; /* Align with border */
 
       .dashicons {
-        margin-right: 10px;
-        color: #787c82;
+        margin-right: 8px;
+        color: #8c8f94;
+        transition: color 0.2s;
       }
 
+      /* Hover State */
       &:hover {
-        background: #fff;
         color: #2271b1;
         .dashicons {
           color: #2271b1;
         }
       }
 
-      // Active State
+      /* Active State (Tab Style) */
       &.active {
-        background: #fff;
         color: #2271b1;
-        border-left: 4px solid #2271b1;
-        font-weight: 600;
-        margin-left: -1px;
+        border-bottom-color: #2271b1; /* Blue underline */
+        border-left: none; /* Remove old sidebar line */
+        background: transparent;
+
         .dashicons {
           color: #2271b1;
+        }
+      }
+
+      /* Disabled State */
+      &.wcso-disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        &:hover {
+          color: #646970;
         }
       }
     }
   }
 }
 
-// Content Area (Right Column)
+/* --- Content Area --- */
 .wcso-content-area {
   flex-grow: 1;
   padding: 30px;
+  background: #f0f0f1; /* Light gray background for content contrast */
 
   h2 {
     margin-top: 0;
     padding-bottom: 15px;
-    border-bottom: 1px solid #f0f0f1;
+    border-bottom: 1px solid #dcdcde;
+    margin-bottom: 20px;
   }
 }
-
 // Layout Grid
+/* Layout Grid for Create Order */
 .wcso-create-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr; // 50% 50%
+  /* Change: Left column flexes, Right column is fixed width (like a sidebar) */
+  grid-template-columns: 1fr 380px;
   gap: 30px;
-}
 
+  /* Change: Constrain width and center it */
+  max-width: 1100px;
+  margin: 0 auto;
+}
 // Search Box
 .wcso-search-box {
   background: #fcfcfc;
@@ -181,7 +204,7 @@
   margin-top: 30px;
   background: #fff;
   border-top: 1px solid #eee;
-  padding-top: 20px;
+  padding: 20px;
 }
 
 .wcso-form-group {
@@ -211,6 +234,7 @@
 // Settings Page Styles
 .wcso-settings-wrapper {
   max-width: 800px;
+  margin: 0 auto;
 }
 
 .wcso-card {

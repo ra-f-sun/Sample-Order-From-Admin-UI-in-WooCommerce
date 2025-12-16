@@ -15,7 +15,6 @@ class WCSO_Email_Handler
 
     private function __construct()
     {
-        // Define log file path once
         $this->log_file = WCSO_PLUGIN_DIR . 'email-log.txt';
 
         add_action('wcso_sample_order_created', array($this, 'send_notifications'), 10, 1);
@@ -33,7 +32,7 @@ class WCSO_Email_Handler
         $tier = $order->get_meta('_wcso_tier');
         $config = WCSO_Settings::get_tier_config();
 
-        // --- 1. BILLING NOTIFICATION ---
+        // Billing Information
         $billing_email = $order->get_billing_email();
         $cc_emails = array();
 
@@ -47,6 +46,7 @@ class WCSO_Email_Handler
                 if (is_email(trim($cc))) $headers[] = 'Cc: ' . trim($cc);
             }
 
+            // Pending approval for t2so, t3so
             $status_msg = ($tier === 't1so') ? 'Processing' : 'Pending Approval';
             $subject = "[Sample Order] Request Received #{$order->get_id()} ({$status_msg})";
 
@@ -58,12 +58,13 @@ class WCSO_Email_Handler
             wp_mail($billing_email, $subject, $msg, $headers);
         }
 
-        // --- 2. ACTION EMAILS (Approvers) ---
+        // Action Mail (Approval)
         $needed = $order->get_meta('_wcso_approvals_needed') ?: array();
 
         foreach ($needed as $approver_email) {
             if (!is_email($approver_email)) continue;
 
+            // Generates action links for specific approver
             $approve_link = WCSO_Approval::get_instance()->get_action_url($order_id, $approver_email, 'approve');
             $reject_link  = WCSO_Approval::get_instance()->get_action_url($order_id, $approver_email, 'reject');
 
@@ -84,9 +85,7 @@ class WCSO_Email_Handler
         }
     }
 
-    /**
-     * Log email to Text File
-     */
+    // Log email to Text File
     public function log_email($args)
     {
         $entry = "--------------------------------------------------\n";
@@ -98,7 +97,6 @@ class WCSO_Email_Handler
             preg_match_all('/href=\'(.*?)\'/', $args['message'], $matches);
             if (isset($matches[1]) && !empty($matches[1])) {
                 foreach ($matches[1] as $link) {
-                    // FIX: Decode &amp; back to & for browser testing
                     $clean_link = html_entity_decode($link);
                     $entry .= "   >>> ACTION LINK: " . $clean_link . "\n";
                 }
@@ -109,9 +107,8 @@ class WCSO_Email_Handler
         // Append to file
         file_put_contents($this->log_file, $entry, FILE_APPEND);
     }
-    /**
-     * Get log content
-     */
+
+    // Get log content
     public function get_email_log()
     {
         if (!file_exists($this->log_file)) {
@@ -120,9 +117,7 @@ class WCSO_Email_Handler
         return file_get_contents($this->log_file);
     }
 
-    /**
-     * Clear log (Safely empty file instead of deleting)
-     */
+    // Clear log (Safely empty file instead of deleting)
     public function clear_email_log()
     {
         file_put_contents($this->log_file, '');

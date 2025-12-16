@@ -1,13 +1,7 @@
 <?php
-
-/**
- * Admin Pages Handler
- */
 if (!defined('ABSPATH')) exit;
-
 class WCSO_Admin
 {
-
     private static $instance = null;
 
     public static function get_instance()
@@ -19,16 +13,15 @@ class WCSO_Admin
     private function __construct()
     {
         add_action('admin_menu', array($this, 'add_admin_menu'));
-        add_action('admin_menu', array($this, 'add_settings_page'), 99);
         add_action('admin_enqueue_scripts', array($this, 'enqueue_assets'));
 
-        // Keep existing order column filters if you want them visible in the main order list
         add_filter('manage_edit-shop_order_columns', array($this, 'add_order_column'));
         add_action('manage_shop_order_posts_custom_column', array($this, 'display_order_column'), 10, 2);
         add_action('restrict_manage_posts', array($this, 'add_order_filter'));
         add_filter('parse_query', array($this, 'filter_orders'));
     }
 
+    // Create admin menu on sidebar
     public function add_admin_menu()
     {
         add_menu_page(
@@ -36,36 +29,21 @@ class WCSO_Admin
             __('Sample Orders', 'wc-sample-orders'),
             'manage_woocommerce',
             'wc-sample-orders',
-            array($this, 'render_order_page'), // Calls the React container
+            array($this, 'render_order_page'),
             'dashicons-cart',
             56
         );
     }
 
-    public function add_settings_page()
-    {
-        add_submenu_page(
-            'wc-sample-orders',
-            __('Settings', 'wc-sample-orders'),
-            __('Settings', 'wc-sample-orders'),
-            'manage_woocommerce',
-            'wc-sample-orders-settings',
-            array($this, 'render_settings_page')
-        );
-    }
-
-    /**
-     * NEW: Load the React App Build Files
-     */
     public function enqueue_assets($hook)
     {
         // Only load on our main plugin page
         if ($hook !== 'toplevel_page_wc-sample-orders') return;
 
-        // 1. Get the auto-generated asset file
+        // Get the auto-generated asset file (For react)
         $asset_file = include(WCSO_PLUGIN_DIR . 'build/index.asset.php');
 
-        // 2. Enqueue the React App
+        // Enqueue the React App
         wp_enqueue_script(
             'wcso-react-app',
             WCSO_PLUGIN_URL . 'build/index.js',
@@ -74,7 +52,7 @@ class WCSO_Admin
             true
         );
 
-        // 3. Enqueue Styles
+        // Enqueue Styles
         wp_enqueue_style(
             'wcso-react-style',
             WCSO_PLUGIN_URL . 'build/index.css',
@@ -82,46 +60,48 @@ class WCSO_Admin
             $asset_file['version']
         );
 
-        // 4. Pass Data (The Bridge)
+        // Site user data (Admin side) to use for billing details
         $user_query = get_users(array(
             'role__in' => array('administrator', 'shop_manager', 'editor', 'author'),
             'fields'   => array('ID', 'display_name', 'user_email')
         ));
 
-        // Get the tier config once to use in multiple places
+        // Tier configuration for approval of sample order
         $tier_config = WCSO_Settings::get_tier_config();
 
+        // Localize script to talk between js and php
         wp_localize_script('wcso-react-app', 'wcsoData', array(
             'ajaxUrl'          => admin_url('admin-ajax.php'),
-            'createOrderNonce' => wp_create_nonce('wcso_create_order'),
-            'searchNonce'      => wp_create_nonce('wcso_search'),
 
-            // *** NEW: Add this line ***
-            'cacheNonce'       => wp_create_nonce('wcso_cache'),
+            // Security Tokens
+            'createOrderNonce' => wp_create_nonce('wcso_create_order'), // for order creation
+            'searchNonce'      => wp_create_nonce('wcso_search'), // for searching products
+            'cacheNonce'       => wp_create_nonce('wcso_cache'), // for Caching products 
+            'saveSettingsNonce' => wp_create_nonce('wcso_save_settings'), // for Saving Settings
+            'analyticsNonce'    => wp_create_nonce('wcso_analytics'), // for Analytics
 
-            'saveSettingsNonce' => wp_create_nonce('wcso_save_settings'),
-            // ... (keep the rest of the array exactly as it was) ...
-            'currentUserId'    => get_current_user_id(),
-            'users'            => $user_query,
-            'tierConfig'       => $tier_config,
+            'currentUserId'    => get_current_user_id(), // Default Biller
+            'users'            => $user_query, // Billing dropdown
+            'tierConfig'       => $tier_config, // For Approval Logic
+
+            // Settings page initial settings (no barcode, coupon code "flat100", no email logger)
             'initialSettings'  => array(
                 'barcode_scanner' => get_option('wcso_enable_barcode_scanner', 'no'),
                 'coupon_code'     => get_option('wcso_coupon_code', 'flat100'),
                 'email_logging'   => get_option('wcso_email_logging', '0'),
                 'tiers'           => $tier_config
             ),
+
+            // For Shipping
             'countries'        => WC()->countries->get_countries(),
             'states'           => WC()->countries->get_states(),
-            'baseCountry'      => WC()->countries->get_base_country(),
-            'baseState'        => WC()->countries->get_base_state(),
-            'shippingZones'    => $this->render_shipping_details_data_only()
+            'baseCountry'      => WC()->countries->get_base_country(), // Default Country (Store location)
+            'baseState'        => WC()->countries->get_base_state(), // Default State (Store Location)
+            'shippingZones'    => $this->render_shipping_details_data_only() // Necessary Shipping details to set_shipping
         ));
     }
 
-    /**
-     * NEW: React Container
-     * This replaces the old HTML form.
-     */
+    // Order page container for react
     public function render_order_page()
     {
         if (!current_user_can('manage_woocommerce')) wp_die(__('Unauthorized'));
@@ -134,14 +114,12 @@ class WCSO_Admin
     <?php
     }
 
-    /**
-     * Helper: Fetch Shipping Zones for React (Data Only)
-     */
+    // Helper: Fetch Shipping Zone's Necessary Data
     public function render_shipping_details_data_only()
     {
         if (!current_user_can('manage_woocommerce')) return [];
 
-        $shipping_zones = WC_Shipping_Zones::get_zones();
+        $shipping_zones = WC_Shipping_Zones::get_zones(); // WooCommerce Shipping Zone Object
         $all_shipping_zone_with_methods = array();
 
         foreach ($shipping_zones as $shipping_zone) {
@@ -174,24 +152,7 @@ class WCSO_Admin
         return $all_shipping_zone_with_methods;
     }
 
-    // Keep the legacy Settings Page renderer if you want the "Old" settings page to still work separately
-    // OR we can move settings to React later. For now, let's keep it.
-    public function render_settings_page()
-    {
-        // ... (Keep your existing render_settings_page code here if you want) ...
-        // For brevity, I'm assuming you have the code from previous steps. 
-        // If not, ask and I will paste it.
-        if (!current_user_can('manage_woocommerce')) wp_die(__('You do not have sufficient permissions.'));
-        // ... include the settings form code ...
-        echo '<h2>Standard Settings Page</h2>';
-        echo '<form method="post" action="options.php">';
-        settings_fields('wcso_settings');
-        do_settings_sections('wcso_settings'); // Adjust as needed based on your registered sections
-        submit_button();
-        echo '</form>';
-    }
 
-    // ... Keep add_order_column, display_order_column, add_order_filter, filter_orders ...
     public function add_order_column($columns)
     {
         $new = array();

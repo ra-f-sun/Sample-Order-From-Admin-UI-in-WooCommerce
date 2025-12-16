@@ -120,6 +120,32 @@ const Settings = ({ appSettings, onUpdateSetting }) => {
         </div>
       </div>
 
+      <div className="wcso-card">
+        <h3>Analytics Setup</h3>
+        <div className="wcso-field-row">
+          <p className="description">
+            If you just installed the Analytics module, click this to index your
+            past sample orders.
+          </p>
+          <button
+            className="button"
+            onClick={() => {
+              if (!confirm("This will scan all past orders. Continue?")) return;
+              window.jQuery.post(
+                window.wcsoData.ajaxUrl,
+                {
+                  action: "wcso_analytics_backfill",
+                  nonce: window.wcsoData.saveSettingsNonce,
+                },
+                (res) => alert(res.data)
+              );
+            }}
+          >
+            Index Past Orders
+          </button>
+        </div>
+      </div>
+
       {/* Tier 1 */}
       <div className="wcso-card" style={{ borderLeft: "4px solid #46b450" }}>
         <h3>Tier 1: Auto-Approval</h3>

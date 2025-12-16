@@ -4,7 +4,7 @@
  * Plugin Name: WooCommerce Sample Orders
  * Plugin URI: https://wphelpzone.com
  * Description: Create sample orders with tiered approval workflow and dynamic settings.
- * Version: 2.0.0
+ * Version: 3.0.0
  * Author: Rafsun Jani (WPHelpZone LLC)
  * Author URI: https://wphelpzone.com
  * Requires at least: 5.8
@@ -45,14 +45,20 @@ class WC_Sample_Orders
     private function load_dependencies()
     {
         // Core Logic
-        require_once WCSO_PLUGIN_DIR . 'includes/class-wcso-settings.php'; // New: Handles Settings
-        require_once WCSO_PLUGIN_DIR . 'includes/class-wcso-approval.php'; // New: Handles Links/State
+        require_once WCSO_PLUGIN_DIR . 'includes/class-wcso-settings.php'; // Handles Settings
+        require_once WCSO_PLUGIN_DIR . 'includes/class-wcso-approval.php'; // Handles Approval
 
         // Controllers
         require_once WCSO_PLUGIN_DIR . 'includes/class-wcso-admin.php';
         require_once WCSO_PLUGIN_DIR . 'includes/class-wcso-ajax.php';
-        require_once WCSO_PLUGIN_DIR . 'includes/class-wcso-order-customizer.php';
-        require_once WCSO_PLUGIN_DIR . 'includes/class-wcso-email-handler.php';
+        require_once WCSO_PLUGIN_DIR . 'includes/class-wcso-order-customizer.php'; // Custom order customizer
+        require_once WCSO_PLUGIN_DIR . 'includes/class-wcso-email-handler.php'; // Handles Emails (mainly approval)
+
+        // Analytics DB
+        require_once WCSO_PLUGIN_DIR . 'includes/class-wcso-analytics-db.php';
+
+        // API Class For analytics
+        require_once WCSO_PLUGIN_DIR . 'includes/class-wcso-analytics-api.php';
     }
 
     public function init()
@@ -65,8 +71,18 @@ class WC_Sample_Orders
 
         WCSO_Ajax::get_instance();
         WCSO_Email_Handler::get_instance();
-        WCSO_Approval::get_instance(); // Must run on frontend too for link clicking
+        WCSO_Approval::get_instance();
+        WCSO_Analytics_DB::get_instance();
+        WCSO_Analytics_API::get_instance();
     }
 }
 
 add_action('plugins_loaded', array('WC_Sample_Orders', 'get_instance'));
+
+register_activation_hook(__FILE__, 'wcso_activate_analytics_table');
+
+function wcso_activate_analytics_table()
+{
+    require_once WCSO_PLUGIN_DIR . 'includes/class-wcso-analytics-db.php';
+    WCSO_Analytics_DB::get_instance()->create_table();
+}

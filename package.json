@@ -20,5 +20,8 @@
   "description": "",
   "devDependencies": {
     "@wordpress/scripts": "^31.1.0"
+  },
+  "dependencies": {
+    "recharts": "^3.5.1"
   }
 }
