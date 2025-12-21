@@ -7,7 +7,7 @@ vendor/
 Thumbs.db
 
 # Build Artifacts (Optional - Read Note Below*)
-# build/
+
 
 # Logs
 *.log
