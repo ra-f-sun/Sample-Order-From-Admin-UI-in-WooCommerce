@@ -1,44 +1,47 @@
 import React from "react";
+import { NavLink, useLocation } from "react-router-dom";
 
-const Sidebar = ({ activeView, onChangeView, settings }) => {
+const Sidebar = ({ settings }) => {
   // Check setting passed from App.js
   const isLoggingEnabled = settings.email_logging === "1";
-
-  const handleNav = (view) => {
-    if (view === "email_logs" && !isLoggingEnabled) return;
-    onChangeView(view);
-  };
+  const location = useLocation();
 
   return (
     <div className="wcso-sidebar">
       <ul>
-        <li
-          className={activeView === "create_order" ? "active" : ""}
-          onClick={() => handleNav("create_order")}
-        >
-          <span className="dashicons dashicons-cart"></span> Create Order
+        <li>
+          <NavLink
+            to="/create_order"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            <span className="dashicons dashicons-cart"></span> Create Order
+          </NavLink>
         </li>
 
-        <li
-          className={activeView === "settings" ? "active" : ""}
-          onClick={() => handleNav("settings")}
-        >
-          <span className="dashicons dashicons-admin-settings"></span> Settings
+        <li>
+          <NavLink
+            to="/settings"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            <span className="dashicons dashicons-admin-settings"></span>{" "}
+            Settings
+          </NavLink>
         </li>
 
-        <li
-          className={activeView === "analytics" ? "active" : ""}
-          onClick={() => handleNav("analytics")}
-        >
-          <span className="dashicons dashicons-chart-bar"></span> Analytics
+        <li>
+          <NavLink
+            to="/analytics"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            <span className="dashicons dashicons-chart-bar"></span> Analytics
+          </NavLink>
         </li>
 
         {/* Email Log Item - Conditionally Styled */}
         <li
-          className={`${activeView === "email_logs" ? "active" : ""} ${
-            !isLoggingEnabled ? "wcso-disabled" : ""
-          }`}
-          onClick={() => handleNav("email_logs")}
+          className={`${
+            location.pathname === "/email_logs" ? "active" : ""
+          } ${!isLoggingEnabled ? "wcso-disabled" : ""}`}
           title={
             !isLoggingEnabled
               ? "Enable 'Email Debug Logging' in Settings to access this feature."
@@ -50,7 +53,18 @@ const Sidebar = ({ activeView, onChangeView, settings }) => {
               : {}
           }
         >
-          <span className="dashicons dashicons-email-alt"></span> Email Log
+          {isLoggingEnabled ? (
+            <NavLink
+              to="/email_logs"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              <span className="dashicons dashicons-email-alt"></span> Email Log
+            </NavLink>
+          ) : (
+            <span>
+              <span className="dashicons dashicons-email-alt"></span> Email Log
+            </span>
+          )}
         </li>
       </ul>
     </div>

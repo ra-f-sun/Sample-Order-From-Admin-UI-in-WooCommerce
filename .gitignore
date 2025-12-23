@@ -6,8 +6,9 @@ vendor/
 .DS_Store
 Thumbs.db
 
-# Build Artifacts (Optional - Read Note Below*)
-
+# Build Artifacts
+# Note: Uncomment if you want to exclude build files from repo
+# build/
 
 # Logs
 *.log
@@ -15,8 +16,17 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 debug.log
+email-log.txt
 
 # IDE Settings
 .vscode/
 .idea/
 *.swp
+*.sublime-*
+
+# Composer
+composer.lock
+
+# WordPress
+wp-config.php
+.htaccess

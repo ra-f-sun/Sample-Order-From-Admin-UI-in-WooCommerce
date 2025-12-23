@@ -1,6 +1,6 @@
 {
   "name": "woocommerce-sample-orders",
-  "version": "3.1.1",
+  "version": "3.2.0",
   "main": "index.js",
   "scripts": {
     "start": "wp-scripts start",
@@ -22,6 +22,7 @@
     "@wordpress/scripts": "^31.1.0"
   },
   "dependencies": {
+    "react-router-dom": "^6.28.0",
     "recharts": "^3.5.1"
   }
 }

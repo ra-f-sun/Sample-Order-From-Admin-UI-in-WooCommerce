@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<ruleset name="WooCommerce Sample Orders">
+    <description>WordPress Coding Standards for WooCommerce Sample Orders Plugin</description>
+
+    <!-- Scan these files -->
+    <file>.</file>
+
+    <!-- Exclude patterns -->
+    <exclude-pattern>*/node_modules/*</exclude-pattern>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/build/*</exclude-pattern>
+    <exclude-pattern>*/src/*</exclude-pattern>
+    <exclude-pattern>*.js</exclude-pattern>
+    <exclude-pattern>*.css</exclude-pattern>
+
+    <!-- Show progress and colors -->
+    <arg value="ps"/>
+    <arg name="colors"/>
+    <arg name="extensions" value="php"/>
+
+    <!-- Check for PHP cross-version compatibility -->
+    <config name="testVersion" value="7.4-"/>
+
+    <!-- Rules -->
+    <rule ref="WordPress">
+        <!-- Allow short array syntax -->
+        <exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
+        
+        <!-- Relaxed file naming rules for classes -->
+        <exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+        <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+    </rule>
+
+    <rule ref="WordPress-Extra">
+        <!-- Allow array short syntax and other modern PHP features -->
+    </rule>
+
+    <rule ref="WordPress-Docs"/>
+
+    <!-- Text Domain -->
+    <rule ref="WordPress.WP.I18n">
+        <properties>
+            <property name="text_domain" type="array">
+                <element value="wc-sample-orders"/>
+            </property>
+        </properties>
+    </rule>
+
+    <!-- Naming Conventions -->
+    <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+        <properties>
+            <property name="prefixes" type="array">
+                <element value="wcso"/>
+                <element value="WCSO"/>
+                <element value="WPHelpZone"/>
+            </property>
+        </properties>
+    </rule>
+
+    <!-- Minimum PHP version -->
+    <config name="minimum_supported_wp_version" value="5.8"/>
+</ruleset>

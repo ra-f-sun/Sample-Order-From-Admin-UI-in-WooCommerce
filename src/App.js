@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import CreateOrder from "./pages/CreateOrder";
 import Settings from "./pages/Settings";
@@ -6,8 +7,6 @@ import Analytics from "./pages/Analytics";
 import EmailLogs from "./pages/EmailLogs";
 
 const App = () => {
-  const [currentView, setCurrentView] = useState("create_order");
-
   // Lift Settings State so Sidebar can react to changes
   const [appSettings, setAppSettings] = useState(
     window.wcsoData.initialSettings
@@ -17,41 +16,41 @@ const App = () => {
     setAppSettings((prev) => ({ ...prev, [key]: value }));
   };
 
-  const renderView = () => {
-    switch (currentView) {
-      case "create_order":
-        // 🔥 FIX: Pass appSettings to CreateOrder
-        return <CreateOrder appSettings={appSettings} />;
-      case "settings":
-        return (
-          <Settings
-            appSettings={appSettings}
-            onUpdateSetting={updateAppSetting}
-          />
-        );
-      case "analytics":
-        return <Analytics />;
-      case "email_logs":
-        // Security check: Don't render if disabled
-        return appSettings.email_logging === "1" ? (
-          <EmailLogs />
-        ) : (
-          <CreateOrder appSettings={appSettings} />
-        );
-      default:
-        return <CreateOrder appSettings={appSettings} />;
-    }
-  };
-
   return (
-    <div className="wcso-app-wrapper">
-      <Sidebar
-        activeView={currentView}
-        onChangeView={setCurrentView}
-        settings={appSettings}
-      />
-      <div className="wcso-content-area">{renderView()}</div>
-    </div>
+    <HashRouter>
+      <div className="wcso-app-wrapper">
+        <Sidebar settings={appSettings} />
+        <div className="wcso-content-area">
+          <Routes>
+            <Route
+              path="/create_order"
+              element={<CreateOrder appSettings={appSettings} />}
+            />
+            <Route
+              path="/settings"
+              element={
+                <Settings
+                  appSettings={appSettings}
+                  onUpdateSetting={updateAppSetting}
+                />
+              }
+            />
+            <Route path="/analytics" element={<Analytics />} />
+            <Route
+              path="/email_logs"
+              element={
+                appSettings.email_logging === "1" ? (
+                  <EmailLogs />
+                ) : (
+                  <Navigate to="/create_order" replace />
+                )
+              }
+            />
+            <Route path="/" element={<Navigate to="/create_order" replace />} />
+          </Routes>
+        </div>
+      </div>
+    </HashRouter>
   );
 };
 
