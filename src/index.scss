@@ -551,3 +551,24 @@
   color: #2271b1;
   font-weight: 600;
 }
+
+// Remove focus outline from Recharts SVG elements
+.recharts-wrapper,
+.recharts-surface,
+.recharts-bar-rectangle,
+.recharts-rectangle {
+  outline: none !important;
+  
+  &:focus {
+    outline: none !important;
+  }
+}
+
+// Remove focus outline from clicked bar elements
+.recharts-layer.recharts-bar-rectangle path {
+  outline: none !important;
+  
+  &:focus {
+    outline: none !important;
+  }
+}

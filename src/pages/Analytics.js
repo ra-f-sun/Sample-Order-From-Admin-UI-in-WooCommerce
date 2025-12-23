@@ -42,11 +42,15 @@ const Analytics = () => {
   }, [dateRange]);
 
   // Handler for clicking a chart
-  const handleChartClick = (type, pointData) => {
+  const handleChartClick = (type, pointData, statusFilter = null) => {
     if (!pointData) return;
 
     const value = type === "category" ? pointData.name : pointData.date;
-    const title = type === "category" ? `Category: ${value}` : `Date: ${value}`;
+    let title = type === "category" ? `Category: ${value}` : `Date: ${value}`;
+    
+    if (statusFilter) {
+      title += ` (${statusFilter === 'success' ? 'Successful' : 'Failed'} Orders)`;
+    }
 
     setModalTitle("Loading...");
     setModalOpen(true);
@@ -55,7 +59,7 @@ const Analytics = () => {
     fetchDrillDownData(type, value, (orders) => {
       setModalTitle(title);
       setModalData(orders);
-    });
+    }, statusFilter);
   };
 
   return (
@@ -120,7 +124,7 @@ const Analytics = () => {
           <div style={{ gridColumn: "1 / -1" }}>
             <SuccessRateChart
               data={data.success_rate}
-              onClick={(d) => handleChartClick("date", d)}
+              onClick={(d, status) => handleChartClick("date", d, status)}
             />
           </div>
         </div>

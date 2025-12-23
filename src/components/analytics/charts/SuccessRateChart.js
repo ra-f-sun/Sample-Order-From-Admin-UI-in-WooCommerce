@@ -18,9 +18,6 @@ const SuccessRateChart = ({ data, onClick }) => {
         <BarChart
           data={data}
           margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
-          onClick={(e) =>
-            e && e.activePayload && onClick(e.activePayload[0].payload)
-          }
         >
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
           <XAxis dataKey="date" tick={{ fontSize: 11 }} minTickGap={30} />
@@ -39,6 +36,7 @@ const SuccessRateChart = ({ data, onClick }) => {
             fill="#46b450"
             name="Successful / Processing"
             cursor="pointer"
+            onClick={(data) => onClick(data, 'success')}
           />
           <Bar
             dataKey="failed"
@@ -46,6 +44,7 @@ const SuccessRateChart = ({ data, onClick }) => {
             fill="#d63638"
             name="Failed / Rejected"
             cursor="pointer"
+            onClick={(data) => onClick(data, 'failed')}
           />
         </BarChart>
       </ResponsiveContainer>

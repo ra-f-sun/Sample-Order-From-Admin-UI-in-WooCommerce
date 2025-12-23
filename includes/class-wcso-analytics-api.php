@@ -128,8 +128,9 @@ class WCSO_Analytics_API extends WCSO_Singleton
 
         global $wpdb;
 
-        $type  = sanitize_text_field($_POST['filter_type']); // 'category' or 'date'.
-        $value = sanitize_text_field($_POST['filter_value']); // e.g. 'Customer Service' or '2023-10-25'.
+        $type          = sanitize_text_field($_POST['filter_type']); // 'category' or 'date'.
+        $value         = sanitize_text_field($_POST['filter_value']); // e.g. 'Customer Service' or '2023-10-25'.
+        $status_filter = isset($_POST['status_filter']) ? sanitize_text_field($_POST['status_filter']) : null;
 
         $sql = "SELECT order_id, category, tier, status, total_amount, created_at FROM $this->table_name WHERE ";
 
@@ -139,6 +140,13 @@ class WCSO_Analytics_API extends WCSO_Singleton
             $sql .= $wpdb->prepare('DATE(created_at) = %s', $value);
         } else {
             wp_send_json_error('Invalid filter');
+        }
+
+        // Add status filter if provided.
+        if ($status_filter === 'success') {
+            $sql .= " AND status IN ('completed', 'processing')";
+        } elseif ($status_filter === 'failed') {
+            $sql .= " AND status IN ('cancelled', 'failed', 'refunded')";
         }
 
         $sql .= ' ORDER BY id DESC LIMIT 100'; // Limit to prevent overload.

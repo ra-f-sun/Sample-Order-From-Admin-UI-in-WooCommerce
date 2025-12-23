@@ -21,9 +21,8 @@ if (! defined('ABSPATH')) {
 // Load Composer autoloader.
 require_once __DIR__ . '/vendor/autoload.php';
 
-define('WCSO_VERSION', '3.2.0');
-define('WCSO_PLUGIN_DIR', plugin_dir_path(__FILE__));
-define('WCSO_PLUGIN_URL', plugin_dir_url(__FILE__));
+// Load plugin constants.
+require_once __DIR__ . '/includes/wcso-constants.php';
 
 /**
  * Main Plugin Class

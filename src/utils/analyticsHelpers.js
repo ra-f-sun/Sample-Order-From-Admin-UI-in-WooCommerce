@@ -20,14 +20,15 @@ export const fetchAnalyticsData = (startDate, endDate, callback) => {
   );
 };
 
-export const fetchDrillDownData = (filterType, filterValue, callback) => {
+export const fetchDrillDownData = (filterType, filterValue, callback, statusFilter = null) => {
   window.jQuery.post(
     window.wcsoData.ajaxUrl,
     {
       action: "wcso_get_analytics_drilldown",
       nonce: window.wcsoData.analyticsNonce,
-      filter_type: filterType, // 'category' or 'date'
+      filter_type: filterType, // 'category', 'date', or 'status'
       filter_value: filterValue, // e.g., 'Customer Service' or '2025-12-01'
+      status_filter: statusFilter, // 'success' or 'failed' for success rate chart
     },
     (response) => {
       if (response.success) {
