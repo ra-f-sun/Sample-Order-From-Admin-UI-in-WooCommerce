@@ -18,49 +18,8 @@ if (! defined('ABSPATH')) {
     exit;
 }
 
-// Debug: Check if files exist
-$debug_info = array();
-$debug_info[] = 'Vendor autoload exists: ' . (file_exists(__DIR__ . '/vendor/autoload.php') ? 'YES' : 'NO');
-$debug_info[] = 'Singleton file exists: ' . (file_exists(__DIR__ . '/includes/Abstracts/class-wcso-singleton.php') ? 'YES' : 'NO');
-$debug_info[] = 'Old singleton exists: ' . (file_exists(__DIR__ . '/includes/abstract-wcso-singleton.php') ? 'YES' : 'NO');
-
-// Log debug info
-error_log('WCSO Debug: ' . implode(' | ', $debug_info));
-
-// Always load the singleton file directly first
-$singleton_path = __DIR__ . '/includes/Abstracts/class-wcso-singleton.php';
-if (file_exists($singleton_path)) {
-    require_once $singleton_path;
-    error_log('WCSO: Loaded singleton directly');
-}
-
-// Then load composer autoloader
-if (file_exists(__DIR__ . '/vendor/autoload.php')) {
-    require_once __DIR__ . '/vendor/autoload.php';
-    error_log('WCSO: Loaded composer autoloader');
-}
-
-// Manually load all other classes
-$class_files = array(
-    __DIR__ . '/includes/class-wcso-settings.php',
-    __DIR__ . '/includes/class-wcso-admin.php',
-    __DIR__ . '/includes/class-wcso-ajax.php',
-    __DIR__ . '/includes/class-wcso-approval.php',
-    __DIR__ . '/includes/class-wcso-email-handler.php',
-    __DIR__ . '/includes/class-wcso-order-customizer.php',
-    __DIR__ . '/includes/class-wcso-analytics-db.php',
-    __DIR__ . '/includes/class-wcso-analytics-api.php',
-    __DIR__ . '/includes/class-wcso-lifecycle.php',
-);
-
-foreach ($class_files as $file) {
-    if (file_exists($file)) {
-        require_once $file;
-    }
-}
-
-// Check if class exists now
-error_log('WCSO: Singleton class exists: ' . (class_exists('WPHelpZone\WCSO\Abstracts\WCSO_Singleton') ? 'YES' : 'NO'));
+// Load Composer autoloader.
+require_once __DIR__ . '/vendor/autoload.php';
 
 define('WCSO_VERSION', '3.2.0');
 define('WCSO_PLUGIN_DIR', plugin_dir_path(__FILE__));

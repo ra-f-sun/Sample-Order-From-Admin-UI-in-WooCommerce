@@ -18,9 +18,9 @@
         "phpcompatibility/phpcompatibility-wp": "^2.1"
     },
     "autoload": {
-        "psr-4": {
-            "WPHelpZone\\WCSO\\": "includes/"
-        }
+        "classmap": [
+            "includes/"
+        ]
     },
     "scripts": {
         "phpcs": "phpcs --standard=phpcs.xml",
