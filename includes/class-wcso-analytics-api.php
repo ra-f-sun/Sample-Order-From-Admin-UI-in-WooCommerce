@@ -128,8 +128,8 @@ class WCSO_Analytics_API extends WCSO_Singleton
 
         global $wpdb;
 
-        $type          = sanitize_text_field($_POST['filter_type']); // 'category' or 'date'.
-        $value         = sanitize_text_field($_POST['filter_value']); // e.g. 'Customer Service' or '2023-10-25'.
+        $type          = isset($_POST['filter_type']) ? sanitize_text_field($_POST['filter_type']) : ''; // 'category' or 'date'.
+        $value         = isset($_POST['filter_value']) ? sanitize_text_field($_POST['filter_value']) : ''; // e.g. 'Customer Service' or '2023-10-25'.
         $status_filter = isset($_POST['status_filter']) ? sanitize_text_field($_POST['status_filter']) : null;
 
         $sql = "SELECT order_id, category, tier, status, total_amount, created_at FROM $this->table_name WHERE ";
