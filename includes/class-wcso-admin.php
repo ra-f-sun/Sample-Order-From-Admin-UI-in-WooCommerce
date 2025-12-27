@@ -146,13 +146,9 @@ class WCSO_Admin extends WCSO_Singleton
         if (! current_user_can('manage_woocommerce')) {
             wp_die(__('Unauthorized'));
         }
-?>
-        <div class="wrap">
-            <h1 class="wp-heading-inline">Sample Orders v3.0</h1>
 
-            <div id="wcso-root"></div>
-        </div>
-    <?php
+        // Load template.
+        include WCSO_PLUGIN_DIR . 'templates/admin/order-page.php';
     }
 
     /**
@@ -275,7 +271,7 @@ class WCSO_Admin extends WCSO_Singleton
             return;
         }
         $selected = isset($_GET['sample_filter']) ? $_GET['sample_filter'] : '';
-    ?>
+?>
         <select name="sample_filter">
             <option value="">All Orders</option>
             <option value="yes" <?php selected($selected, 'yes'); ?>>Sample Orders</option>

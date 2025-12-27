@@ -123,10 +123,14 @@ class WCSO_Email_Handler extends WCSO_Singleton
         $status_msg = ($tier === 't1so') ? 'Processing' : 'Pending Approval';
         $subject    = "[Sample Order] Request Received #{$order->get_id()} ({$status_msg})";
 
-        $msg  = '<h2>Sample Order Received</h2>';
-        $msg .= "<p>Your order #{$order->get_id()} has been placed.</p>";
-        $msg .= "<p><strong>Current Status:</strong> {$status_msg}</p>";
-        $msg .= '<p><strong>Total Value:</strong> ' . $order->get_meta('_original_total') . '</p>';
+        // Prepare template variables.
+        $order_id = $order->get_id();
+        $total    = $order->get_meta('_original_total');
+
+        // Load template and capture output.
+        ob_start();
+        include WCSO_PLUGIN_DIR . 'templates/emails/order-confirmation.php';
+        $msg = ob_get_clean();
 
         wp_mail($billing_email, $subject, $msg, $headers);
     }
@@ -154,15 +158,15 @@ class WCSO_Email_Handler extends WCSO_Singleton
 
             $subject = "[Action Required] Approve Sample Order #{$order->get_id()}";
 
-            $msg  = '<h2>Approval Required</h2>';
-            $msg .= '<p>A Tier ' . strtoupper(str_replace('so', '', $tier)) . ' sample order requires your approval.</p>';
-            $msg .= '<p><strong>Created By:</strong> ' . $order->get_meta('_wcso_origin') . '</p>';
-            $msg .= '<p><strong>Total Value:</strong> ' . $order->get_meta('_original_total') . '</p>';
-            $msg .= '<div style="margin:20px 0;">';
-            $msg .= "<a href='{$approve_link}' style='background:green;color:white;padding:10px 15px;text-decoration:none;margin-right:10px;'>APPROVE</a>";
-            $msg .= "<a href='{$reject_link}' style='background:red;color:white;padding:10px 15px;text-decoration:none;'>REJECT</a>";
-            $msg .= '</div>';
-            $msg .= '<p><small>Clicking these links simulates a login-free approval action.</small></p>';
+            // Prepare template variables.
+            $order_id   = $order->get_id();
+            $created_by = $order->get_meta('_wcso_origin');
+            $total      = $order->get_meta('_original_total');
+
+            // Load template and capture output.
+            ob_start();
+            include WCSO_PLUGIN_DIR . 'templates/emails/approval-request.php';
+            $msg = ob_get_clean();
 
             $headers = array('Content-Type: text/html; charset=UTF-8');
             wp_mail($approver_email, $subject, $msg, $headers);

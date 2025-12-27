@@ -95,14 +95,20 @@ class WCSO_Approval extends WCSO_Singleton
         // Reject Logic.
         if ($action === 'reject') {
             $order->update_status('cancelled', "Rejected by {$email} via email link.");
-            wp_die('<h1>Order Rejected</h1><p>The order has been cancelled.</p>');
+            ob_start();
+            include WCSO_PLUGIN_DIR . 'templates/approval/rejected.php';
+            $html = ob_get_clean();
+            wp_die($html);
         }
 
         // Approve Logic.
         if ($action === 'approve') {
             // Check if this person needs to approve.
             if (! $this->is_approval_needed($order, $email)) {
-                wp_die("<h1>Approval Not Required</h1><p>The email <strong>{$email}</strong> is not listed as a required approver for Order #{$order_id}.</p>");
+                ob_start();
+                include WCSO_PLUGIN_DIR . 'templates/approval/not-required.php';
+                $html = ob_get_clean();
+                wp_die($html);
             }
 
             // Grant the approval.
@@ -111,12 +117,18 @@ class WCSO_Approval extends WCSO_Singleton
             // Check if all approvals received.
             if ($this->check_approval_completion($order)) {
                 $order->update_status('processing', 'All tier approvals granted.');
-                wp_die('<h1 style="color:green">Approval Successful</h1><p>All approvals received. Order is now <strong>Processing</strong>.</p>');
+                ob_start();
+                include WCSO_PLUGIN_DIR . 'templates/approval/success.php';
+                $html = ob_get_clean();
+                wp_die($html);
             } else {
                 $needed  = $order->get_meta('_wcso_approvals_needed') ?: array();
                 $granted = $order->get_meta('_wcso_approvals_granted') ?: array();
                 $missing = array_diff($needed, $granted);
-                wp_die('<h1>Approval Recorded</h1><p>Thank you. Order is still waiting for: ' . implode(', ', $missing) . '</p>');
+                ob_start();
+                include WCSO_PLUGIN_DIR . 'templates/approval/pending.php';
+                $html = ob_get_clean();
+                wp_die($html);
             }
         }
     }
