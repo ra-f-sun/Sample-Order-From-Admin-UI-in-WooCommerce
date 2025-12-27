@@ -4,7 +4,7 @@
  * Plugin Name: WooCommerce Sample Orders
  * Plugin URI: https://wphelpzone.com
  * Description: Create sample orders with tiered approval workflow and dynamic settings.
- * Version: 3.2.0
+ * Version: 3.2.1
  * Author: Rafsun Jani (WPHelpZone LLC)
  * Author URI: https://wphelpzone.com
  * Requires at least: 5.8
@@ -21,8 +21,12 @@ if (! defined('ABSPATH')) {
 // Load Composer autoloader.
 require_once __DIR__ . '/vendor/autoload.php';
 
-// Load plugin constants.
-require_once __DIR__ . '/includes/wcso-constants.php';
+// Define plugin constants.
+define('WCSO_VERSION', '3.2.1');
+define('WCSO_PLUGIN_DIR', plugin_dir_path(__FILE__));
+define('WCSO_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('WCSO_PLUGIN_FILE', __FILE__);
+define('WCSO_PLUGIN_BASENAME', plugin_basename(__FILE__));
 
 /**
  * Main Plugin Class
@@ -36,16 +40,26 @@ class WC_Sample_Orders extends \WPHelpZone\WCSO\Abstracts\WCSO_Singleton
      */
     protected function init()
     {
-        if (! class_exists('WooCommerce')) {
+        if (! $this->is_woocommerce_active()) {
             add_action(
                 'admin_notices',
                 function () {
-                    echo '<div class="notice notice-error"><p><strong>WCSO</strong> requires WooCommerce.</p></div>';
+                    echo '<div class="notice notice-error"><p><strong>WCSO</strong> requires WooCommerce to be activated.</p></div>';
                 }
             );
             return;
         }
         add_action('init', array($this, 'initialize_classes'));
+    }
+
+    /**
+     * Check if WooCommerce is active
+     *
+     * @return bool
+     */
+    private function is_woocommerce_active()
+    {
+        return in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')), true);
     }
 
     /**

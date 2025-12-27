@@ -58,8 +58,6 @@ class WCSO_Analytics_API extends WCSO_Singleton
             wp_send_json_error('Unauthorized');
         }
 
-        global $wpdb;
-
         // Default to last 30 days.
         $end_date   = isset($_POST['end_date']) ? sanitize_text_field($_POST['end_date']) : date('Y-m-d');
         $start_date = isset($_POST['start_date']) ? sanitize_text_field($_POST['start_date']) : date('Y-m-d', strtotime('-30 days'));
@@ -67,7 +65,34 @@ class WCSO_Analytics_API extends WCSO_Singleton
         $start_query = $start_date . ' 00:00:00';
         $end_query   = $end_date . ' 23:59:59';
 
-        // QUERY A: By Category (for Volume & Spend Charts).
+        // Get category aggregates for volume & spend charts.
+        $by_category = $this->get_category_aggregates($start_query, $end_query);
+
+        // Get date trends for trend & success rate charts.
+        $by_date = $this->get_date_trends($start_query, $end_query);
+
+        $response = array(
+            'volume_by_category' => $by_category,
+            'spend_by_category'  => $by_category,
+            'trends'             => $by_date,
+            'success_rate'       => $by_date,
+        );
+
+        wp_send_json_success($response);
+    }
+
+    /**
+     * Query category aggregates for volume and spend charts
+     * Helper method used by get_analytics_data()
+     *
+     * @param string $start_query Start datetime in SQL format.
+     * @param string $end_query   End datetime in SQL format.
+     * @return array Category aggregates with count and value.
+     */
+    private function get_category_aggregates($start_query, $end_query)
+    {
+        global $wpdb;
+
         $by_category = $wpdb->get_results(
             $wpdb->prepare(
                 "
@@ -83,7 +108,21 @@ class WCSO_Analytics_API extends WCSO_Singleton
             ARRAY_A
         );
 
-        // QUERY B: By Date (for Trend & Success Charts).
+        return $by_category;
+    }
+
+    /**
+     * Query date trends for trend and success rate charts
+     * Helper method used by get_analytics_data()
+     *
+     * @param string $start_query Start datetime in SQL format.
+     * @param string $end_query   End datetime in SQL format.
+     * @return array Date trends with order counts, amounts, and success/fail counts.
+     */
+    private function get_date_trends($start_query, $end_query)
+    {
+        global $wpdb;
+
         $by_date = $wpdb->get_results(
             $wpdb->prepare(
                 "
@@ -104,14 +143,7 @@ class WCSO_Analytics_API extends WCSO_Singleton
             ARRAY_A
         );
 
-        $response = array(
-            'volume_by_category' => $by_category,
-            'spend_by_category'  => $by_category,
-            'trends'             => $by_date,
-            'success_rate'       => $by_date,
-        );
-
-        wp_send_json_success($response);
+        return $by_date;
     }
 
     /**

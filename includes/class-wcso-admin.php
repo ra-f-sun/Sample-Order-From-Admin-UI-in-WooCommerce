@@ -170,33 +170,59 @@ class WCSO_Admin extends WCSO_Singleton
         $all_shipping_zone_with_methods = array();
 
         foreach ($shipping_zones as $shipping_zone) {
-            $shipping_zone_id   = $shipping_zone['zone_id'];
-            $shipping_zone_name = $shipping_zone['zone_name'];
-            $zone_locations     = $shipping_zone['zone_locations'];
-
-            $current_zone = array(
-                'zone_id'          => $shipping_zone_id,
-                'zone_name'        => $shipping_zone_name,
-                'zone_locations'   => $zone_locations,
-                'shipping_methods' => array(),
-            );
-
-            $shipping_methods = $shipping_zone['shipping_methods'];
-
-            foreach ($shipping_methods as $shipping_method) {
-                $current_zone['shipping_methods'][] = array(
-                    'id'             => $shipping_method->id,
-                    'title'          => $shipping_method->method_title,
-                    'instance_id'    => $shipping_method->instance_id,
-                    'method_id'      => $shipping_method->id . ':' . $shipping_method->instance_id,
-                    'instance_title' => $shipping_method->instance_settings['title'],
-                    'instance_cost'  => $shipping_method->instance_settings['cost'] ?? 0,
-                    'enabled'        => $shipping_method->enabled,
-                );
-            }
+            $current_zone = $this->build_zone_data($shipping_zone);
             $all_shipping_zone_with_methods[] = $current_zone;
         }
         return $all_shipping_zone_with_methods;
+    }
+
+    /**
+     * Build zone data array with zone information
+     * Helper method used by render_shipping_details_data_only()
+     *
+     * @param array $shipping_zone Shipping zone data from WooCommerce.
+     * @return array Formatted zone data with shipping methods.
+     */
+    private function build_zone_data($shipping_zone)
+    {
+        $shipping_zone_id   = $shipping_zone['zone_id'];
+        $shipping_zone_name = $shipping_zone['zone_name'];
+        $zone_locations     = $shipping_zone['zone_locations'];
+
+        $current_zone = array(
+            'zone_id'          => $shipping_zone_id,
+            'zone_name'        => $shipping_zone_name,
+            'zone_locations'   => $zone_locations,
+            'shipping_methods' => $this->parse_shipping_methods($shipping_zone['shipping_methods']),
+        );
+
+        return $current_zone;
+    }
+
+    /**
+     * Parse shipping methods and return formatted array
+     * Helper method used by build_zone_data()
+     *
+     * @param array $shipping_methods Array of WooCommerce shipping method objects.
+     * @return array Formatted array of shipping methods.
+     */
+    private function parse_shipping_methods($shipping_methods)
+    {
+        $formatted_methods = array();
+
+        foreach ($shipping_methods as $shipping_method) {
+            $formatted_methods[] = array(
+                'id'             => $shipping_method->id,
+                'title'          => $shipping_method->method_title,
+                'instance_id'    => $shipping_method->instance_id,
+                'method_id'      => $shipping_method->id . ':' . $shipping_method->instance_id,
+                'instance_title' => $shipping_method->instance_settings['title'],
+                'instance_cost'  => $shipping_method->instance_settings['cost'] ?? 0,
+                'enabled'        => $shipping_method->enabled,
+            );
+        }
+
+        return $formatted_methods;
     }
 
     /**

@@ -61,9 +61,31 @@ class WCSO_Email_Handler extends WCSO_Singleton
         $tier   = $order->get_meta('_wcso_tier');
         $config = WCSO_Settings::get_tier_config();
 
-        // Billing Information.
+        // Get billing email and CC emails.
         $billing_email = $order->get_billing_email();
-        $cc_emails     = array();
+        $cc_emails     = $this->get_cc_emails($tier, $config);
+
+        // Send order confirmation email to customer.
+        if ($billing_email) {
+            $this->send_order_confirmation_email($order, $billing_email, $cc_emails, $tier);
+        }
+
+        // Send approval request emails to approvers.
+        $needed_approvals = $order->get_meta('_wcso_approvals_needed') ?: array();
+        $this->send_approval_request_emails($order, $needed_approvals);
+    }
+
+    /**
+     * Get CC emails for the specified tier
+     * Helper method used by send_notifications()
+     *
+     * @param string $tier   Tier code (t1so, t2so, t3so).
+     * @param array  $config Tier configuration array.
+     * @return array Array of CC email addresses.
+     */
+    private function get_cc_emails($tier, $config)
+    {
+        $cc_emails = array();
 
         if ($tier === 't1so' && ! empty($config['t1']['cc'])) {
             $cc_emails = explode(',', $config['t1']['cc']);
@@ -75,37 +97,60 @@ class WCSO_Email_Handler extends WCSO_Singleton
             $cc_emails = explode(',', $config['t3']['cc']);
         }
 
-        if ($billing_email) {
-            $headers = array('Content-Type: text/html; charset=UTF-8');
-            foreach ($cc_emails as $cc) {
-                if (is_email(trim($cc))) {
-                    $headers[] = 'Cc: ' . trim($cc);
-                }
+        return $cc_emails;
+    }
+
+    /**
+     * Send order confirmation email to customer
+     * Helper method used by send_notifications()
+     *
+     * @param \WC_Order $order         Order object.
+     * @param string    $billing_email Customer's billing email.
+     * @param array     $cc_emails     Array of CC email addresses.
+     * @param string    $tier          Tier code (t1so, t2so, t3so).
+     * @return void
+     */
+    private function send_order_confirmation_email($order, $billing_email, $cc_emails, $tier)
+    {
+        $headers = array('Content-Type: text/html; charset=UTF-8');
+        foreach ($cc_emails as $cc) {
+            if (is_email(trim($cc))) {
+                $headers[] = 'Cc: ' . trim($cc);
             }
-
-            // Pending approval for t2so, t3so.
-            $status_msg = ($tier === 't1so') ? 'Processing' : 'Pending Approval';
-            $subject    = "[Sample Order] Request Received #{$order->get_id()} ({$status_msg})";
-
-            $msg  = '<h2>Sample Order Received</h2>';
-            $msg .= "<p>Your order #{$order->get_id()} has been placed.</p>";
-            $msg .= "<p><strong>Current Status:</strong> {$status_msg}</p>";
-            $msg .= '<p><strong>Total Value:</strong> ' . $order->get_meta('_original_total') . '</p>';
-
-            wp_mail($billing_email, $subject, $msg, $headers);
         }
 
-        // Action Mail (Approval).
-        $needed = $order->get_meta('_wcso_approvals_needed') ?: array();
+        // Pending approval for t2so, t3so.
+        $status_msg = ($tier === 't1so') ? 'Processing' : 'Pending Approval';
+        $subject    = "[Sample Order] Request Received #{$order->get_id()} ({$status_msg})";
 
-        foreach ($needed as $approver_email) {
+        $msg  = '<h2>Sample Order Received</h2>';
+        $msg .= "<p>Your order #{$order->get_id()} has been placed.</p>";
+        $msg .= "<p><strong>Current Status:</strong> {$status_msg}</p>";
+        $msg .= '<p><strong>Total Value:</strong> ' . $order->get_meta('_original_total') . '</p>';
+
+        wp_mail($billing_email, $subject, $msg, $headers);
+    }
+
+    /**
+     * Send approval request emails to all required approvers
+     * Helper method used by send_notifications()
+     *
+     * @param \WC_Order $order            Order object.
+     * @param array     $needed_approvals Array of approver email addresses.
+     * @return void
+     */
+    private function send_approval_request_emails($order, $needed_approvals)
+    {
+        $tier = $order->get_meta('_wcso_tier');
+
+        foreach ($needed_approvals as $approver_email) {
             if (! is_email($approver_email)) {
                 continue;
             }
 
             // Generates action links for specific approver.
-            $approve_link = WCSO_Approval::get_instance()->get_action_url($order_id, $approver_email, 'approve');
-            $reject_link  = WCSO_Approval::get_instance()->get_action_url($order_id, $approver_email, 'reject');
+            $approve_link = WCSO_Approval::get_instance()->get_action_url($order->get_id(), $approver_email, 'approve');
+            $reject_link  = WCSO_Approval::get_instance()->get_action_url($order->get_id(), $approver_email, 'reject');
 
             $subject = "[Action Required] Approve Sample Order #{$order->get_id()}";
 
