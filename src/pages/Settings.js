@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { saveSettings, analyticsBackfill } from "../utils/apiClient";
 
 const Settings = ({ appSettings, onUpdateSetting }) => {
   const [formData, setFormData] = useState(appSettings);
@@ -29,34 +30,27 @@ const Settings = ({ appSettings, onUpdateSetting }) => {
     }
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     setIsSaving(true);
     setMessage(null);
 
-    window.jQuery.post(
-      window.wcsoData.ajaxUrl,
-      {
-        action: "wcso_save_settings",
-        nonce: window.wcsoData.saveSettingsNonce,
-        settings: formData,
-      },
-      (response) => {
-        setIsSaving(false);
-        if (response.success) {
-          setMessage({ type: "success", text: "Settings Saved!" });
+    try {
+      await saveSettings(formData);
+      setIsSaving(false);
+      setMessage({ type: "success", text: "Settings Saved!" });
 
-          // Ensure all settings synced after save
-          onUpdateSetting("email_logging", formData.email_logging);
-          onUpdateSetting("barcode_scanner", formData.barcode_scanner);
-          onUpdateSetting("coupon_code", formData.coupon_code);
-          onUpdateSetting("tiers", formData.tiers);
+      // Ensure all settings synced after save
+      onUpdateSetting("email_logging", formData.email_logging);
+      onUpdateSetting("barcode_scanner", formData.barcode_scanner);
+      onUpdateSetting("coupon_code", formData.coupon_code);
+      onUpdateSetting("tiers", formData.tiers);
 
-          setTimeout(() => setMessage(null), 3000);
-        } else {
-          setMessage({ type: "error", text: "Error saving settings." });
-        }
-      }
-    );
+      setTimeout(() => setMessage(null), 3000);
+    } catch (error) {
+      setIsSaving(false);
+      setMessage({ type: "error", text: "Error saving settings." });
+      console.error("API Error:", error);
+    }
   };
 
   return (
@@ -125,16 +119,14 @@ const Settings = ({ appSettings, onUpdateSetting }) => {
           </p>
           <button
             className="button"
-            onClick={() => {
+            onClick={async () => {
               if (!confirm("This will scan all past orders. Continue?")) return;
-              window.jQuery.post(
-                window.wcsoData.ajaxUrl,
-                {
-                  action: "wcso_analytics_backfill",
-                  nonce: window.wcsoData.saveSettingsNonce,
-                },
-                (res) => alert(res.data)
-              );
+              try {
+                const response = await analyticsBackfill();
+                alert(response.message);
+              } catch (error) {
+                alert("Error: " + (error.message || "Unknown error"));
+              }
             }}
           >
             Index Past Orders

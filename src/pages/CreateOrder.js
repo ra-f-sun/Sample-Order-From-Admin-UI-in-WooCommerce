@@ -3,6 +3,7 @@ import ProductSearch from "../components/ProductSearch";
 import CartTable from "../components/CartTable";
 import TierStatus from "../components/TierStatus";
 import OrderForm from "../components/OrderForm";
+import { createOrder } from "../utils/apiClient";
 
 const CreateOrder = ({ appSettings }) => {
   const [cart, setCart] = useState([]);
@@ -56,7 +57,7 @@ const CreateOrder = ({ appSettings }) => {
     setCart(cart.filter((item) => item.id !== id));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (cart.length === 0) return alert("Please add products.");
 
     const required = [
@@ -112,47 +113,36 @@ ${approvalMsg}`;
     const finalNote = userNote ? userNote + "\n" + systemNote : systemNote;
 
     const payload = {
-      action: "wcso_create_order",
-      nonce: window.wcsoData.createOrderNonce,
-      products: JSON.stringify(cart),
+      products: cart,
       ...formData,
       order_note: finalNote,
       billing_user_id:
         formData.billing_user_id || window.wcsoData.currentUserId,
     };
 
-    window.jQuery.ajax({
-      url: window.wcsoData.ajaxUrl,
-      type: "POST",
-      data: payload,
-      success: (response) => {
-        setIsSubmitting(false);
-        if (response.success) {
-          setSuccessData(response.data);
-          setCart([]);
-          setFormData((prev) => ({
-            ...prev,
-            shipping_first_name: "",
-            shipping_last_name: "",
-            shipping_company: "",
-            shipping_address_1: "",
-            shipping_address_2: "",
-            shipping_city: "",
-            shipping_postcode: "",
-            shipping_phone: "",
-            shipping_email: "",
-            order_note: "",
-          }));
-        } else {
-          alert("Error: " + (response.data || "Unknown error"));
-        }
-      },
-      error: (xhr, status, error) => {
-        setIsSubmitting(false);
-        console.error("AJAX Error:", error);
-        alert("System Error: The server rejected the request.");
-      },
-    });
+    try {
+      const response = await createOrder(payload);
+      setIsSubmitting(false);
+      setSuccessData(response);
+      setCart([]);
+      setFormData((prev) => ({
+        ...prev,
+        shipping_first_name: "",
+        shipping_last_name: "",
+        shipping_company: "",
+        shipping_address_1: "",
+        shipping_address_2: "",
+        shipping_city: "",
+        shipping_postcode: "",
+        shipping_phone: "",
+        shipping_email: "",
+        order_note: "",
+      }));
+    } catch (error) {
+      setIsSubmitting(false);
+      console.error("API Error:", error);
+      alert("Error: " + (error.message || "Unknown error"));
+    }
   };
 
   return (

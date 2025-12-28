@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { getEmailLog, clearEmailLog } from "../utils/apiClient";
 
 const EmailLogs = () => {
   const [logContent, setLogContent] = useState("Loading logs...");
@@ -8,37 +9,28 @@ const EmailLogs = () => {
     fetchLogs();
   }, []);
 
-  const fetchLogs = () => {
-    window.jQuery.post(
-      window.wcsoData.ajaxUrl,
-      {
-        action: "wcso_get_email_log",
-        nonce: window.wcsoData.saveSettingsNonce,
-      },
-      (res) => {
-        if (res.success) setLogContent(res.data);
-        else setLogContent("Failed to load logs.");
-      }
-    );
+  const fetchLogs = async () => {
+    try {
+      const response = await getEmailLog();
+      setLogContent(response.content);
+    } catch (error) {
+      setLogContent("Failed to load logs.");
+      console.error("API Error:", error);
+    }
   };
 
-  const handleClear = () => {
+  const handleClear = async () => {
     if (!confirm("Are you sure you want to clear the logs?")) return;
     setIsClearing(true);
 
-    window.jQuery.post(
-      window.wcsoData.ajaxUrl,
-      {
-        action: "wcso_clear_log",
-        nonce: window.wcsoData.saveSettingsNonce,
-      },
-      (res) => {
-        setIsClearing(false);
-        if (res.success) {
-          setLogContent("No emails logged yet.");
-        }
-      }
-    );
+    try {
+      await clearEmailLog();
+      setIsClearing(false);
+      setLogContent("No emails logged yet.");
+    } catch (error) {
+      setIsClearing(false);
+      console.error("API Error:", error);
+    }
   };
 
   return (

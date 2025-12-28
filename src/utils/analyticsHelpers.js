@@ -1,44 +1,29 @@
 // src/utils/analyticsHelpers.js
 
-export const fetchAnalyticsData = (startDate, endDate, callback) => {
-  window.jQuery.post(
-    window.wcsoData.ajaxUrl,
-    {
-      action: "wcso_get_analytics_data",
-      nonce: window.wcsoData.analyticsNonce,
-      start_date: startDate,
-      end_date: endDate,
-    },
-    (response) => {
-      if (response.success) {
-        callback(response.data);
-      } else {
-        console.error("Analytics Error:", response);
-        callback(null);
-      }
-    }
-  );
+import { getAnalyticsData, getDrilldownData } from './apiClient';
+
+export const fetchAnalyticsData = async (startDate, endDate, callback) => {
+  try {
+    const data = await getAnalyticsData(startDate, endDate);
+    callback(data);
+  } catch (error) {
+    console.error("Analytics Error:", error);
+    callback(null);
+  }
 };
 
-export const fetchDrillDownData = (filterType, filterValue, callback, statusFilter = null) => {
-  window.jQuery.post(
-    window.wcsoData.ajaxUrl,
-    {
-      action: "wcso_get_analytics_drilldown",
-      nonce: window.wcsoData.analyticsNonce,
-      filter_type: filterType, // 'category', 'date', or 'status'
-      filter_value: filterValue, // e.g., 'Customer Service' or '2025-12-01'
-      status_filter: statusFilter, // 'success' or 'failed' for success rate chart
-    },
-    (response) => {
-      if (response.success) {
-        callback(response.data);
-      } else {
-        console.error("Drilldown Error:", response);
-        callback([]);
-      }
-    }
-  );
+export const fetchDrillDownData = async (filterType, filterValue, callback, statusFilter = null) => {
+  try {
+    // Map filter_type and filter_value to REST API parameters
+    const category = filterType === 'category' ? filterValue : null;
+    const date = filterType === 'date' ? filterValue : null;
+    
+    const data = await getDrilldownData(category, date, statusFilter);
+    callback(data);
+  } catch (error) {
+    console.error("Drilldown Error:", error);
+    callback([]);
+  }
 };
 
 export const exportToCsv = (data, filename) => {

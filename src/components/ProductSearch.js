@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import ScanConflictModal from "./ScanConflictModal";
 import useBarcodeScanner from "../hooks/useBarcodeScanner";
+import { getAllProducts } from "../utils/apiClient";
 
 const ProductSearch = ({ onAddProduct, scannerEnabled }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -85,29 +86,21 @@ const ProductSearch = ({ onAddProduct, scannerEnabled }) => {
     }
   };
 
-  const fetchFromApi = () => {
+  const fetchFromApi = async () => {
     setCacheStatus("loading");
     setIsLoading(true);
-    window.jQuery
-      .post(
-        window.wcsoData.ajaxUrl,
-        { action: "wcso_get_all_products", nonce: window.wcsoData.cacheNonce },
-        (response) => {
-          setIsLoading(false);
-          if (response.success) {
-            setAllProducts(response.data);
-            setCacheStatus("loaded");
-            localStorage.setItem(CACHE_KEY, JSON.stringify(response.data));
-            localStorage.setItem(TIME_KEY, Date.now());
-          } else {
-            setCacheStatus("error");
-          }
-        }
-      )
-      .fail(() => {
-        setIsLoading(false);
-        setCacheStatus("error");
-      });
+    try {
+      const data = await getAllProducts();
+      setIsLoading(false);
+      setAllProducts(data);
+      setCacheStatus("loaded");
+      localStorage.setItem(CACHE_KEY, JSON.stringify(data));
+      localStorage.setItem(TIME_KEY, Date.now());
+    } catch (error) {
+      setIsLoading(false);
+      setCacheStatus("error");
+      console.error("API Error:", error);
+    }
   };
 
   const handleRefresh = () => {

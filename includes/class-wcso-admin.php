@@ -105,14 +105,8 @@ class WCSO_Admin extends WCSO_Singleton
             'wcso-react-app',
             'wcsoData',
             array(
-                'ajaxUrl'           => admin_url('admin-ajax.php'),
-
-                // Security Tokens.
-                'createOrderNonce'  => wp_create_nonce('wcso_create_order'),
-                'searchNonce'       => wp_create_nonce('wcso_search'),
-                'cacheNonce'        => wp_create_nonce('wcso_cache'),
-                'saveSettingsNonce' => wp_create_nonce('wcso_save_settings'),
-                'analyticsNonce'    => wp_create_nonce('wcso_analytics'),
+                'restUrl'           => rest_url('wcso/v1'),
+                'restNonce'         => wp_create_nonce('wp_rest'),
 
                 'currentUserId'     => get_current_user_id(),
                 'users'             => $user_query,
